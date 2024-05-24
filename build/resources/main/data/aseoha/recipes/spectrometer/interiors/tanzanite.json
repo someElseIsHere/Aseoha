@@ -1,9 +1,0 @@
-{
-  "type": "tardis:spectrometer",
-  "processing_ticks": 100,
-  "download_ticks": 100,
-  "ingredient": {
-    "item": "minecraft:purple_concrete"
-  },
-  "result": "tanzaniteinterior:interiors/tanzanite"
-}

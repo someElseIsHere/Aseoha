@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Specification-Title: aseoha
-Specification-Vendor: tamaaseoha
-Specification-Version: 1
-Implementation-Title: Aseoha
-Implementation-Version: 3.2.0
-Implementation-Vendor: TAMA
-Implementation-Timestamp: 2024-05-22T21:27:35-0400
-
