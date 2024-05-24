@@ -3,13 +3,15 @@
 //// Paste this class into your mod and generate all required imports
 //
 //
+//import com.code.aseoha.tileentities.consoles.CopperConsoleTile;
 //import com.mojang.blaze3d.matrix.MatrixStack;
 //import com.mojang.blaze3d.vertex.IVertexBuilder;
-//import net.minecraft.client.renderer.entity.model.EntityModel;
 //import net.minecraft.client.renderer.model.ModelRenderer;
 //import net.minecraft.entity.Entity;
+//import net.tardis.mod.client.models.consoles.AbstractConsoleEntityModel;
 //
-//public class CopperConsoleModelbck extends EntityModel<Entity> {
+//
+//public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsoleTile> {
 //	private final ModelRenderer base;
 //	private final ModelRenderer side;
 //	private final ModelRenderer bone;
@@ -191,24 +193,8 @@
 //	private final ModelRenderer bone141;
 //	private final ModelRenderer bone140;
 //	private final ModelRenderer bone146;
-//	private final Object bone81_r1;
-//	private final Object bone53_r1;
-//	private final ModelRenderer bone64_r1;
-//	private final Object bone67_r1;
-//	private final Object bone85_r1;
-//	private final Object bone80_r1;
-//	private final Object bone79_r1;
-//	private final Object bone82_r2;
-//	private final ModelRenderer bone80_r3;
 //
-//	public CopperConsoleModelbck(Object bone81R1, Object bone53R1, Object bone67R1, Object bone85R1, Object bone80R1, Object bone79R1, Object bone82R2) {
-//        this.bone81_r1 = bone81R1;
-//        this.bone53_r1 = bone53R1;
-//        this.bone67_r1 = bone67R1;
-//        this.bone85_r1 = bone85R1;
-//        this.bone80_r1 = bone80R1;
-//        this.bone79_r1 = bone79R1;
-//        this.bone82_r2 = bone82R2;
+//    public CopperConsoleModel() {//Object bone92R1, Object bone53R1, Object bone78R1, Object bone79R1, Object bone81R1, Object bone79R4) {
 //        texWidth = 256;
 //		texHeight = 256;
 //
@@ -1005,8 +991,9 @@
 //		bone64.texOffs(8, -1).addBox(-6.4098F, -18.5513F, -34.9853F, 0.0F, 0.0F, 1.0F, 0.1F, false);
 //		bone64.texOffs(63, 4).addBox(-14.7098F, -18.3513F, -41.7853F, 12.0F, 1.0F, 3.0F, 0.0F, false);
 //
-//		bone64_r1 = new ModelRenderer(this);
-//		bone64_r1.setPos(-6.4098F, -18.7513F, -32.1853F);
+//		ModelRenderer bone64_r1;
+//        bone64_r1 = new ModelRenderer(this);
+//        bone64_r1.setPos(-6.4098F, -18.7513F, -32.1853F);
 //		bone64.addChild(bone64_r1);
 //		setRotationAngle(bone64_r1, 0.0F, -0.5236F, 0.0F);
 //		bone64_r1.texOffs(8, -1).addBox(-0.6F, 0.0F, -0.2F, 0.0F, 0.0F, 1.0F, 0.1F, false);
@@ -1070,8 +1057,9 @@
 //		bone67.texOffs(96, 83).addBox(-22.4772F, 19.0124F, -19.9062F, 1.0F, 2.0F, 2.0F, -0.1F, false);
 //		bone67.texOffs(134, 4).addBox(-23.4772F, 16.2124F, -19.2062F, 2.0F, 2.0F, 2.0F, -0.2F, false);
 //
-//		ModelRenderer bone67_r1 = new ModelRenderer(this);
-//		bone67_r1.setPos(-26.0315F, 21.6931F, -18.0723F);
+//		ModelRenderer bone67_r1;
+//        bone67_r1 = new ModelRenderer(this);
+//        bone67_r1.setPos(-26.0315F, 21.6931F, -18.0723F);
 //		bone67.addChild(bone67_r1);
 //		setRotationAngle(bone67_r1, 0.0F, 0.0F, -0.0873F);
 //		bone67_r1.texOffs(133, 58).addBox(-0.6457F, -1.7807F, -1.2339F, 2.0F, 2.0F, 2.0F, -0.6F, false);
@@ -1197,15 +1185,15 @@
 //		setRotationAngle(bone82_r1, 0.0F, -1.6144F, 0.5236F);
 //		bone82_r1.texOffs(88, 45).addBox(-0.9622F, -0.5F, -0.5098F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 //
-//		ModelRenderer bone78_r1;
-//        bone78_r1 = new ModelRenderer(this);
-//        bone78_r1.setPos(21.7733F, -25.5F, -33.1438F);
+//		ModelRenderer bone78_r1 = new ModelRenderer(this);
+//		bone78_r1.setPos(21.7733F, -25.5F, -33.1438F);
 //		bone76.addChild(bone78_r1);
 //		setRotationAngle(bone78_r1, 0.0F, 0.0F, 0.5236F);
 //		bone78_r1.texOffs(88, 45).addBox(-1.0081F, -0.5F, -0.5382F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 //
-//		ModelRenderer bone80_r1 = new ModelRenderer(this);
-//		bone80_r1.setPos(21.7733F, -25.5F, -33.1438F);
+//		ModelRenderer bone80_r1;
+//        bone80_r1 = new ModelRenderer(this);
+//        bone80_r1.setPos(21.7733F, -25.5F, -33.1438F);
 //		bone76.addChild(bone80_r1);
 //		setRotationAngle(bone80_r1, 0.0F, 0.0F, 2.618F);
 //		bone80_r1.texOffs(88, 45).addBox(-0.9959F, -0.4929F, -0.5382F, 2.0F, 1.0F, 1.0F, -0.3F, false);
@@ -1216,8 +1204,9 @@
 //		setRotationAngle(bone79_r1, 0.0F, 0.0F, 1.4835F);
 //		bone79_r1.texOffs(88, 45).addBox(-1.0047F, -0.4933F, -0.5382F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 //
-//		ModelRenderer bone85_r1 = new ModelRenderer(this);
-//		bone85_r1.setPos(24.2733F, -16.7122F, -40.4036F);
+//		ModelRenderer bone85_r1;
+//        bone85_r1 = new ModelRenderer(this);
+//        bone85_r1.setPos(24.2733F, -16.7122F, -40.4036F);
 //		bone76.addChild(bone85_r1);
 //		setRotationAngle(bone85_r1, 2.0508F, 0.0F, 1.5708F);
 //		bone85_r1.texOffs(101, 61).addBox(-0.5F, -1.0F, -0.5F, 1.0F, 2.0F, 1.0F, -0.3F, false);
@@ -1251,8 +1240,9 @@
 //		setRotationAngle(bone79_r2, 0.0F, 0.0F, 0.9599F);
 //		bone79_r2.texOffs(88, 45).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 //
-//		ModelRenderer bone82_r2 = new ModelRenderer(this);
-//		bone82_r2.setPos(18.5331F, -24.5F, -33.432F);
+//		ModelRenderer bone82_r2;
+//        bone82_r2 = new ModelRenderer(this);
+//        bone82_r2.setPos(18.5331F, -24.5F, -33.432F);
 //		bone76.addChild(bone82_r2);
 //		setRotationAngle(bone82_r2, 0.0F, -1.6144F, 0.0F);
 //		bone82_r2.texOffs(88, 45).addBox(-1.0F, 0.5F, -2.25F, 2.0F, 1.0F, 1.0F, -0.3F, false);
@@ -1264,7 +1254,7 @@
 //		bone81_r1.texOffs(88, 45).addBox(-1.0F, 0.5F, -2.25F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 //		bone81_r1.texOffs(88, 45).addBox(-0.5F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 //
-//		ModelRenderer bone79_r3;
+//        ModelRenderer bone79_r3;
 //        bone79_r3 = new ModelRenderer(this);
 //        bone79_r3.setPos(22.2652F, -24.5F, -33.432F);
 //		bone76.addChild(bone79_r3);
@@ -1278,15 +1268,15 @@
 //		setRotationAngle(bone81_r2, 0.0F, 0.0F, -3.098F);
 //		bone81_r2.texOffs(88, 45).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 //
-//		bone80_r3 = new ModelRenderer(this);
-//		bone80_r3.setPos(20.5365F, -25.4869F, -32.932F);
+//		ModelRenderer bone80_r3;
+//        bone80_r3 = new ModelRenderer(this);
+//        bone80_r3.setPos(20.5365F, -25.4869F, -32.932F);
 //		bone76.addChild(bone80_r3);
 //		setRotationAngle(bone80_r3, 0.0F, 0.0F, 2.0071F);
 //		bone80_r3.texOffs(88, 45).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 //
-//		ModelRenderer bone79_r4;
-//        bone79_r4 = new ModelRenderer(this);
-//        bone79_r4.setPos(22.2652F, -24.5F, -33.432F);
+//		ModelRenderer bone79_r4 = new ModelRenderer(this);
+//		bone79_r4.setPos(22.2652F, -24.5F, -33.432F);
 //		bone76.addChild(bone79_r4);
 //		setRotationAngle(bone79_r4, 0.0F, 0.0F, 0.9599F);
 //		bone79_r4.texOffs(88, 45).addBox(-2.8F, 0.35F, 0.0F, 2.0F, 1.0F, 1.0F, -0.3F, false);
@@ -1512,9 +1502,8 @@
 //		bone91.texOffs(62, 47).addBox(-2.6141F, -19.8713F, -1.5532F, 3.0F, 1.0F, 10.0F, 0.0F, false);
 //		bone91.texOffs(67, 127).addBox(-2.6141F, -19.8713F, -3.5532F, 4.0F, 1.0F, 2.0F, 0.0F, false);
 //
-//		ModelRenderer bone92_r1;
-//        bone92_r1 = new ModelRenderer(this);
-//        bone92_r1.setPos(-0.5999F, -21.3182F, 8.4414F);
+//		ModelRenderer bone92_r1 = new ModelRenderer(this);
+//		bone92_r1.setPos(-0.5999F, -21.3182F, 8.4414F);
 //		bone91.addChild(bone92_r1);
 //		setRotationAngle(bone92_r1, 2.0071F, 0.0F, 0.0F);
 //		bone92_r1.texOffs(15, 0).addBox(-1.0392F, -1.5531F, 1.0054F, 1.0F, 1.0F, 0.0F, -0.15F, false);
@@ -1922,14 +1911,29 @@
 //		setRotationAngle(cube_r1, 0.0F, -0.48F, 0.0F);
 //		cube_r1.texOffs(54, 45).addBox(0.0F, -1.5F, -0.5F, 0.0F, 3.0F, 1.0F, 0.0F, false);
 //
-//		ModelRenderer cube_r2 = new ModelRenderer(this);
-//		cube_r2.setPos(19.5F, -2.0F, 3.0F);
+//		ModelRenderer cube_r2;
+//        cube_r2 = new ModelRenderer(this);
+//        cube_r2.setPos(19.5F, -2.0F, 3.0F);
 //		bone146.addChild(cube_r2);
 //		setRotationAngle(cube_r2, 0.0F, 0.0F, -3.1416F);
 //		cube_r2.texOffs(58, 90).addBox(-0.5F, -1.0F, -1.5F, 1.0F, 2.0F, 3.0F, 0.0F, false);
 //	}
 //
-//	@Override
+////	@Override
+////	public void render(ConsoleTile consoleTile, float v, MatrixStack matrixStack, IVertexBuilder iVertexBuilder, int i, int i1, float v1, float v2, float v3, float v4) {
+////
+////	}
+//
+//    @Override
+//    public void render(CopperConsoleTile copperConsoleTile, float v, MatrixStack matrixStack, IVertexBuilder iVertexBuilder, int i, int i1, float v1, float v2, float v3, float v4) {
+//		matrixStack.pushPose();
+//		matrixStack.scale(0.95F, 0.95F, 0.95F);
+//		matrixStack.translate(0.0685F,0.275F,-0.07F);
+//		side.render(matrixStack, iVertexBuilder, i, i1);
+//		matrixStack.popPose();
+//   }
+//
+//    @Override
 //	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
 //		//previously the render function, render code was moved to a method below
 //	}
@@ -1941,13 +1945,15 @@
 //	}
 //
 //	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-//		modelRenderer.xRot = x;
-//		modelRenderer.yRot = y;
-//		modelRenderer.zRot = z;
+//
 //	}
 //
-////	@Override
-////	public void render(CopperConsoleModel tile, float v, MatrixStack matrixStack, IVertexBuilder iVertexBuilder, int i, int i1, float v1, float v2, float v3, float v4) {
-////		tile.getControl
-////	}
+//	/*public void render(CopperConsoleRenderer console, float scale, MatrixStack matrixStackIn, IVertexBuilder buffer, int combinedLightIn, int noOverlay, float v1, float v2, float v3, float v4) {
+//
+//	matrixStackIn.pushPose();
+//	matrixStackIn.scale(0.95F, 0.95F, 0.95F);
+//	matrixStackIn.translate(0.0685F,0.275F,-0.07F);
+//	base.render(matrixStackIn, buffer, combinedLightIn, noOverlay);
+//	matrixStackIn.popPose();
+//	}*/
 //}
