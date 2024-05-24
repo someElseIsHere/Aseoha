@@ -1,0 +1,14 @@
+[
+  {
+    "schematic_resource_location": "ilikepandas:tardis/structures/interior_copper",
+    "namespaced_id": "ilikepandas:interior_copper",
+    "display_name": "\u00A76[JacobK/Pandas] \u00A7fCopper Interior",
+    "image_resource_location": "tardis:textures/gui/interiors/generic_preview.png",
+    "unlocked_by_default": true,
+    "using_remote_image" : false,
+    "remote_image" : "",
+    "x_offset": 30,
+    "y_offset": 5,
+    "z_offset": 30
+  }
+]
