@@ -14,6 +14,7 @@ import net.minecraft.util.math.vector.Vector3f;
 import net.tardis.mod.client.models.TileModel;
 import net.tardis.mod.controls.FacingControl;
 import net.tardis.mod.controls.HandbrakeControl;
+import net.tardis.mod.controls.IncModControl;
 import net.tardis.mod.controls.ThrottleControl;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
@@ -1950,9 +1951,9 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
     }
 
     public void render(CopperConsoleTile copperConsoleTile, float scale, MatrixStack matrixStack, IVertexBuilder buffer, int i, int noOverlay, float v, float v1, float v2, float v3) {
-        ThrottleControl throttle;
+
         copperConsoleTile.getDoor().ifPresent((doorcontrol) -> {
-            this.doorcontrol.xRot = (float)Math.toRadians((doorcontrol.getOpenState() == EnumDoorState.CLOSED) ? 0 : 60);
+            this.doorcontrol.xRot = (float)Math.toRadians((doorcontrol.getOpenState() == EnumDoorState.CLOSED) ? 160 : 65);
         });
         copperConsoleTile.getSubsystem(StabilizerSubsystem.class).ifPresent(bluestab -> {
             this.bluestab.setPos(0.0F, -0.1F, 0.0F);
@@ -1961,6 +1962,15 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
 
         copperConsoleTile.getControl(HandbrakeControl.class).ifPresent((handbreak) -> {
             this.handbreak.xRot = (float) Math.toRadians(handbreak.isFree() ? 30 : -60);
+        });
+
+
+        copperConsoleTile.getControl(ThrottleControl.class).ifPresent((throttle) -> {
+            this.throttle.xRot = (float) Math.toRadians((double) -(80.0F - throttle.getAmount() * 150.0F)); //100.0F - 75.0F
+        });
+
+        copperConsoleTile.getControl(IncModControl.class).ifPresent((incrementincrease) -> {
+            this.incrementincrease.y = (float) Math.toRadians((double) (4.0F + -20.0F * ((float) incrementincrease.index / (float) IncModControl.COORD_MODS.length)));
         });
 //        matrixStack.pushPose();
 //		matrixStack.scale(0.95F, 0.95F, 0.95F);
