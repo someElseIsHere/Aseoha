@@ -11,8 +11,13 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
+import net.tardis.mod.client.models.TileModel;
+import net.tardis.mod.controls.FacingControl;
+import net.tardis.mod.controls.ThrottleControl;
+import net.tardis.mod.enums.EnumDoorState;
+import net.tardis.mod.subsystem.StabilizerSubsystem;
 
-public class CopperConsoleModel extends EntityModel<Entity> {
+public class CopperConsoleModel extends EntityModel<Entity> implements TileModel<CopperConsoleTile> {
     private final ModelRenderer base;
     private final ModelRenderer side;
     private final ModelRenderer bone;
@@ -1944,6 +1949,14 @@ public class CopperConsoleModel extends EntityModel<Entity> {
     }
 
     public void render(CopperConsoleTile copperConsoleTile, float scale, MatrixStack matrixStack, IVertexBuilder buffer, int i, int noOverlay, float v, float v1, float v2, float v3) {
+        ThrottleControl throttle;
+        copperConsoleTile.getDoor().ifPresent((doorcontrol) -> {
+            this.doorcontrol.xRot = (float)Math.toRadians((doorcontrol.getOpenState() == EnumDoorState.CLOSED) ? 0 : 60);
+        });
+        copperConsoleTile.getSubsystem(StabilizerSubsystem.class).ifPresent(bluestab -> {
+            this.bluestab.setPos(0.0F, -0.1F, 0.0F);
+        });
+        copperConsoleTile.getControl(FacingControl.class).ifPresent(facingControl -> {});
 //        matrixStack.pushPose();
 //		matrixStack.scale(0.95F, 0.95F, 0.95F);
 //		matrixStack.translate(0.0685F,0.275F,-0.07F);
@@ -1954,6 +1967,7 @@ public class CopperConsoleModel extends EntityModel<Entity> {
         matrixStack.scale(0.95F, 0.95F, 0.95F);
         matrixStack.translate(0.0685F,-0.27F,-0.07F);
         //matrixStack.rotate(Vector3f.YP.rotationDegrees(180))
+
         base.render(matrixStack, buffer, i, noOverlay);
         matrixStack.popPose();
     }
@@ -1964,4 +1978,5 @@ public class CopperConsoleModel extends EntityModel<Entity> {
 //    side.render(matrixStack, iVertexBuilder, i, i1);
 //    matrixStack.popPose();
 //}
+
 }

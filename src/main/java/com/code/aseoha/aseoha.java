@@ -81,9 +81,10 @@ public class aseoha {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         STStructures.DEFERRED_REGISTRY_STRUCTURE.register(eventBus);
 
-        ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModItems.register(eventBus);
         //ConsolesRegistry.CONSOLES.register(modBus);
+        ConsolesRegistry.CONSOLES.register(eventBus);
         AseohaTiles.TILES.register(modBus);
         //ModBiomes.register(eventBus);
         // For events that happen after initialization. This is probably going to be use a lot.
@@ -178,7 +179,7 @@ public class aseoha {
 
         
         RenderTypeLookup.setRenderLayer(ModBlocks.console_copper.get(), RenderType.translucent());
-        ClientRegistry.bindTileEntityRenderer(AseohaTiles.CONSOLE_COPPER.get(), CopperConsoleRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_copper.get(), CopperConsoleRenderer::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

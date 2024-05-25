@@ -32,42 +32,24 @@ public class CopperConsoleRenderer extends TileEntityRenderer<CopperConsoleTile>
     public static final ResourceLocation TEXTURE = new ResourceLocation(aseoha.MODID, "textures/consoles/copper.png");
 
     public CopperConsoleRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {super(rendererDispatcherIn);}
-@Override
+
+    @Override
     public void render(CopperConsoleTile copperConsoleTile, float v, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int i, int i1) {
         matrixStack.pushPose();
-        float scale = -0.0625F;
-        matrixStack.translate(0.5, 1.6, 0.5);
-        matrixStack.scale((float) 1.15, (float) -1.255, (float) 1.15);
+        float scale = 0.0625F;
+        matrixStack.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
+        matrixStack.translate(-0.5, -1.5, 0.5);
+        matrixStack.scale((float) 1.15, (float) 1.255, (float) 1.15);
         //matrixStackIn.rotate(Vector3f.XP.rotationDegrees(180));
         MODEL.render(copperConsoleTile, scale, matrixStack, iRenderTypeBuffer.getBuffer(RenderType.entityTranslucent(TEXTURE)), i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStack.popPose();
         matrixStack.pushPose();
-//        matrixStack.mulPose(Vector3f.YP.rotationDegrees(180));
+        matrixStack.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
         matrixStack.translate(0.85, 0.9,0.925);
-        matrixStack.scale((float) 0.5, (float) -0.5, (float) 0.5);
+        matrixStack.scale((float) 0.5, (float) 0.5, (float) 0.5);
         // Minecraft.getInstance().getItemRenderer().renderStatic(Console.getSonicItem(), ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
-
-        matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
         matrixStack.popPose();
     }
-//    @Override
-//    public void render(CopperConsoleTile copperConsoleTile, float v, MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int i, int i1) {
-//        matrixStack.pushPose();
-//        float scale = 0.0625F;
-//        matrixStack.translate(0.5, 1.6, 0.5);
-//        matrixStack.scale((float) 1.15, (float) 1.255, (float) 1.15);
-//        //matrixStackIn.rotate(Vector3f.XP.rotationDegrees(180));
-//        MODEL.render(copperConsoleTile, scale, matrixStack, iRenderTypeBuffer.getBuffer(RenderType.entityTranslucent(TEXTURE)), i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-//        matrixStack.popPose();
-//        matrixStack.pushPose();
-////        matrixStack.mulPose(Vector3f.YP.rotationDegrees(180));
-//        matrixStack.translate(0.85, 0.9,0.925);
-//        matrixStack.scale((float) 0.5, (float) 0.5, (float) 0.5);
-//        // Minecraft.getInstance().getItemRenderer().renderStatic(Console.getSonicItem(), ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
-//
-//        matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
-//        matrixStack.popPose();
-//    }
 
 //    public void render(CopperConsoleRenderer tileEntityIn, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int combinedLightIn, int combinedOverlayIn) {
 //            matrixStackIn.pushPose();

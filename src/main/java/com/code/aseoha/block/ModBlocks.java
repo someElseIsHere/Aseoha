@@ -16,7 +16,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import net.tardis.api.events.DimensionLightMapModificationEvent;
 import net.tardis.mod.ars.IARS;
-import net.tardis.mod.blocks.ConsoleBlock;
 import net.tardis.mod.blocks.RoundelBlock;
 import net.tardis.mod.itemgroups.TItemGroups;
 import net.tardis.mod.properties.TardisBlockProperties;
@@ -187,16 +186,16 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> console_copper = registerBlock("console_copper", () -> {
-        return (ConsoleBlock) setUpBlock(new ConsoleBlock());
+        return setUpBlock(new ConsoleBlock());//return (ConsoleBlock) setUpBlock(new ConsoleBlock());
     });
             //registerBlock("console_copper",
 //            () -> new net.tardis.mod.blocks.ConsoleBlock());
 
 
-
-    private static <T extends Block> T setUpBlock(T block) {
-        return block;
-    }
+private static Block setUpBlock(Block block){return block;}
+    //private static <T extends Block> T setUpBlock(T block) {
+    //    return block;
+    //}
 
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
