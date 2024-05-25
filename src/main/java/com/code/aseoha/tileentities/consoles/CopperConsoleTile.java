@@ -45,7 +45,7 @@ public class CopperConsoleTile extends ConsoleTile {
         //Done
         this.controlOverrides.put(RandomiserControl.class, new ControlOverride(new Vector3d(-0.65, 1.0, 0.125),EntitySize.scalable(0.15F, 0.15F)));
         //Done
-        this.controlOverrides.put(HandbrakeControl.class, new ControlOverride(new Vector3d(-0.301, 0.750, 0.300),EntitySize.scalable(0.15F, 0.15F)));
+        this.controlOverrides.put(HandbrakeControl.class, new ControlOverride(new Vector3d(-1.12, 0.7, 0.08),EntitySize.scalable(0.15F, 0.28F)));
         //Done
         this.controlOverrides.put(DoorControl.class, new ControlOverride(new Vector3d(-0.6, 1.0, -0.125),EntitySize.scalable(0.1875F, 0.1875F)));
         //Done

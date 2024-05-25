@@ -13,6 +13,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
 import net.tardis.mod.client.models.TileModel;
 import net.tardis.mod.controls.FacingControl;
+import net.tardis.mod.controls.HandbrakeControl;
 import net.tardis.mod.controls.ThrottleControl;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
@@ -1957,6 +1958,10 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
             this.bluestab.setPos(0.0F, -0.1F, 0.0F);
         });
         copperConsoleTile.getControl(FacingControl.class).ifPresent(facingControl -> {});
+
+        copperConsoleTile.getControl(HandbrakeControl.class).ifPresent((handbreak) -> {
+            this.handbreak.xRot = (float) Math.toRadians(handbreak.isFree() ? 30 : -60);
+        });
 //        matrixStack.pushPose();
 //		matrixStack.scale(0.95F, 0.95F, 0.95F);
 //		matrixStack.translate(0.0685F,0.275F,-0.07F);
