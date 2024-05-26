@@ -55,6 +55,6 @@ public class CopperMonitorScreen extends BaseMonitorScreen {
     }
     @Override
     public int getGuiID() {
-        return 9;
+        return 8;
     }
 }
