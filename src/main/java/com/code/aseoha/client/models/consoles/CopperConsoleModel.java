@@ -12,10 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
 import net.tardis.mod.client.models.TileModel;
-import net.tardis.mod.controls.FacingControl;
-import net.tardis.mod.controls.HandbrakeControl;
-import net.tardis.mod.controls.IncModControl;
-import net.tardis.mod.controls.ThrottleControl;
+import net.tardis.mod.controls.*;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
 
@@ -1953,7 +1950,7 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
     public void render(CopperConsoleTile copperConsoleTile, float scale, MatrixStack matrixStack, IVertexBuilder buffer, int i, int noOverlay, float v, float v1, float v2, float v3) {
 
         copperConsoleTile.getDoor().ifPresent((doorcontrol) -> {
-            this.doorcontrol.xRot = (float)Math.toRadians((doorcontrol.getOpenState() == EnumDoorState.CLOSED) ? 160 : 65);
+            this.doorcontrol.xRot = (float)Math.toRadians((doorcontrol.getOpenState() == EnumDoorState.CLOSED) ? -60 : -90);
         });
         copperConsoleTile.getSubsystem(StabilizerSubsystem.class).ifPresent(bluestab -> {
             this.bluestab.setPos(0.0F, -0.1F, 0.0F);
@@ -1961,16 +1958,31 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
         copperConsoleTile.getControl(FacingControl.class).ifPresent(facingControl -> {});
 
         copperConsoleTile.getControl(HandbrakeControl.class).ifPresent((handbreak) -> {
-            this.handbreak.xRot = (float) Math.toRadians(handbreak.isFree() ? 30 : -60);
+            this.handbreak.xRot = (float) Math.toRadians(handbreak.isFree() ? 25 : -60);
         });
 
+        copperConsoleTile.getControl(LandingTypeControl.class).ifPresent((verticallanding) -> {
+            this.verticallanding.xRot = verticallanding.getLandType() == LandingTypeControl.EnumLandType.UP ? 60 : -60;
+        });
+
+        copperConsoleTile.getControl(RefuelerControl.class).ifPresent((refuel) -> {
+            this.refuel.xRot = (float) Math.toRadians(refuel.isRefueling() ? 50 : -50);
+        });
+
+//        copperConsoleTile.getControl(FastReturnControl.class).ifPresent((fastreturn) -> {
+//            this.fastreturn.zRot = (float) Math.toRadians(fastreturn.onRightClicked() ? -60 : 0);
+//        });
 
         copperConsoleTile.getControl(ThrottleControl.class).ifPresent((throttle) -> {
             this.throttle.xRot = (float) Math.toRadians((double) -(80.0F - throttle.getAmount() * 150.0F)); //100.0F - 75.0F
         });
 
         copperConsoleTile.getControl(IncModControl.class).ifPresent((incrementincrease) -> {
-            this.incrementincrease.y = (float) Math.toRadians((double) (4.0F + -20.0F * ((float) incrementincrease.index / (float) IncModControl.COORD_MODS.length)));
+            this.incrementincrease.y = (float) Math.toRadians((double) (4.0F + 115.0F * ((float) incrementincrease.index / (float) IncModControl.COORD_MODS.length)));
+        });
+
+        copperConsoleTile.getControl(DimensionControl.class).ifPresent((bone149) -> {
+            this.bone149.yRot = (float) Math.toRadians((double) (4.0F + 115.0F * ((float) bone149.getDimListIndex() / (float) bone149.getAvailableDimensions())));
         });
 //        matrixStack.pushPose();
 //		matrixStack.scale(0.95F, 0.95F, 0.95F);

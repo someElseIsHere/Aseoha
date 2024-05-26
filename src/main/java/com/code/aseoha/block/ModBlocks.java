@@ -185,7 +185,7 @@ public class ModBlocks {
     /************************CONSOLES**********************/
 
 
-    public static final RegistryObject<Block> console_copper = registerBlock("console_copper", () -> {
+    public static final RegistryObject<Block> console_copper = registerNoItemBlock("console_copper", () -> {
         return setUpBlock(new ConsoleBlock());//return (ConsoleBlock) setUpBlock(new ConsoleBlock());
     });
             //registerBlock("console_copper",
@@ -206,7 +206,13 @@ private static Block setUpBlock(Block block){return block;}
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
-        new Item.Properties().tab(ModItemGroup.ASEOHA_GROUP)));
+                new Item.Properties().tab(ModItemGroup.ASEOHA_GROUP)));
+    }
+
+    private static <T extends Block>RegistryObject<T> registerNoItemBlock(String name, Supplier<T> block){
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+//        registerBlockItem(name, toReturn);
+        return toReturn;
     }
 
     public static void register(IEventBus eventBus){
