@@ -14,6 +14,7 @@ import net.minecraft.util.math.vector.Vector3f;
 import net.tardis.mod.client.models.TileModel;
 import net.tardis.mod.controls.*;
 import net.tardis.mod.enums.EnumDoorState;
+import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
 
 public class CopperConsoleModel extends EntityModel<Entity> implements TileModel<CopperConsoleTile> {
@@ -1955,7 +1956,14 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
         copperConsoleTile.getSubsystem(StabilizerSubsystem.class).ifPresent(bluestab -> {
             this.bluestab.setPos(0.0F, -0.1F, 0.0F);
         });
-        copperConsoleTile.getControl(FacingControl.class).ifPresent(facingControl -> {});
+//        copperConsoleTile.getControl(FacingControl.class).ifPresent(bone83 -> {
+//            //82 - 85
+//        });
+
+//        this.bone82_r2.zRot = (float)Math.toRadians((double) WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection()));
+//        this.bone83_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())-90);
+//        this.bone84_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())-180);
+//        this.bone85_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())+45);
 
         copperConsoleTile.getControl(HandbrakeControl.class).ifPresent((handbreak) -> {
             this.handbreak.xRot = (float) Math.toRadians(handbreak.isFree() ? 25 : -60);

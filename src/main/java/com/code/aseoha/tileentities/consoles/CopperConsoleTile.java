@@ -37,13 +37,13 @@ public class CopperConsoleTile extends ConsoleTile {
         //Done
         this.controlOverrides.put(StabilizerControl.class, new ControlOverride(new Vector3d(0.86, 0.55, 0.60),EntitySize.scalable(0.15F, 0.19F)));
         //Done
-        this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(-0.12, 0.5, -0.87),EntitySize.scalable(0.4F, 0.30F)));
+        this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(-0.12, 0.5, 1.17),EntitySize.scalable(0.4F, 0.30F)));
         //Done
         this.controlOverrides.put(CommunicatorControl.class, new ControlOverride(new Vector3d(-1.20, .4, -0.6675),EntitySize.scalable(0.40F, 0.09375F)));
         //Done
         this.controlOverrides.put(RefuelerControl.class, new ControlOverride(new Vector3d(-0.85, 0.6, -1.01),EntitySize.scalable(0.20F, 0.25F)));
         //Done
-        this.controlOverrides.put(RandomiserControl.class, new ControlOverride(new Vector3d(-0.878, 0.9, 0.115),EntitySize.scalable(0.15F, 0.15F)));
+        this.controlOverrides.put(RandomiserControl.class, new ControlOverride(new Vector3d(-0.885, 0.83, 0.115),EntitySize.scalable(0.15F, 0.15F)));
         //Done
         this.controlOverrides.put(HandbrakeControl.class, new ControlOverride(new Vector3d(-1.12, 0.7, 0.08),EntitySize.scalable(0.15F, 0.28F)));
         //Done
