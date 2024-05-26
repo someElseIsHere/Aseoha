@@ -37,13 +37,13 @@ public class CopperConsoleTile extends ConsoleTile {
         //Done
         this.controlOverrides.put(StabilizerControl.class, new ControlOverride(new Vector3d(0.86, 0.55, 0.60),EntitySize.scalable(0.15F, 0.19F)));
         //Done
-        this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(0.35, 1.0, -0.225),EntitySize.scalable(0.2F, 0.15F)));
+        this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(-0.12, 0.5, -0.87),EntitySize.scalable(0.4F, 0.30F)));
         //Done
-        this.controlOverrides.put(CommunicatorControl.class, new ControlOverride(new Vector3d(-1.20, .4, -0.6675),EntitySize.scalable(0.31F, 0.09375F)));
+        this.controlOverrides.put(CommunicatorControl.class, new ControlOverride(new Vector3d(-1.20, .4, -0.6675),EntitySize.scalable(0.40F, 0.09375F)));
         //Done
         this.controlOverrides.put(RefuelerControl.class, new ControlOverride(new Vector3d(-0.85, 0.6, -1.01),EntitySize.scalable(0.20F, 0.25F)));
         //Done
-        this.controlOverrides.put(RandomiserControl.class, new ControlOverride(new Vector3d(-0.65, 1.0, 0.125),EntitySize.scalable(0.15F, 0.15F)));
+        this.controlOverrides.put(RandomiserControl.class, new ControlOverride(new Vector3d(-0.878, 0.9, 0.115),EntitySize.scalable(0.15F, 0.15F)));
         //Done
         this.controlOverrides.put(HandbrakeControl.class, new ControlOverride(new Vector3d(-1.12, 0.7, 0.08),EntitySize.scalable(0.15F, 0.28F)));
         //Done
@@ -53,7 +53,7 @@ public class CopperConsoleTile extends ConsoleTile {
         //Done
         this.controlOverrides.put(DimensionControl.class, new ControlOverride(new Vector3d(-0.95, 0.6, -0.56),EntitySize.scalable(0.2F, 0.2F)));
         //Done
-        this.controlOverrides.put(LandingTypeControl.class, new ControlOverride(new Vector3d(0.90, 1.5, 1.1),EntitySize.scalable(0.15F, 0.15F)));
+        this.controlOverrides.put(LandingTypeControl.class, new ControlOverride(new Vector3d(0.80, 0.7, 0.1),EntitySize.scalable(0.20F, 0.40F)));
 
         this.controlOverrides.put(SonicPortControl.class, new ControlOverride(new Vector3d(-0.95, .7, 0.255),EntitySize.scalable(0.15F, 0.15F)));
         //Done

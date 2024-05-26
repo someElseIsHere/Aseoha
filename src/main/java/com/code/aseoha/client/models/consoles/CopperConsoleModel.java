@@ -1962,7 +1962,7 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
         });
 
         copperConsoleTile.getControl(LandingTypeControl.class).ifPresent((verticallanding) -> {
-            this.verticallanding.xRot = verticallanding.getLandType() == LandingTypeControl.EnumLandType.UP ? 60 : -60;
+            this.verticallanding.xRot = verticallanding.getLandType() == LandingTypeControl.EnumLandType.UP ? -120 : 120;
         });
 
         copperConsoleTile.getControl(RefuelerControl.class).ifPresent((refuel) -> {
@@ -1982,7 +1982,7 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
         });
 
         copperConsoleTile.getControl(DimensionControl.class).ifPresent((bone149) -> {
-            this.bone149.yRot = (float) Math.toRadians((double) (4.0F + 115.0F * ((float) bone149.getDimListIndex() / (float) bone149.getAvailableDimensions())));
+            this.bone149.yRot = (float) Math.toRadians((double) (4.0F + 130.0F * ((float) bone149.getDimListIndex() / (float) bone149.getAvailableDimensions())));
         });
 //        matrixStack.pushPose();
 //		matrixStack.scale(0.95F, 0.95F, 0.95F);
