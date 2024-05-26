@@ -19,7 +19,7 @@ modId="aseoha" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 # ${file.jarVersion} will substitute the value of the Implementation-Version as read from the mod's JAR file metadata
 # see the associated build.gradle script for how to populate this completely automatically during a build
-version="3.2.0"#mandatory
+version="4.0.0"#mandatory
  # A display name for the mod
 displayName="Aseoha" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
@@ -29,19 +29,18 @@ displayName="Aseoha" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="icon.png" #optional
 # A text field displayed in the mod UI
-credits="Big Thanks to Col. Sanders for lunch that one day, EntityHonsvick and Vixen for interiors and Col. Mustard for bug reporting" #optional
+credits="Big Thanks to Col. Sanders for lunch that one day, " #optional
 # A text field displayed in the mod UI
 authors="Codiak540 and my Coffee" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Asoeha
-Adds stuff
-Be happy
+Asoeha, Adds stuff.
 Big thanks to:
 Col. Mustard for pointing out bugs
-Vixen for Tanzite interior
-EntityHonsvick for multiple interiors
-NTM For not being nintendo and DMCA'ing me'''
+EntityHonsvick Vixen and C-7007 for interiors
+PlasticStraw and Jacob.K for the Masters Delight Copper interior!
+Jay and TheVale for helping a shit ton with the copper console at 5AM.
+New TARDIS Mod Staff For not being Nintendo and DMCA'ing me'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.aseoha]] #optional
     # the modid of the dependency
