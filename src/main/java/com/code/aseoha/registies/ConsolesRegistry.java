@@ -47,6 +47,11 @@ import static net.tardis.mod.registries.ConsoleRegistry.CONSOLES;
 public class ConsolesRegistry {
     public static final DeferredRegister<Console> CONSOLES = DeferredRegister.create(net.tardis.mod.misc.Console.class, aseoha.MODID);
 
-    public static final RegistryObject<com.code.aseoha.misc.Console> COPPER = CONSOLES.register("copper",
-            () -> new com.code.aseoha.misc.Console(() -> ModBlocks.console_copper.get().defaultBlockState(), "copperconsole"));
+    public static final RegistryObject<com.code.aseoha.misc.Console> COPPER =
+            CONSOLES.register(
+                    "copper",
+                        () -> new com.code.aseoha.misc.Console(
+                            () -> ModBlocks.console_copper.get()
+                                .defaultBlockState(),
+                                    "copperconsole"));
 }

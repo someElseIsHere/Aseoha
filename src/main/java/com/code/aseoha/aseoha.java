@@ -62,11 +62,11 @@ import java.util.stream.Collectors;
 public class aseoha {
 
 
-    public static final RegistryObject<Console> COPPER = ConsoleRegistry.CONSOLES.register("copper", () -> {
-        return new net.tardis.mod.misc.Console(() -> {
-            return ((Block)ModBlocks.console_copper.get()).defaultBlockState();
-        }, "console");
-    });
+//    public static final RegistryObject<Console> COPPER = ConsoleRegistry.CONSOLES.register("copper", () -> {
+//        return new net.tardis.mod.misc.Console(() -> {
+//            return ((Block)ModBlocks.console_copper.get()).defaultBlockState();
+//        }, "console");
+//    });
 
 
 
