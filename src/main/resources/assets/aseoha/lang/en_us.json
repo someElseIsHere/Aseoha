@@ -41,5 +41,10 @@
   "block.aseoha.copper_roundel": "Copper Roundel",
   "block.aseoha.toaster": "Toaster",
   "item.aseoha.golden_potato": "Golden Potato",
-  "item.aseoha.twinkie": "Twinkie"
+  "item.aseoha.twinkie": "Twinkie",
+  "texvar.aseoha.consoles.copper.blue": "Blue",
+  "texvar.aseoha.consoles.copper.normal": "Default",
+  "texvar.aseoha.consoles.copper.rosegold": "Rosegold",
+  "texvar.aseoha.consoles.copper.crystal": "Crystal",
+  "texvar.aseoha.consoles.copper.steel": "Steel"
 }

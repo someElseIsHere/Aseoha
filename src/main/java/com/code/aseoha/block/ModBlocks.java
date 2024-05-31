@@ -17,6 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.tardis.api.events.DimensionLightMapModificationEvent;
 import net.tardis.mod.ars.IARS;
 import net.tardis.mod.blocks.RoundelBlock;
+import net.tardis.mod.blocks.exteriors.ExteriorBlock;
 import net.tardis.mod.itemgroups.TItemGroups;
 import net.tardis.mod.properties.TardisBlockProperties;
 
@@ -190,6 +191,10 @@ public class ModBlocks {
     });
             //registerBlock("console_copper",
 //            () -> new net.tardis.mod.blocks.ConsoleBlock());
+
+    /************************EXTERIORS********************/
+    public static RegistryObject<Block> EXTERIOR_CORAL = registerNoItemBlock("exterior_coral",
+            () -> setUpBlock(new ExteriorBlock()));
 
 
 private static Block setUpBlock(Block block){return block;}

@@ -6,6 +6,7 @@
 package com.code.aseoha.tileentities.consoles;
 
 import com.code.aseoha.texturevariants.ConsoleTextureVariants;
+import com.code.aseoha.texturevariants.TextureVariants;
 import com.code.aseoha.tileentities.AseohaTiles;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.item.ItemStack;
@@ -23,9 +24,10 @@ public class CopperConsoleTile extends ConsoleTile {
 
 
     public CopperConsoleTile() {
-        this(AseohaTiles.console_copper.get());
-//        super((TileEntityType)AseohaTiles.CONSOLE_COPPER.get());
-        this.variants = ConsoleTextureVariants.COPPER;
+//        this(AseohaTiles.console_copper.get());
+        super(AseohaTiles.console_copper.get());
+        this.registerControlEntry((ControlRegistry.ControlEntry)ControlRegistry.MONITOR.get());
+        this.variants = TextureVariants.COPPER;
     }
 
     public CopperConsoleTile(TileEntityType<?> type) {
@@ -33,6 +35,8 @@ public class CopperConsoleTile extends ConsoleTile {
         super(type);
 //        this.controlOverrides.put(FacingControl.class new ControlOverride(new Vector3d()))
 //        this.registerControlEntry(ControlRegistry.MONITOR.get());
+        this.controlOverrides.put(MonitorControl.class, new ControlOverride(new Vector3d(-0.400, 2.0, -0.025), EntitySize.scalable(0.7F, 0.7F)));
+
         this.controlOverrides.put(FacingControl.class, new ControlOverride(new Vector3d(-1.20, 0.6, -0.485), EntitySize.scalable(0.1F, 0.1F)));
         //Done
         this.controlOverrides.put(StabilizerControl.class, new ControlOverride(new Vector3d(0.86, 0.55, 0.60),EntitySize.scalable(0.15F, 0.19F)));
@@ -70,7 +74,7 @@ public class CopperConsoleTile extends ConsoleTile {
     }
 
     public AxisAlignedBB getRenderBoundingBox() {
-        return (new AxisAlignedBB(this.getBlockPos())).expandTowards(2.0, 4.0, 2.0);
+        return (new AxisAlignedBB(this.getBlockPos())).expandTowards(2.7, 5.0, 2.7);
     }
 //    public ItemStack getSonicItem() {
 //            return this.sonic;

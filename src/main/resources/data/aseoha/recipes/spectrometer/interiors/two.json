@@ -3,7 +3,7 @@
   "processing_ticks": 200,
   "download_ticks": 200,
   "ingredient": {
-    "item": "tardis:white_wool"
+    "item": "minecraft:white_wool"
   },
   "result": "aseoha:interiors/two"
 }

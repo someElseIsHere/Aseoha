@@ -3,21 +3,13 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.code.aseoha.registies;
-
-import java.util.function.Supplier;
+package com.code.aseoha.registries;
 
 import com.code.aseoha.aseoha;
 import com.code.aseoha.block.ModBlocks;
-import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.RegistryBuilder;
 import net.tardis.mod.misc.Console;
-import net.tardis.mod.registries.ConsoleRegistry;
-
-import static net.tardis.mod.registries.ConsoleRegistry.CONSOLES;
 
 //public class ConsolesRegistry {
     //public static final DeferredRegister<com.code.aseoha.misc.Console> CONSOLES = DeferredRegister.create(Console.class, "aseoha");

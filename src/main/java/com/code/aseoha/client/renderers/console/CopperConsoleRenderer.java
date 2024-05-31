@@ -24,6 +24,7 @@ import net.tardis.mod.misc.TexVariant;
 import net.tardis.mod.misc.WorldText;
 import net.tardis.mod.tileentities.ConsoleTile;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class CopperConsoleRenderer extends TileEntityRenderer<CopperConsoleTile> {
@@ -41,7 +42,10 @@ public class CopperConsoleRenderer extends TileEntityRenderer<CopperConsoleTile>
         matrixStack.translate(-0.5, -1.5, 0.5);
         matrixStack.scale((float) 1.15, (float) 1.255, (float) 1.15);
         //matrixStackIn.rotate(Vector3f.XP.rotationDegrees(180));
-        MODEL.render(copperConsoleTile, scale, matrixStack, iRenderTypeBuffer.getBuffer(RenderType.entityTranslucent(TEXTURE)), i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+//        ResourceLocation texture = new ResourceLocation(aseoha.MODID, "textures/consoles/copper.png");
+//        if(copperConsoleTile.getVariant() != null)
+            @Nonnull ResourceLocation texture = copperConsoleTile.getVariant().getTexture();
+        MODEL.render(copperConsoleTile, scale, matrixStack, iRenderTypeBuffer.getBuffer(RenderType.entityTranslucent(texture)), i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStack.popPose();
         matrixStack.pushPose();
         matrixStack.mulPose(Vector3f.ZN.rotationDegrees(180.0F));

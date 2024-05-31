@@ -54,6 +54,7 @@ package com.code.aseoha.tileentities;
 import com.code.aseoha.aseoha;
 import com.code.aseoha.block.ModBlocks;
 import com.code.aseoha.tileentities.consoles.CopperConsoleTile;
+import com.code.aseoha.tileentities.exteriors.CoralTile;
 import com.google.common.base.Supplier;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
@@ -70,7 +71,9 @@ public class AseohaTiles {
             TILES.register("console_copper", () ->registerTiles(CopperConsoleTile::new,
                     ModBlocks.console_copper.get()));
 
-
+    public static RegistryObject<TileEntityType<CoralTile>> EXTERIOR_CORAL =
+            TILES.register("exterior_coral", () -> registerTiles(CoralTile::new,
+                    ModBlocks.EXTERIOR_CORAL.get()));
 
     private static <T extends TileEntity> TileEntityType<T> registerTiles(Supplier<T> tile, Block... validBlock) {
         TileEntityType<T> type = TileEntityType.Builder.of(tile, validBlock).build(null);
