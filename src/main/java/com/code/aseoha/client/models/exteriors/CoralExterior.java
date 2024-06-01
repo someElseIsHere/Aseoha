@@ -300,7 +300,7 @@ public void renderBoti(ExteriorTile exterior, float scale, MatrixStack matrixSta
             info.setPosition(exterior.getBlockPos());
             info.setWorldShell(exterior.getBotiWorld());
             info.setTranslate((matrix) -> {
-                matrix.translate(-0.5, 0.0, -0.5);
+                matrix.translate(0.5, 0.0, -0.5);
                 ExteriorRenderer.applyTransforms(matrix, exterior);
             });
             info.setTranslatePortal((matrix) -> {
