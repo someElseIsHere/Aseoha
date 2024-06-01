@@ -29,7 +29,9 @@ import javax.annotation.Nullable;
 
 public class CopperConsoleRenderer extends TileEntityRenderer<CopperConsoleTile> {
     public static final WorldText TEXT = new WorldText(0.31F, 0.26F, 0.003F, 16777215);
-    public static CopperConsoleModel MODEL = new CopperConsoleModel();
+    public static CopperConsoleModel MODEL = new CopperConsoleModel();//((tex) -> {
+//        return RenderType.entityCutout(tex);
+//    });
     public static final ResourceLocation TEXTURE = new ResourceLocation(aseoha.MODID, "textures/consoles/copper.png");
 
     public CopperConsoleRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {super(rendererDispatcherIn);}

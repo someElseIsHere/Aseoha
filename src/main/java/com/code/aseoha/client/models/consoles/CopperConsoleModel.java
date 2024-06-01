@@ -6,25 +6,20 @@ package com.code.aseoha.client.models.consoles;// Made with Blockbench 4.10.0-be
 import com.code.aseoha.tileentities.consoles.CopperConsoleTile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
-import net.tardis.mod.client.models.IHaveMonitor;
 import net.tardis.mod.client.models.TileModel;
-import net.tardis.mod.client.models.consoles.AbstractConsoleRenderTypedModel;
 import net.tardis.mod.controls.*;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
 import net.tardis.mod.client.models.LightModelRenderer;
 
-import java.util.function.Function;
-
-public class CopperConsoleModel extends AbstractConsoleRenderTypedModel<CopperConsoleTile> implements IHaveMonitor {
+public class CopperConsoleModel extends EntityModel<Entity> implements TileModel<CopperConsoleTile> {
     private final ModelRenderer base;
     private final ModelRenderer side;
     private final ModelRenderer bone;
@@ -235,8 +230,7 @@ public class CopperConsoleModel extends AbstractConsoleRenderTypedModel<CopperCo
     private final ModelRenderer cube_r1;
     private final ModelRenderer cube_r2;
 
-    public CopperConsoleModel(Function<ResourceLocation, RenderType> function) {
-        super(function);
+    public CopperConsoleModel() {
         texWidth = 256;
         texHeight = 256;
 
@@ -1972,10 +1966,10 @@ public class CopperConsoleModel extends AbstractConsoleRenderTypedModel<CopperCo
         cube_r2.texOffs(58, 90).addBox(-0.5F, -1.0F, -1.5F, 1.0F, 2.0F, 3.0F, 0.0F, false);
     }
 
-//    @Override
-//    public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-//        //previously the render function, render code was moved to a method below
-//    }
+    @Override
+    public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
+        //previously the render function, render code was moved to a method below
+    }
 
     @Override
     public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
@@ -1990,7 +1984,7 @@ public class CopperConsoleModel extends AbstractConsoleRenderTypedModel<CopperCo
     }
 
     public void render(CopperConsoleTile copperConsoleTile, float scale, MatrixStack matrixStack, IVertexBuilder buffer, int i, int noOverlay, float v, float v1, float v2, float v3) {
-
+        PlayerEntity player;
         copperConsoleTile.getDoor().ifPresent((doorcontrol) -> {
             this.doorcontrol.xRot = (float)Math.toRadians((doorcontrol.getOpenState() == EnumDoorState.CLOSED) ? -60 : -90);
         });
@@ -2001,7 +1995,7 @@ public class CopperConsoleModel extends AbstractConsoleRenderTypedModel<CopperCo
 //            //82 - 85
 //        });
 
-//        this.bone82_r2.zRot = (float)Math.toRadians((double) WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection()));
+        this.bone147.yRot = (float)Math.toRadians((double) WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection()));
 //        this.bone83_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())-90);
 //        this.bone84_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())-180);
 //        this.bone85_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())+45);
@@ -2019,7 +2013,7 @@ public class CopperConsoleModel extends AbstractConsoleRenderTypedModel<CopperCo
         });
 
 //        copperConsoleTile.getControl(FastReturnControl.class).ifPresent((fastreturn) -> {
-//            this.fastreturn.zRot = (float) Math.toRadians(fastreturn.onRightClicked() ? -60 : 0);
+//            this.fastreturn.zRot = (float) Math.toRadians(player.interactOn(FastReturnControl.class, 0) ? -60 : 0);
 //        });
 
         copperConsoleTile.getControl(ThrottleControl.class).ifPresent((throttle) -> {
@@ -2031,7 +2025,7 @@ public class CopperConsoleModel extends AbstractConsoleRenderTypedModel<CopperCo
         });
 
         copperConsoleTile.getControl(DimensionControl.class).ifPresent((bone149) -> {
-            this.bone149.yRot = (float) Math.toRadians((double) (4.0F + 130.0F * ((float) bone149.getDimListIndex() / (float) bone149.getAvailableDimensions())));
+            this.bone149.yRot = (float) Math.toRadians((double) (360.0F * ((float) bone149.getDimListIndex() / (float) bone149.getAvailableDimensions())));
         });
 //        matrixStack.pushPose();
 //		matrixStack.scale(0.95F, 0.95F, 0.95F);
@@ -2045,13 +2039,8 @@ public class CopperConsoleModel extends AbstractConsoleRenderTypedModel<CopperCo
         //matrixStack.rotate(Vector3f.YP.rotationDegrees(180))
 
         base.render(matrixStack, buffer, i, noOverlay);
+//        this.monitor.setBright(1.0F);
         matrixStack.popPose();
-    }
-    public void translateMonitorPos(MatrixStack stack) {
-//        this.controls.translateAndRotate(stack);
-//        this.controls_6.translateAndRotate(stack);
-        this.monitor.translateAndRotate(stack);
-//        this.screen.translateAndRotate(stack);
     }
 //public void render(CopperConsoleTile copperConsoleTile, float v, MatrixStack matrixStack, IVertexBuilder iVertexBuilder, int i, int i1, float v1, float v2, float v3, float v4) {
 //    matrixStack.pushPose();

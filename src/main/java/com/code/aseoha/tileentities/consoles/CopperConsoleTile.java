@@ -24,8 +24,8 @@ public class CopperConsoleTile extends ConsoleTile {
 
 
     public CopperConsoleTile() {
-//        this(AseohaTiles.console_copper.get());
-        super(AseohaTiles.console_copper.get());
+        this(AseohaTiles.console_copper.get());
+//        super((TileEntityType)AseohaTiles.CONSOLE_COPPER.get());
         this.registerControlEntry((ControlRegistry.ControlEntry)ControlRegistry.MONITOR.get());
         this.variants = TextureVariants.COPPER;
     }
@@ -35,7 +35,7 @@ public class CopperConsoleTile extends ConsoleTile {
         super(type);
 //        this.controlOverrides.put(FacingControl.class new ControlOverride(new Vector3d()))
 //        this.registerControlEntry(ControlRegistry.MONITOR.get());
-        this.controlOverrides.put(MonitorControl.class, new ControlOverride(new Vector3d(-0.400, 2.0, -0.025), EntitySize.scalable(0.7F, 0.7F)));
+        this.controlOverrides.put(MonitorControl.class, new ControlOverride(new Vector3d(-0.400, 1.6, -0.125), EntitySize.scalable(0.7F, 0.7F)));
 
         this.controlOverrides.put(FacingControl.class, new ControlOverride(new Vector3d(-1.20, 0.6, -0.485), EntitySize.scalable(0.1F, 0.1F)));
         //Done
