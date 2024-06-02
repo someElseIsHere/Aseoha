@@ -46,7 +46,14 @@ public class CopperConsoleRenderer extends TileEntityRenderer<CopperConsoleTile>
         //matrixStackIn.rotate(Vector3f.XP.rotationDegrees(180));
 //        ResourceLocation texture = new ResourceLocation(aseoha.MODID, "textures/consoles/copper.png");
 //        if(copperConsoleTile.getVariant() != null)
-            @Nonnull ResourceLocation texture = copperConsoleTile.getVariant().getTexture();
+        copperConsoleTile.getControl(MonitorControl.class).ifPresent((monitor) -> {
+            matrixStack.pushPose();
+            matrixStack.mulPose(Vector3f.YP.rotationDegrees(-60));
+            matrixStack.translate(-0.2, -0.96, -0.87);
+            TEXT.renderText(matrixStack, iRenderTypeBuffer, i, Helper.getConsoleText(copperConsoleTile));
+            matrixStack.popPose();
+        });
+        @Nonnull ResourceLocation texture = copperConsoleTile.getVariant().getTexture();
         MODEL.render(copperConsoleTile, scale, matrixStack, iRenderTypeBuffer.getBuffer(RenderType.entityTranslucent(texture)), i, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         matrixStack.popPose();
         matrixStack.pushPose();

@@ -46,5 +46,6 @@
   "texvar.aseoha.consoles.copper.normal": "Default",
   "texvar.aseoha.consoles.copper.rosegold": "Rosegold",
   "texvar.aseoha.consoles.copper.crystal": "Crystal",
-  "texvar.aseoha.consoles.copper.steel": "Steel"
+  "texvar.aseoha.consoles.copper.steel": "Steel",
+  "texvar.aseoha.exteriors.coral.default": "Default"
 }

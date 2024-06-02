@@ -23,7 +23,7 @@ public class CoralRenderer extends ExteriorRenderer<CoralTile> {
 
     public void renderExterior(CoralTile tile, float v, MatrixStack matrixStack, IRenderTypeBuffer bufferIn, int i, int i1, float v1) {
         matrixStack.pushPose();
-        matrixStack.translate(0.0, -1.0, 0.0);
+        matrixStack.translate(0.0, 0.0, 0.0);
         matrixStack.mulPose(Vector3f.YN.rotationDegrees(-90.0F));
         ResourceLocation texture = TEXTURE;
         if (tile.getVariant() != null) {

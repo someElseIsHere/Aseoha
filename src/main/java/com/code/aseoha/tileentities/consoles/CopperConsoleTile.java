@@ -41,9 +41,9 @@ public class CopperConsoleTile extends ConsoleTile {
         //Done
         this.controlOverrides.put(StabilizerControl.class, new ControlOverride(new Vector3d(0.86, 0.55, 0.60),EntitySize.scalable(0.15F, 0.19F)));
         //Done
-        this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(-0.12, 0.5, 1.17),EntitySize.scalable(0.4F, 0.30F)));
+        this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(-0.09, 0.5, 1.07),EntitySize.scalable(0.4F, 0.30F)));
         //Done
-        this.controlOverrides.put(CommunicatorControl.class, new ControlOverride(new Vector3d(-1.20, .4, -0.6675),EntitySize.scalable(0.40F, 0.09375F)));
+        this.controlOverrides.put(CommunicatorControl.class, new ControlOverride(new Vector3d(-1.20, .4, -0.7075),EntitySize.scalable(0.40F, 0.09375F)));
         //Done
         this.controlOverrides.put(RefuelerControl.class, new ControlOverride(new Vector3d(-0.85, 0.6, -1.01),EntitySize.scalable(0.20F, 0.25F)));
         //Done
@@ -53,7 +53,7 @@ public class CopperConsoleTile extends ConsoleTile {
         //Done
         this.controlOverrides.put(DoorControl.class, new ControlOverride(new Vector3d(0.96, 0.7, -0.2425),EntitySize.scalable(0.195F, 0.2F)));
         //Done
-        this.controlOverrides.put(IncModControl.class, new ControlOverride(new Vector3d(-0.82, 0.5, 0.87),EntitySize.scalable(0.20F, 0.20F)));
+        this.controlOverrides.put(IncModControl.class, new ControlOverride(new Vector3d(-0.80, 0.6, 0.86),EntitySize.scalable(0.20F, 0.20F)));
         //Done
         this.controlOverrides.put(DimensionControl.class, new ControlOverride(new Vector3d(-0.95, 0.6, -0.56),EntitySize.scalable(0.2F, 0.2F)));
         //Done
@@ -63,11 +63,11 @@ public class CopperConsoleTile extends ConsoleTile {
         //Done
         this.controlOverrides.put(XControl.class, new ControlOverride(new Vector3d(0.69, 0.72, -0.67),EntitySize.scalable(0.075F, 0.075F)));
         //Done
-        this.controlOverrides.put(YControl.class, new ControlOverride(new Vector3d(0.762, 0.65, -0.757),EntitySize.scalable(0.075F, 0.075F)));
+        this.controlOverrides.put(YControl.class, new ControlOverride(new Vector3d(0.742, 0.65, -0.757),EntitySize.scalable(0.075F, 0.075F)));
         //Done
         this.controlOverrides.put(ZControl.class, new ControlOverride(new Vector3d(0.86, 0.6, -0.78),EntitySize.scalable(0.075F, 0.075F)));
 
-        this.controlOverrides.put(ThrottleControl.class, new ControlOverride(new Vector3d(-0.40, 0.7, -1.0),EntitySize.scalable(0.25F, 0.32F)));
+        this.controlOverrides.put(ThrottleControl.class, new ControlOverride(new Vector3d(-0.42, 0.7, -1.0),EntitySize.scalable(0.25F, 0.32F)));
         //Done
         this.controlOverrides.put(FastReturnControl.class, new ControlOverride(new Vector3d(0.235, 0.7, -0.965),EntitySize.scalable(0.17F, 0.15F)));
 

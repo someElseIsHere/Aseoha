@@ -5,6 +5,7 @@ package com.code.aseoha.client.models.interiordoors;// Made with Blockbench 4.10
 
 import com.code.aseoha.client.models.exteriors.CoralExterior;
 import com.code.aseoha.client.renderers.exteriors.CoralRenderer;
+import com.code.aseoha.enums.EnumDoorTypes;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
@@ -176,24 +177,23 @@ public class CoralInteriorDoor extends AbstractInteriorDoorModel {
 
 	public void renderBones(DoorEntity door, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay) {
 		matrixStack.pushPose();
-		matrixStack.translate(0.0, -0.2, -0.5);
+		matrixStack.translate(0.0, -0.2, 0.0);
 		matrixStack.scale(1.1F, 1.1F, 1.1F);
 		matrixStack.mulPose(Vector3f.YP.rotationDegrees(90));
 		EnumDoorState state = door.getOpenState();
 		switch (state) {
 			case ONE:
-				this.doorsleft.yRot = ((float) Math.toRadians(90.0F));
-				this.doorsright.yRot = ((float) Math.toRadians(150.0F));
+				this.doorsright.yRot = (float) Math.toRadians(150.0);
+				this.doorsleft.yRot = (float) Math.toRadians(EnumDoorTypes.CORAL.getRotationForState(EnumDoorState.CLOSED));
 				break;
 			case BOTH:
-				this.doorsleft.yRot = ((float)Math.toRadians(90.0F));
-				this.doorsright.yRot = ((float) Math.toRadians(150.0F));
+				this.doorsright.yRot = (float) Math.toRadians(150.0);
+				this.doorsleft.yRot = (float) Math.toRadians(EnumDoorTypes.CORAL.getRotationForState(EnumDoorState.BOTH));
 				break;
 			case CLOSED:
-				this.doorsleft.yRot = ((float)Math.toRadians(90.0F));
-				this.doorsright.yRot = -((float)Math.toRadians(90.0F));
+				this.doorsright.yRot = (float) Math.toRadians(EnumDoorTypes.CORAL.getRotationForState(EnumDoorState.CLOSED));
+				this.doorsleft.yRot = (float) Math.toRadians(EnumDoorTypes.CORAL.getRotationForState(EnumDoorState.CLOSED));
 		}
-
 		this.base.render(matrixStack, buffer, packedLight, packedOverlay);
 		matrixStack.popPose();
 	}
@@ -206,14 +206,15 @@ public class CoralInteriorDoor extends AbstractInteriorDoorModel {
 				info.setPosition(door.position());
 				info.setWorldShell(data.getBotiWorld());
 				info.setTranslate((matrix) -> {
-					matrix.scale(1.1F, 1.1F, 1.2F);
-					matrix.translate(0.025, 0.0, 0.0);
-					DoorRenderer.applyTranslations(matrix, door.yRot - 180.0F, door.getDirection());
+					matrix.scale(1.0F, 1.0F, .95F);
+					matrix.translate(-1.01, -1.7, -.36);
+//					matrix.mulPose(Vector3f.YP.rotation(45.0F));
+					DoorRenderer.applyTranslations(matrix, door.yRot - 90.0F, door.getDirection());
 				});
 				info.setTranslatePortal((matrix) -> {
 					matrix.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
-					matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
-					matrix.translate(-0.5, -1.75, -0.5);
+					matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())-90));
+					matrix.translate(-1, 0, .52);
 				});
 				info.setRenderPortal((matrix, impl) -> {
 					matrix.pushPose();

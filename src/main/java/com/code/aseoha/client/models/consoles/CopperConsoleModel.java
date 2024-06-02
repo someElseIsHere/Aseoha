@@ -1284,25 +1284,25 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
         bone79_r4.texOffs(88, 45).addBox(-1.0F, -0.5F, -0.5F, 2.0F, 1.0F, 1.0F, -0.3F, false);
 
         bone147 = new ModelRenderer(this);
-        bone147.setPos(22.2733F, -24.5F, -41.3938F);
+        bone147.setPos(24.2733F, -16.6497F, -40.4036F);
         bone76.addChild(bone147);
 
 
         bone147_r1 = new ModelRenderer(this);
-        bone147_r1.setPos(0.0F, 0.0F, 0.0F);
+        bone147_r1.setPos(-2.0F, -7.8503F, -0.9902F);
         bone147.addChild(bone147_r1);
         setRotationAngle(bone147_r1, 0.0F, 0.0F, 1.5708F);
         bone147_r1.texOffs(88, 45).addBox(7.0378F, -2.5F, 0.4902F, 2.0F, 1.0F, 1.0F, -0.3F, false);
         bone147_r1.texOffs(101, 61).addBox(7.2878F, -3.0F, 0.4902F, 1.0F, 2.0F, 1.0F, -0.3F, false);
 
         bone147_r2 = new ModelRenderer(this);
-        bone147_r2.setPos(2.0F, 7.7878F, 0.9902F);
+        bone147_r2.setPos(0.0F, -0.0625F, 0.0F);
         bone147.addChild(bone147_r2);
         setRotationAngle(bone147_r2, 0.8727F, 0.0F, 1.5708F);
         bone147_r2.texOffs(101, 61).addBox(-0.5F, -1.0F, -0.5F, 1.0F, 2.0F, 1.0F, -0.3F, false);
 
         bone147_r3 = new ModelRenderer(this);
-        bone147_r3.setPos(2.0F, 7.7878F, 0.9902F);
+        bone147_r3.setPos(0.0F, -0.0625F, 0.0F);
         bone147.addChild(bone147_r3);
         setRotationAngle(bone147_r3, 2.0508F, 0.0F, 1.5708F);
         bone147_r3.texOffs(101, 61).addBox(-0.5F, -1.0F, -0.5F, 1.0F, 2.0F, 1.0F, -0.3F, false);
@@ -1996,9 +1996,6 @@ public class CopperConsoleModel extends EntityModel<Entity> implements TileModel
 //        });
 
         this.bone147.yRot = (float)Math.toRadians((double) WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection()));
-//        this.bone83_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())-90);
-//        this.bone84_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())-180);
-//        this.bone85_r1.zRot = (float)Math.toRadians((double)WorldHelper.getAngleFromFacing(copperConsoleTile.getExteriorFacingDirection())+45);
 
         copperConsoleTile.getControl(HandbrakeControl.class).ifPresent((handbreak) -> {
             this.handbreak.xRot = (float) Math.toRadians(handbreak.isFree() ? 25 : -60);

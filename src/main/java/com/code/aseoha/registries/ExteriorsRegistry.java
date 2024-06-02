@@ -17,7 +17,7 @@ public class ExteriorsRegistry {
 
     public static final RegistryObject<AbstractExterior> CORAL = EXTERIORS.register("coral",
             () -> new TwoBlockBasicExterior(() -> ModBlocks.EXTERIOR_CORAL.get().defaultBlockState(),
-                    true, EnumDoorTypes.CORAL, DoorSounds.WOOD,
+                    true, EnumDoorTypes.CORAL, DoorSounds.BASE,
                     new ResourceLocation(aseoha.MODID, "textures/gui/exteriors/coralexterior.png"), TextureVariants.CORAL));
 
 }

@@ -8,21 +8,34 @@ import com.code.aseoha.client.renderers.exteriors.CoralRenderer;
 import com.code.aseoha.enums.EnumDoorTypes;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.RenderState;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
+import net.tardis.mod.client.ClientHelper;
+import net.tardis.mod.client.TRenderTypes;
 import net.tardis.mod.client.models.exteriors.ExteriorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
 import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
 //import net.tardis.mod.client.renderers.exteriors.ModernPoliceBoxExteriorRenderer;
+import net.tardis.mod.client.renderers.exteriors.ModernPoliceBoxExteriorRenderer;
+import net.tardis.mod.client.renderers.exteriors.SafeExteriorRenderer;
+import net.tardis.mod.client.renderers.exteriors.TT2020CapsuleExteriorRenderer;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.enums.EnumMatterState;
+import net.tardis.mod.helper.Helper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.misc.IDoorType;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
+
+import java.util.logging.Logger;
 
 public class CoralExterior extends ExteriorModel {
     private final ModelRenderer base;
@@ -30,10 +43,6 @@ public class CoralExterior extends ExteriorModel {
     private final ModelRenderer side1;
     private final ModelRenderer side2;
     private final ModelRenderer side3;
-    private final ModelRenderer doorsleft;
-    private final ModelRenderer handle;
-    private final ModelRenderer doorsright;
-    private final ModelRenderer handle2;
     private final ModelRenderer corners;
     private final ModelRenderer roof;
     private final ModelRenderer box;
@@ -41,6 +50,11 @@ public class CoralExterior extends ExteriorModel {
     private final ModelRenderer box3;
     private final ModelRenderer box4;
     private final ModelRenderer lamp;
+    private final ModelRenderer doors;
+    private final ModelRenderer doorsright;
+    private final ModelRenderer handle2;
+    private final ModelRenderer doorsleft;
+    private final ModelRenderer handle;
     private final ModelRenderer boti;
 
     public CoralExterior() {
@@ -116,57 +130,6 @@ public class CoralExterior extends ExteriorModel {
         side3.texOffs(45, 22).addBox(-17.6F, -27.0F, -6.3F, 13.0F, 2.0F, 2.0F, -0.8F, false);
         side3.texOffs(52, 0).addBox(-16.6F, -29.0F, -5.5F, 11.0F, 6.0F, 0.0F, 0.0F, false);
         side3.texOffs(23, 23).addBox(-12.1F, -32.4F, -5.4F, 2.0F, 32.0F, 2.0F, -0.9F, false);
-
-        doorsleft = new ModelRenderer(this);
-        doorsleft.setPos(6.2769F, -18.8308F, -5.0385F);
-        sides.addChild(doorsleft);
-        setRotationAngle(doorsleft, 0.0F, 1.5708F, 0.0F);
-        doorsleft.texOffs(36, 49).addBox(-5.0385F, 16.8308F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsleft.texOffs(37, 56).addBox(-6.3385F, -12.0692F, -0.5769F, 2.0F, 30.0F, 2.0F, -0.7F, false);
-        doorsleft.texOffs(37, 56).addBox(-6.3385F, -12.0692F, -1.1769F, 2.0F, 30.0F, 2.0F, -0.7F, false);
-        doorsleft.texOffs(78, 34).addBox(-5.0385F, -11.1692F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsleft.texOffs(36, 52).addBox(-5.0385F, -4.1692F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsleft.texOffs(35, 49).addBox(-5.0385F, 2.8308F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsleft.texOffs(33, 43).addBox(-5.0385F, 9.8308F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsleft.texOffs(31, 34).addBox(-5.0385F, -4.1692F, -0.0769F, 5.0F, 22.0F, 0.0F, 0.0F, false);
-        doorsleft.texOffs(83, 18).addBox(-4.5385F, -11.1692F, -1.0769F, 2.0F, 8.0F, 2.0F, -0.8F, false);
-        doorsleft.texOffs(83, 0).addBox(-2.5385F, -11.1692F, -1.0769F, 2.0F, 8.0F, 2.0F, -0.8F, false);
-        doorsleft.texOffs(51, 22).addBox(-6.0385F, -8.1692F, -1.0769F, 7.0F, 2.0F, 2.0F, -0.8F, false);
-        doorsleft.texOffs(64, 1).addBox(-5.0385F, -10.1692F, -0.2769F, 5.0F, 6.0F, 0.0F, 0.0F, false);
-        doorsleft.texOffs(65, 49).addBox(-5.0385F, -3.1692F, -0.5769F, 5.0F, 6.0F, 1.0F, 0.0F, false);
-        doorsleft.texOffs(23, 23).addBox(-6.5385F, -13.4692F, -0.1769F, 2.0F, 32.0F, 2.0F, -0.9F, false);
-
-        handle = new ModelRenderer(this);
-        handle.setPos(-4.5385F, 1.9308F, 0.5231F);
-        doorsleft.addChild(handle);
-        handle.texOffs(0, 0).addBox(-1.0F, -4.0F, -0.8F, 2.0F, 4.0F, 2.0F, -0.9F, false);
-        handle.texOffs(0, 0).addBox(-1.0F, -4.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
-        handle.texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
-
-        doorsright = new ModelRenderer(this);
-        doorsright.setPos(6.2545F, -19.0455F, 6.7727F);
-        sides.addChild(doorsright);
-        setRotationAngle(doorsright, 0.0F, 1.5708F, 0.0F);
-        doorsright.texOffs(36, 49).addBox(0.7727F, 17.0455F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsright.texOffs(44, 37).addBox(-0.2273F, -10.9545F, -0.2545F, 1.0F, 29.0F, 1.0F, 0.0F, false);
-        doorsright.texOffs(78, 34).addBox(0.7727F, -10.9545F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsright.texOffs(35, 51).addBox(0.7727F, -3.9545F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsright.texOffs(35, 49).addBox(0.7727F, 3.0455F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsright.texOffs(33, 43).addBox(0.7727F, 10.0455F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsright.texOffs(41, 66).addBox(0.7727F, -3.9545F, -0.0545F, 5.0F, 22.0F, 0.0F, 0.0F, false);
-        doorsright.texOffs(83, 18).addBox(1.2727F, -10.9545F, -1.0545F, 2.0F, 8.0F, 2.0F, -0.8F, false);
-        doorsright.texOffs(83, 0).addBox(3.2727F, -10.9545F, -1.0545F, 2.0F, 8.0F, 2.0F, -0.8F, false);
-        doorsright.texOffs(51, 22).addBox(-0.2273F, -7.9545F, -1.0545F, 7.0F, 2.0F, 2.0F, -0.8F, false);
-        doorsright.texOffs(63, 1).addBox(0.7727F, -10.9545F, -0.2545F, 5.0F, 7.0F, 0.0F, 0.0F, false);
-        doorsright.texOffs(37, 56).addBox(5.0839F, -11.8545F, -0.5881F, 2.0F, 30.0F, 2.0F, -0.7F, false);
-        doorsright.texOffs(37, 56).addBox(5.0839F, -11.8545F, -1.1881F, 2.0F, 30.0F, 2.0F, -0.7F, false);
-
-        handle2 = new ModelRenderer(this);
-        handle2.setPos(0.0F, 2.1455F, 0.8455F);
-        doorsright.addChild(handle2);
-        handle2.texOffs(0, 0).addBox(4.8728F, -4.0F, -0.8F, 2.0F, 4.0F, 2.0F, -0.9F, false);
-        handle2.texOffs(0, 0).addBox(4.8728F, -4.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
-        handle2.texOffs(0, 0).addBox(4.8728F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
 
         corners = new ModelRenderer(this);
         corners.setPos(-0.075F, 0.0F, -0.5F);
@@ -245,9 +208,64 @@ public class CoralExterior extends ExteriorModel {
         lamp.texOffs(17, 0).addBox(-1.0F, -1.5F, -1.0F, 3.0F, 2.0F, 3.0F, -0.9F, false);
         lamp.texOffs(17, 0).addBox(-1.0F, -2.4F, -1.0F, 3.0F, 2.0F, 3.0F, -0.9F, false);
 
+        doors = new ModelRenderer(this);
+        doors.setPos(-11.1365F, 0.1F, -6.1154F);
+        base.addChild(doors);
+
+
+        doorsright = new ModelRenderer(this);
+        doorsright.setPos(17.3161F, -19.1455F, 12.3881F);
+        doors.addChild(doorsright);
+        setRotationAngle(doorsright, 0.0F, 1.5708F, 0.0F);
+        doorsright.texOffs(36, 49).addBox(0.7727F, 17.0455F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsright.texOffs(44, 37).addBox(-0.2273F, -10.9545F, -0.2545F, 1.0F, 29.0F, 1.0F, 0.0F, false);
+        doorsright.texOffs(78, 34).addBox(0.7727F, -10.9545F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsright.texOffs(35, 51).addBox(0.7727F, -3.9545F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsright.texOffs(35, 49).addBox(0.7727F, 3.0455F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsright.texOffs(33, 43).addBox(0.7727F, 10.0455F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsright.texOffs(41, 66).addBox(0.7727F, -3.9545F, -0.0545F, 5.0F, 22.0F, 0.0F, 0.0F, false);
+        doorsright.texOffs(83, 18).addBox(1.2727F, -10.9545F, -1.0545F, 2.0F, 8.0F, 2.0F, -0.8F, false);
+        doorsright.texOffs(83, 0).addBox(3.2727F, -10.9545F, -1.0545F, 2.0F, 8.0F, 2.0F, -0.8F, false);
+        doorsright.texOffs(51, 22).addBox(-0.2273F, -7.9545F, -1.0545F, 7.0F, 2.0F, 2.0F, -0.8F, false);
+        doorsright.texOffs(63, 1).addBox(0.7727F, -10.9545F, -0.2545F, 5.0F, 7.0F, 0.0F, 0.0F, false);
+        doorsright.texOffs(37, 56).addBox(5.0839F, -11.8545F, -0.5881F, 2.0F, 30.0F, 2.0F, -0.7F, false);
+        doorsright.texOffs(37, 56).addBox(5.0839F, -11.8545F, -1.1881F, 2.0F, 30.0F, 2.0F, -0.7F, false);
+
+        handle2 = new ModelRenderer(this);
+        handle2.setPos(0.0F, 2.1455F, 0.8455F);
+        doorsright.addChild(handle2);
+        handle2.texOffs(0, 0).addBox(4.8728F, -4.0F, -0.8F, 2.0F, 4.0F, 2.0F, -0.9F, false);
+        handle2.texOffs(0, 0).addBox(4.8728F, -4.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
+        handle2.texOffs(0, 0).addBox(4.8728F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
+
+        doorsleft = new ModelRenderer(this);
+        doorsleft.setPos(17.3385F, -18.9308F, 0.5769F);
+        doors.addChild(doorsleft);
+        setRotationAngle(doorsleft, 0.0F, 1.5708F, 0.0F);
+        doorsleft.texOffs(36, 49).addBox(-5.0385F, 16.8308F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsleft.texOffs(37, 56).addBox(-6.3385F, -12.0692F, -0.5769F, 2.0F, 30.0F, 2.0F, -0.7F, false);
+        doorsleft.texOffs(37, 56).addBox(-6.3385F, -12.0692F, -1.1769F, 2.0F, 30.0F, 2.0F, -0.7F, false);
+        doorsleft.texOffs(78, 34).addBox(-5.0385F, -11.1692F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsleft.texOffs(36, 52).addBox(-5.0385F, -4.1692F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsleft.texOffs(35, 49).addBox(-5.0385F, 2.8308F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsleft.texOffs(33, 43).addBox(-5.0385F, 9.8308F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
+        doorsleft.texOffs(31, 34).addBox(-5.0385F, -4.1692F, -0.0769F, 5.0F, 22.0F, 0.0F, 0.0F, false);
+        doorsleft.texOffs(83, 18).addBox(-4.5385F, -11.1692F, -1.0769F, 2.0F, 8.0F, 2.0F, -0.8F, false);
+        doorsleft.texOffs(83, 0).addBox(-2.5385F, -11.1692F, -1.0769F, 2.0F, 8.0F, 2.0F, -0.8F, false);
+        doorsleft.texOffs(51, 22).addBox(-6.0385F, -8.1692F, -1.0769F, 7.0F, 2.0F, 2.0F, -0.8F, false);
+        doorsleft.texOffs(64, 1).addBox(-5.0385F, -10.1692F, -0.2769F, 5.0F, 6.0F, 0.0F, 0.0F, false);
+        doorsleft.texOffs(65, 49).addBox(-5.0385F, -3.1692F, -0.5769F, 5.0F, 6.0F, 1.0F, 0.0F, false);
+        doorsleft.texOffs(23, 23).addBox(-6.5385F, -13.4692F, -0.1769F, 2.0F, 32.0F, 2.0F, -0.9F, false);
+
+        handle = new ModelRenderer(this);
+        handle.setPos(-4.5385F, 1.9308F, 0.5231F);
+        doorsleft.addChild(handle);
+        handle.texOffs(0, 0).addBox(-1.0F, -4.0F, -0.8F, 2.0F, 4.0F, 2.0F, -0.9F, false);
+        handle.texOffs(0, 0).addBox(-1.0F, -4.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
+        handle.texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
+
         boti = new ModelRenderer(this);
-        boti.setPos(-1.275F, -0.8F, -1.0F);
-        base.addChild(boti);
+        boti.setPos(-1.2F, 23.2F, -0.5F);
         boti.texOffs(100, 2).addBox(-1.0F, -29.0F, -4.0F, 2.0F, 28.0F, 10.0F, 0.0F, false);
     }
 
@@ -270,7 +288,7 @@ public class CoralExterior extends ExteriorModel {
     public void renderBones(ExteriorTile exterior, float scale, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float alpha) {
         matrixStack.pushPose();
         EnumDoorState state = exterior.getOpen();
-        matrixStack.translate(0.0D, -0.5D, 0.0D);
+        matrixStack.translate(0.0D, -1.0D, 0.0D);
         matrixStack.scale(1F, 1F, 1F);
         switch (state) {
             case ONE:
@@ -286,42 +304,60 @@ public class CoralExterior extends ExteriorModel {
                 this.doorsleft.yRot = (float) Math.toRadians(EnumDoorTypes.CORAL.getRotationForState(EnumDoorState.CLOSED));
         }
         base.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
-        matrixStack.translate(-0.3,1.4,0);
+        boti.render(matrixStack, buffer, packedLight, packedOverlay, 1, 1, 1, alpha);
+        matrixStack.translate(-0.3,-0.4,0);
 //        doorsright.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 //        doorsleft.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 //        BOTI.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
         matrixStack.popPose();
     }
 
-@Override
-public void renderBoti(ExteriorTile exterior, float scale, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float alpha) {
-        if (exterior.getBotiWorld() != null && exterior.getMatterState() == EnumMatterState.SOLID && exterior.getOpen() != EnumDoorState.CLOSED) {
+    @Override
+    public void renderBoti(ExteriorTile exterior, float scale, MatrixStack matrixStack, IVertexBuilder buffer,
+                           int packedLight, int packedOverlay, float alpha) {
+        if(exterior.getBotiWorld() != null && exterior.getMatterState() == EnumMatterState.SOLID && exterior.getOpen() != EnumDoorState.CLOSED) {
             PortalInfo info = new PortalInfo();
             info.setPosition(exterior.getBlockPos());
             info.setWorldShell(exterior.getBotiWorld());
-            info.setTranslate((matrix) -> {
-                matrix.translate(0.5, 0.0, -0.5);
+            info.setTranslate(matrix -> {
+                if(exterior.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.NORTH){
+                    matrix.translate(-0.458, -0.5, -1.09);
+                }
+                if(exterior.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.SOUTH){
+                    matrix.translate(-0.544, -0.5, 0.09);
+                }
+                if(exterior.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.WEST){
+                    matrix.translate(-1.09, -0.5, -0.545);
+                }
+                if(exterior.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.EAST){
+                    matrix.translate(0.09, -0.5, -0.456);
+                }
                 ExteriorRenderer.applyTransforms(matrix, exterior);
             });
-            info.setTranslatePortal((matrix) -> {
-                matrix.translate(0.0, 1.0, 0.0);
-                matrix.mulPose(Vector3f.XP.rotationDegrees(180.0F));
-                matrix.mulPose(Vector3f.YP.rotationDegrees(180.0F));
+            info.setTranslatePortal(matrix -> {
+                matrix.translate(0, 0, 0);
+                matrix.mulPose(Vector3f.XP.rotationDegrees(180));
+                matrix.mulPose(Vector3f.YP.rotationDegrees(180));
                 matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
-                matrix.translate(-0.5, -0.5, -0.5);
+                matrix.translate(-0.55f, -0.1, 0f);
             });
+
             info.setRenderPortal((matrix, buf) -> {
                 matrix.pushPose();
                 matrix.scale(1.1F, 1.1F, 1.1F);
-                this.boti.render(matrix, buf.getBuffer(RenderType.entityCutout(CoralRenderer.TEXTURE)), packedLight, packedOverlay);
+                matrix.translate(0.0f, 0, 0);
+                this.boti.render(matrix, buf.getBuffer(RenderType.entityCutoutNoCull(CoralRenderer.TEXTURE)), packedLight, packedOverlay);
                 matrix.popPose();
             });
+
             info.setRenderDoor((matrix, buf) -> {
                 matrix.pushPose();
-                matrix.scale(1.1F, 1.1F, 1.1F);
-                this.doorsleft.render(matrix, buf.getBuffer(RenderType.entityCutout(CoralRenderer.TEXTURE)), packedLight, packedOverlay);
+                matrix.translate(0.045f, -1.648f, 0.55f);
+                matrix.scale(1.1F, 1.1F, 1.05F);
+                this.doorsleft.render(matrix, buf.getBuffer(RenderType.entityCutoutNoCull(CoralRenderer.TEXTURE)), packedLight, packedOverlay);
                 matrix.popPose();
             });
+
             BOTIRenderer.addPortal(info);
         }
     }
