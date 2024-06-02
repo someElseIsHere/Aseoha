@@ -14,8 +14,10 @@ import net.tardis.mod.misc.WorldText;
 
 public class CoralRenderer extends ExteriorRenderer<CoralTile> {
     public static ResourceLocation TEXTURE = new ResourceLocation("aseoha", "textures/interiordoors/coral.png");
-    public static CoralExterior MODEL = new CoralExterior();
+//    public static CoralExterior MODEL = new CoralExterior();
     //public static WorldText TEXT = new WorldText(0.87F, 0.125F, 0.015F, 0);
+
+    private CoralExterior MODEL = new CoralExterior();
 
     public CoralRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
@@ -32,6 +34,7 @@ public class CoralRenderer extends ExteriorRenderer<CoralTile> {
 
         IVertexBuilder ivertexbuilder = bufferIn.getBuffer(TRenderTypes.getTardis(texture));
         MODEL.renderBones(tile, 0.25F, matrixStack, ivertexbuilder, i, i1, v1);
+        MODEL.renderBoti(tile, 0.25F, matrixStack, ivertexbuilder, i, i1, v1);
         matrixStack.popPose();
     }
 }

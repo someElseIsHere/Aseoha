@@ -37,6 +37,8 @@ import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 
 import java.util.logging.Logger;
 
+import static java.awt.SystemColor.info;
+
 public class CoralExterior extends ExteriorModel {
     private final ModelRenderer base;
     private final ModelRenderer sides;
@@ -310,54 +312,32 @@ public class CoralExterior extends ExteriorModel {
 //        doorsleft.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
 //        BOTI.render(matrixStack, buffer, packedLight, packedOverlay,1,1,1, alpha);
         matrixStack.popPose();
+
     }
 
     @Override
     public void renderBoti(ExteriorTile exterior, float scale, MatrixStack matrixStack, IVertexBuilder buffer,
                            int packedLight, int packedOverlay, float alpha) {
-        if(exterior.getBotiWorld() != null && exterior.getMatterState() == EnumMatterState.SOLID && exterior.getOpen() != EnumDoorState.CLOSED) {
+        if (exterior.getBotiWorld() != null && exterior.getMatterState() == EnumMatterState.SOLID && exterior.getOpen() != EnumDoorState.CLOSED) {
             PortalInfo info = new PortalInfo();
             info.setPosition(exterior.getBlockPos());
             info.setWorldShell(exterior.getBotiWorld());
-            info.setTranslate(matrix -> {
-                if(exterior.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.NORTH){
-                    matrix.translate(-0.458, -0.5, -1.09);
-                }
-                if(exterior.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.SOUTH){
-                    matrix.translate(-0.544, -0.5, 0.09);
-                }
-                if(exterior.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.WEST){
-                    matrix.translate(-1.09, -0.5, -0.545);
-                }
-                if(exterior.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING) == Direction.EAST){
-                    matrix.translate(0.09, -0.5, -0.456);
-                }
+            info.setTranslate((matrix) -> {
+                matrix.mulPose(Vector3f.YP.rotationDegrees(90));
+                matrix.translate(-0.5, 0.0, -0.5);
                 ExteriorRenderer.applyTransforms(matrix, exterior);
+                matrix.translate(0.0, -1.0, -0.05);
             });
-            info.setTranslatePortal(matrix -> {
-                matrix.translate(0, 0, 0);
-                matrix.mulPose(Vector3f.XP.rotationDegrees(180));
-                matrix.mulPose(Vector3f.YP.rotationDegrees(180));
-                matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())));
-                matrix.translate(-0.55f, -0.1, 0f);
+            info.setTranslatePortal((matrix) -> {
+                matrix.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
+                matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(exterior.getBotiWorld().getPortalDirection())-90));
+                matrix.translate(-0.5, -1.5, -0.5);
             });
-
             info.setRenderPortal((matrix, buf) -> {
                 matrix.pushPose();
-                matrix.scale(1.1F, 1.1F, 1.1F);
-                matrix.translate(0.0f, 0, 0);
-                this.boti.render(matrix, buf.getBuffer(RenderType.entityCutoutNoCull(CoralRenderer.TEXTURE)), packedLight, packedOverlay);
+                this.boti.render(matrix, buf.getBuffer(TRenderTypes.getTardis(Helper.getVariantTextureOr(exterior.getVariant(), SafeExteriorRenderer.TEXTURE))), packedLight, packedOverlay);
                 matrix.popPose();
             });
-
-            info.setRenderDoor((matrix, buf) -> {
-                matrix.pushPose();
-                matrix.translate(0.045f, -1.648f, 0.55f);
-                matrix.scale(1.1F, 1.1F, 1.05F);
-                this.doorsleft.render(matrix, buf.getBuffer(RenderType.entityCutoutNoCull(CoralRenderer.TEXTURE)), packedLight, packedOverlay);
-                matrix.popPose();
-            });
-
             BOTIRenderer.addPortal(info);
         }
     }

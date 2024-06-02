@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 import net.tardis.mod.cap.Capabilities;
+import net.tardis.mod.client.TRenderTypes;
 import net.tardis.mod.client.models.interiordoors.AbstractInteriorDoorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
@@ -201,32 +202,63 @@ public class CoralInteriorDoor extends AbstractInteriorDoorModel {
 	public void renderBoti(DoorEntity door, MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay) {
 		if (Minecraft.getInstance().level != null && door.getOpenState() != EnumDoorState.CLOSED) {
 			Minecraft.getInstance().level.getCapability(Capabilities.TARDIS_DATA).ifPresent((data) -> {
-				matrixStack.pushPose();
 				PortalInfo info = new PortalInfo();
-				info.setPosition(door.position());
 				info.setWorldShell(data.getBotiWorld());
+				info.setPosition(door.position());
 				info.setTranslate((matrix) -> {
-					matrix.scale(1.0F, 1.0F, .95F);
-					matrix.translate(-1.01, -1.7, -.36);
-//					matrix.mulPose(Vector3f.YP.rotation(45.0F));
-					DoorRenderer.applyTranslations(matrix, door.yRot - 90.0F, door.getDirection());
+					DoorRenderer.applyTranslations(matrix, door.yRot - 180.0F, door.getDirection());
+					matrix.translate(0.0, 1.0, -1.05);
+					matrix.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
 				});
 				info.setTranslatePortal((matrix) -> {
-					matrix.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
-					matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())-90));
-					matrix.translate(-1, 0, .52);
+					matrix.translate(0.0, -0.75, 1.0);
+					matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
+					matrix.translate(-0.5, 0.0, -0.5);
 				});
-				info.setRenderPortal((matrix, impl) -> {
+				info.setRenderPortal((matrix, buf) -> {
 					matrix.pushPose();
-					matrix.translate(-0.05, -0.2, -0.5);
-					matrix.scale(1.1F, 1.1F, 1.1F);
-					this.soto.render(matrix, impl.getBuffer(RenderType.entityCutout(this.getTexture())), packedLight, packedOverlay);
+					this.soto.render(matrix, buf.getBuffer(TRenderTypes.getTardis(this.getTexture())), packedLight, packedOverlay);
+					matrix.popPose();
+				});
+				info.setRenderDoor((matrix, buf) -> {
+					matrix.pushPose();
+					matrix.mulPose(Vector3f.ZP.rotationDegrees(180.0F));
+					matrix.translate(0.0, 1.5, 0.0);
+					matrix.scale(0.25F, 0.25F, 0.25F);
+					this.doorsleft.render(matrix, buf.getBuffer(TRenderTypes.getTardis(this.getTexture())), packedLight, packedOverlay);
 					matrix.popPose();
 				});
 				BOTIRenderer.addPortal(info);
-				matrixStack.popPose();
 			});
 		}
+		//		if (Minecraft.getInstance().level != null && door.getOpenState() != EnumDoorState.CLOSED) {
+//			Minecraft.getInstance().level.getCapability(Capabilities.TARDIS_DATA).ifPresent((data) -> {
+//				matrixStack.pushPose();
+//				PortalInfo info = new PortalInfo();
+//				info.setPosition(door.position());
+//				info.setWorldShell(data.getBotiWorld());
+//				info.setTranslate((matrix) -> {
+//					matrix.scale(1.0F, 1.0F, .95F);
+//					matrix.translate(-1.01, -1.7, -.36);
+////					matrix.mulPose(Vector3f.YP.rotation(45.0F));
+//					DoorRenderer.applyTranslations(matrix, door.yRot - 90.0F, door.getDirection());
+//				});
+//				info.setTranslatePortal((matrix) -> {
+//					matrix.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
+//					matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())-90));
+//					matrix.translate(-1, 0, .52);
+//				});
+//				info.setRenderPortal((matrix, impl) -> {
+//					matrix.pushPose();
+//					matrix.translate(-0.05, -0.2, -0.5);
+//					matrix.scale(1.1F, 1.1F, 1.1F);
+//					this.soto.render(matrix, impl.getBuffer(RenderType.entityCutout(this.getTexture())), packedLight, packedOverlay);
+//					matrix.popPose();
+//				});
+//				BOTIRenderer.addPortal(info);
+//				matrixStack.popPose();
+//			});
+//		}
 
 	}
 
