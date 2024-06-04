@@ -48,6 +48,7 @@ public class aseoha {
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
     public final static RegistryKey<World> NEWEARTH = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("aseoha", "newearth"));
+    public final static RegistryKey<World> GALLIFREY = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("aseoha", "gallifrey"));
     public aseoha() {
         // Register the setup method for modloading
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -147,10 +148,11 @@ public class aseoha {
         RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_ROUNDEL5.get(), RenderType.solid());
         RenderTypeLookup.setRenderLayer(ModBlocks.COATRACK.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_TERRACOTTA_ROUNDEL.get(), RenderType.solid());
-        RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_TERRACOTTA_ROUNDEL_HALF.get(), RenderType.solid());
+        //RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_TERRACOTTA_ROUNDEL_HALF.get(), RenderType.solid());
         RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_COLUMN.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_COLUMN_TOP.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_ROUNDEL.get(), RenderType.solid());
+        RenderTypeLookup.setRenderLayer(ModBlocks.foodmachine_old.get(), RenderType.solid());
 
         
         RenderTypeLookup.setRenderLayer(ModBlocks.console_copper.get(), RenderType.translucent());

@@ -2,24 +2,20 @@ package com.code.aseoha.block;
 
 import com.code.aseoha.items.ModItemGroup;
 import com.code.aseoha.items.ModItems;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import net.tardis.api.events.DimensionLightMapModificationEvent;
-import net.tardis.mod.ars.IARS;
+import net.tardis.mod.blocks.ArsEggBlock;
 import net.tardis.mod.blocks.RoundelBlock;
 import net.tardis.mod.blocks.exteriors.ExteriorBlock;
-import net.tardis.mod.itemgroups.TItemGroups;
-import net.tardis.mod.properties.TardisBlockProperties;
 
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
@@ -28,9 +24,9 @@ import static com.code.aseoha.aseoha.MODID;
 
 public class ModBlocks {
     public static ToIntFunction<BlockState> maxLightLevel = BlockState -> 15;
-
     public static final DeferredRegister<Block> BLOCKS
             = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+    public static final Material IRON = (new Material.Builder(MaterialColor.METAL)).build();
 
 
     /*****************************  ROUNDELS  **********************************/
@@ -196,11 +192,199 @@ public class ModBlocks {
     public static RegistryObject<Block> EXTERIOR_CORAL = registerNoItemBlock("exterior_coral",
             () -> setUpBlock(new ExteriorBlock()));
 
+    /************************WhoviansRest****************/
 
-private static Block setUpBlock(Block block){return block;}
-    //private static <T extends Block> T setUpBlock(T block) {
-    //    return block;
-    //}
+    ////////////////////////EXTERIORS
+    public static RegistryObject<Block> exterior_wardrobe = registerNoItemBlock("exterior_wardrobe",
+            () -> setUpBlock(new ExteriorBlock()));
+
+    public static RegistryObject<Block> exterior_brackolin = registerNoItemBlock("exterior_brackolin",
+            () -> setUpBlock(new ExteriorBlock()));
+
+    public static RegistryObject<Block> exterior_rani = registerNoItemBlock("exterior_rani",
+            () -> setUpBlock(new ExteriorBlock()));
+
+    public static RegistryObject<Block> exterior_olwarrior = registerNoItemBlock("exterior_olwarrior",
+            () -> setUpBlock(new ExteriorBlock()));
+
+    public static RegistryObject<Block> exterior_bluedoctor = registerNoItemBlock("exterior_bluedoctor",
+            () -> setUpBlock(new ExteriorBlock()));
+
+    public static RegistryObject<Block> exterior_classic_hartnell = registerNoItemBlock("exterior_classic_hartnell",
+            () -> setUpBlock(new ExteriorBlock()));
+
+    ////////////////CONSOLES
+
+
+    public static RegistryObject<Block> console_vale = registerNoItemBlock("console_vale",
+            () -> setUpBlock(new ConsoleBlock()));
+    //public static RegistryObject<Block> console_smith = registerNoItemBlock("console_smith",
+    //        () -> setUpBlock(new ConsoleBlock()));
+    public static RegistryObject<Block> console_brackolin = registerNoItemBlock("console_brackolin",
+            () -> setUpBlock(new ConsoleBlock()));
+
+
+
+
+
+    //Blocks
+    //1.12 Port
+    public static final RegistryObject<Block> ars_egg_old = registerBlock("ars_egg_old",
+            ArsEggBlock::new);
+    public static final RegistryObject<Block> artron_bank_old = registerBlock("artron_bank_old",
+            () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).noOcclusion()));
+
+    public static RegistryObject<Block> foodmachine_old = registerBlock("foodmachine_old",
+            () -> setUpBlock(new FoodMachineBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL).noOcclusion())));
+
+    public static RegistryObject<Block> structure_panel_old = registerBlock("structure_panel_old",
+            () -> new Block(AbstractBlock.Properties.of(Material.METAL)
+                    .harvestTool(ToolType.PICKAXE)
+                    .harvestLevel(2)));
+
+    public static RegistryObject<Block> structure_spawn_old = registerBlock("structure_spawn_old",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> structure_remove_old = registerBlock("structure_remove_old",
+            () -> new Block(AbstractBlock.Properties.of(IRON)
+                    .harvestTool(ToolType.PICKAXE)
+                    .harvestLevel(2)));
+
+    public static RegistryObject<Block> structure_panel_open_old = registerBlock("structure_panel_open_old",
+            () -> new Block(AbstractBlock.Properties.of(IRON)
+                    .harvestTool(ToolType.PICKAXE)
+                    .harvestLevel(2)));
+
+    public static RegistryObject<SlabBlock> megalos_slab = registerBlock("megalos_slab",
+            () -> new SlabBlock(AbstractBlock.Properties.of(Material.WOOD)
+                    .harvestTool(ToolType.PICKAXE)
+                    .harvestLevel(2)
+                    .noOcclusion()));
+
+    public static RegistryObject<Block> megalos_block = registerBlock("megalos",
+            () -> new Block(AbstractBlock.Properties.of(Material.WOOD)));
+    public static RegistryObject<Block> megalos_stripe = registerBlock("megalos_stripe",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> megalos_floor = registerBlock("megalos_floor",
+            () -> new Block(AbstractBlock.Properties.of(Material.WOOD)));
+
+    public static RegistryObject<Block> megalos_white_full_roundel = registerBlock("megalos_white_full_roundel",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_white_half_roundel = registerBlock("megalos_white_half_roundel",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_white_half_roundel_bottom_edge = registerBlock("megalos_white_half_roundel_bottom_edge",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+    public static RegistryObject<Block> megalos_white_half_roundel_top_edge = registerBlock("megalos_white_half_roundel_top_edge",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_white_half_roundel_top = registerBlock("megalos_white_half_roundel_top",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_white_half_roundel_bottom = registerBlock("megalos_white_half_roundel_bottom",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_pillar = registerBlock("megalos_pillar",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> megalos__full_rouundel = registerBlock("megalos_full_roundel",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_half_roundel = registerBlock("megalos_half_roundel",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_half_roundel_bottom_edge = registerBlock("megalos_half_roundel_bottom_edge",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_half_roundel_top_edge = registerBlock("megalos_half_roundel_top_edge",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> megalos_pillar_top = registerBlock("megalos_pillar_top",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+
+
+    public static RegistryObject<Block> toyota_lower_hexagon_full = registerBlock("toyota_lower_hexagon_full",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_lower_hexagon_full_lit = registerBlock("toyota_lower_hexagon_full_lit",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> toyota_lower_hexagon_left = registerBlock("toyota_lower_hexagon_left",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_lower_hexagon_left_blank = registerBlock("toyota_lower_hexagon_left_blank",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_lower_hexagon_left_lit = registerBlock("toyota_lower_hexagon_left_lit",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> toyota_lower_hexagon_right = registerBlock("toyota_lower_hexagon_right",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_lower_hexagon_right_blank = registerBlock("toyota_lower_hexagon_right_blank",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_lower_hexagon_right_lit = registerBlock("toyota_lower_hexagon_right_lit",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> toyota_lower_lightstrip = registerBlock("toyota_lower_lightstrip",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_lower_lightstrip_blank = registerBlock("toyota_lower_lightstrip_blank",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_lower_lightstrip_lit = registerBlock("toyota_lower_lightstrip_lit",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> toyota_platform_block = registerBlock("toyota_platform_block",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_platform_edge = registerBlock("toyota_platform_edge",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_roof = registerBlock("toyota_roof",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_roof_roundel = registerBlock("toyota_roof_roundel",
+            () -> new RoundelBlock(AbstractBlock.Properties.of(IRON), SoundType.METAL,1,1));
+
+    public static RegistryObject<Block> toyota_upper_divider = registerBlock("toyota_upper_divider",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static final RegistryObject<RedstoneLampBlock> toyota_upper_light_emergency = registerBlock("toyota_upper_light_emergency",
+            () -> new RedstoneLampBlock(AbstractBlock.Properties.of(Material.GLASS)));
+
+    public static final RegistryObject<RedstoneLampBlock> toyota_upper_light = registerBlock("toyota_upper_light",
+            () -> new RedstoneLampBlock(AbstractBlock.Properties.of(Material.GLASS)));
+
+    public static RegistryObject<Block> toyota_upper_wall_pattern_bottom_left = registerBlock("toyota_upper_wall_pattern_bottom_left",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_upper_wall_pattern_bottom_middle = registerBlock("toyota_upper_wall_pattern_bottom_middle",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_upper_wall_pattern_bottom_right = registerBlock("toyota_upper_wall_pattern_bottom_right",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_upper_wall_pattern_top_left = registerBlock("toyota_upper_wall_pattern_top_left",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_upper_wall_pattern_top_middle = registerBlock("toyota_upper_wall_pattern_top_middle",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+    public static RegistryObject<Block> toyota_upper_wall_pattern_top_right = registerBlock("toyota_upper_wall_pattern_top_right",
+            () -> new Block(AbstractBlock.Properties.of(IRON)));
+
+
+
+
+
+
+
+    private static Block setUpBlock(Block block){return block;}
 
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
