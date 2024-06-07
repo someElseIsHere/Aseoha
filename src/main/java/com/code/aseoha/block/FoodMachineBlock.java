@@ -76,36 +76,23 @@ public class FoodMachineBlock extends MultiblockBlock implements IWaterLoggable 
         FluidState fluid = context.getLevel().getFluidState(context.getClickedPos());
         return (BlockState)((BlockState)super.getStateForPlacement(context).setValue(BlockStateProperties.HORIZONTAL_FACING, context.getPlayer().getDirection().getOpposite())).setValue(BlockStateProperties.WATERLOGGED, fluid.getFluidState().is(FluidTags.WATER));
     }
-
-    private float ArtronAmount = 0;
-
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!WorldHelper.isDimensionBlocked(worldIn)) {
             ConsoleTile console = (ConsoleTile)worldIn.getBlockEntity(TardisHelper.TARDIS_POS);
-            if (worldIn.isClientSide) {
-                if (KeyboardHelper.isHoldingShift()) {
-                    ArtronAmount=1;
-                    if(console.getArtron() >= (float) ArtronAmount) {
-                        player.addItem(new ItemStack(Items.CARROT, (int) ArtronAmount));
-                    }
+
+                if (console.getArtron() >= (float) 16 && KeyboardHelper.isHoldingAlt()) {
+                    player.addItem(new ItemStack(Items.CARROT, (int) 1));
                 }
-                if (KeyboardHelper.isHoldingAlt()){
-                    ArtronAmount=1;
-                    if(console.getArtron() >= (float) ArtronAmount) {
-                        player.addItem(new ItemStack(Items.BONE_MEAL, (int) ArtronAmount));
-                    }
+                if (player.isCrouching()) {
+                    player.addItem(new ItemStack(Items.BONE_MEAL, (int) 1));
                 }
-                if(!KeyboardHelper.isHoldingShift() && !KeyboardHelper.isHoldingAlt()){
-                    ArtronAmount=1;
-                    if(console.getArtron() >= (float) ArtronAmount) {
-                        player.addItem(new ItemStack(Items.POTATO, (int) ArtronAmount));
-                    }
+                if (console.getArtron() >= (float) 16 && !KeyboardHelper.isHoldingAlt() && !player.isCrouching()) {
+                    player.addItem(new ItemStack(Items.POTATO, (int) 1));
                 }
-                return ActionResultType.SUCCESS;
-            }
-            if(console.getArtron() >= (float) (ArtronAmount*16)) {
-                console.setArtron((console.getArtron() - (ArtronAmount*16)));
-            }
+
+//            if(console.getArtron() >= (float) (1 * 16)) {
+                console.setArtron((console.getArtron() - (1 * 16)));
+//            }
         } else if (!worldIn.isClientSide()) {
             player.displayClientMessage(TardisConstants.Translations.NO_USE_OUTSIDE_TARDIS, true);
         }
