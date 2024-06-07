@@ -29,6 +29,7 @@ public class ModBlocks {
     public static final Material IRON = (new Material.Builder(MaterialColor.METAL)).build();
 
 
+
     /*****************************  ROUNDELS  **********************************/
 
     public static final RegistryObject<Block> HELLBENT_ROUNDEL1 = registerBlock("hb_roundel01",
@@ -106,6 +107,15 @@ public class ModBlocks {
             () -> new Block(AbstractBlock.Properties.of(Material.STONE)
                     .noCollission()));
 
+//    public static final RegistryObject<Block> LOOTCRATE = registerBlock("lootcrate",
+//            () -> new Block(AbstractBlock.Properties.of(Material.WOOD)
+//                    .noOcclusion()));
+//
+//    public static final RegistryObject<Block> LOOTCRATEX = registerBlock("lootcratex",
+//            () -> new Block(AbstractBlock.Properties.of(Material.WOOD)
+//                    .noOcclusion()));
+
+
     public static final RegistryObject<Block> COPPER_COLUMN = registerBlock("copper_column",
             () -> new Block(AbstractBlock.Properties.of(Material.STONE)
                     .noOcclusion()));
@@ -170,15 +180,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> HELLBENT_WALLSILVER = registerBlock("hb_wallsilver",
             () -> new Block(AbstractBlock.Properties.of(Material.STONE)));
 
-    public static final RegistryObject<Block> MEGLOS_BLANK = registerBlock("mg_blank",
-            () -> new Block(AbstractBlock.Properties.of(Material.STONE)));
-
-    public static final RegistryObject<Block> MEGLOS_BLANK_WALL = registerBlock("mg_blank_wall",
-            () -> new Block(AbstractBlock.Properties.of(Material.STONE)));
-
-    public static final RegistryObject<Block> MEGLOS_FLOOR = registerBlock("mg_floor",
-            () -> new Block(AbstractBlock.Properties.of(Material.STONE)));
-
     /************************CONSOLES**********************/
 
 
@@ -191,6 +192,10 @@ public class ModBlocks {
     /************************EXTERIORS********************/
     public static RegistryObject<Block> EXTERIOR_CORAL = registerNoItemBlock("exterior_coral",
             () -> setUpBlock(new ExteriorBlock()));
+
+    public static RegistryObject<Block> exterior_capaldi = registerNoItemBlock("exterior_capaldi",
+            () -> setUpBlock(new ExteriorBlock()));
+
 
     /************************WhoviansRest****************/
 
@@ -213,6 +218,12 @@ public class ModBlocks {
     public static RegistryObject<Block> exterior_classic_hartnell = registerNoItemBlock("exterior_classic_hartnell",
             () -> setUpBlock(new ExteriorBlock()));
 
+//    public static RegistryObject<Block> exterior_streetside = registerNoItemBlock("exterior_streetside",
+//            () -> setUpBlock(new ExteriorBlock()));
+
+    public static RegistryObject<Block> exterior_alfiehudolin = registerNoItemBlock("exterior_alfiehudolin",
+            () -> setUpBlock(new ExteriorBlock()));
+
     ////////////////CONSOLES
 
 
@@ -232,7 +243,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> ars_egg_old = registerBlock("ars_egg_old",
             ArsEggBlock::new);
     public static final RegistryObject<Block> artron_bank_old = registerBlock("artron_bank_old",
-            () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).noOcclusion()));
+            () -> setUpBlock(new ArtronBank(AbstractBlock.Properties.of(Material.HEAVY_METAL).noOcclusion())));//AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).noOcclusion()));
 
     public static RegistryObject<Block> foodmachine_old = registerBlock("foodmachine_old",
             () -> setUpBlock(new FoodMachineBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL).noOcclusion())));

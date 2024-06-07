@@ -228,18 +228,6 @@ public class CoralInteriorDoor extends AbstractInteriorDoorModel {
 					matrix.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
 					matrix.mulPose(Vector3f.YP.rotationDegrees(WorldHelper.getAngleFromFacing(data.getBotiWorld().getPortalDirection())));
 					matrix.mulPose(Vector3f.YP.rotationDegrees(-90));
-//					if(door.yRot>=-1F && door.yRot<=1F){ //NORTH
-//						matrix.translate(-0.25, 0.1, -0.25);
-//					}
-//					if(door.yRot==90F){//EAST
-//						matrix.translate(-0.36, 0, -0.36);
-//					}
-//					if(door.yRot<=179 && door.yRot<=-179){ //SOUTH
-//						matrix.translate(-0.5, 0, -0.5);
-//					}
-//					if(door.yRot==-90){ //WEST
-//						matrix.translate(-0.4, 0.1, -0.4);
-//					}
 					matrix.translate(-0.5, 0, -0.5);
 
 				});

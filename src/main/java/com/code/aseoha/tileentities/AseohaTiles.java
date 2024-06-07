@@ -53,8 +53,9 @@ package com.code.aseoha.tileentities;
 
 import com.code.aseoha.aseoha;
 import com.code.aseoha.block.ModBlocks;
+import com.code.aseoha.tileentities.consoles.BrackolinConsoleTile;
 import com.code.aseoha.tileentities.consoles.CopperConsoleTile;
-import com.code.aseoha.tileentities.exteriors.CoralTile;
+import com.code.aseoha.tileentities.exteriors.*;
 import com.google.common.base.Supplier;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
@@ -71,9 +72,51 @@ public class AseohaTiles {
             TILES.register("console_copper", () ->registerTiles(CopperConsoleTile::new,
                     ModBlocks.console_copper.get()));
 
+
     public static RegistryObject<TileEntityType<CoralTile>> EXTERIOR_CORAL =
             TILES.register("exterior_coral", () -> registerTiles(CoralTile::new,
                     ModBlocks.EXTERIOR_CORAL.get()));
+
+
+    public static RegistryObject<TileEntityType<CapaldiTile>> exterior_capaldi =
+            TILES.register("exterior_capaldi", () -> registerTiles(CapaldiTile::new,
+                    ModBlocks.exterior_capaldi.get()));
+
+    //WhoviansRest
+
+    //Exteriors
+    public static RegistryObject<TileEntityType<WardrobeTile>> exterior_wardrobe =
+            TILES.register("exterior_wardrobe", () -> registerTiles(WardrobeTile::new,
+                    ModBlocks.exterior_wardrobe.get()));
+
+    public static RegistryObject<TileEntityType<RaniTile>> exterior_rani =
+            TILES.register("exterior_rani", () -> registerTiles(RaniTile::new,
+                    ModBlocks.exterior_rani.get()));
+
+    public static RegistryObject<TileEntityType<OlwarriorTile>> exterior_olwarrior =
+            TILES.register("exterior_olwarrior", () -> registerTiles(OlwarriorTile::new,
+                    ModBlocks.exterior_olwarrior.get()));
+
+    public static RegistryObject<TileEntityType<BlueDoctorTile>> exterior_bluedoctor =
+            TILES.register("exterior_bluedoctor", () -> registerTiles(BlueDoctorTile::new,
+                    ModBlocks.exterior_bluedoctor.get()));
+
+    public static RegistryObject<TileEntityType<BrackolinTile>> exterior_brackolin =
+            TILES.register("exterior_brackolin", () -> registerTiles(BrackolinTile::new,
+                    ModBlocks.exterior_brackolin.get()));
+
+    public static RegistryObject<TileEntityType<AlfieHudolinTile>> exterior_alfiehudolin =
+            TILES.register("exterior_alfiehudolin", () -> registerTiles(AlfieHudolinTile::new,
+                    ModBlocks.exterior_alfiehudolin.get()));
+
+    public static RegistryObject<TileEntityType<Hartnell112Tile>> exterior_classic_hartnell =
+            TILES.register("exterior_classic_hartnell", () -> registerTiles(Hartnell112Tile::new,
+                    ModBlocks.exterior_classic_hartnell.get()));
+
+    //Consoles
+    public static final RegistryObject<TileEntityType<BrackolinConsoleTile>> console_brackolin =
+            TILES.register("console_brackolin", () ->registerTiles(BrackolinConsoleTile::new,
+                    ModBlocks.console_brackolin.get()));
 
     private static <T extends TileEntity> TileEntityType<T> registerTiles(Supplier<T> tile, Block... validBlock) {
         TileEntityType<T> type = TileEntityType.Builder.of(tile, validBlock).build(null);

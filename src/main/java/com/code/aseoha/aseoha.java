@@ -1,5 +1,6 @@
 package com.code.aseoha;
 import com.code.aseoha.block.ModBlocks;
+import com.code.aseoha.client.renderers.console.BrackolinConsoleRender;
 import com.code.aseoha.client.renderers.console.CopperConsoleRenderer;
 import com.code.aseoha.items.ModItems;
 import com.code.aseoha.registries.ConsolesRegistry;
@@ -138,9 +139,9 @@ public class aseoha {
         RenderTypeLookup.setRenderLayer(ModBlocks.HELLBENT_WALLSILVER.get(), RenderType.solid());
         RenderTypeLookup.setRenderLayer(ModBlocks.HELLBENT_POLE.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.TOASTER.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_BLANK.get(), RenderType.solid());
-        RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_BLANK_WALL.get(), RenderType.solid());
-        RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_FLOOR.get(), RenderType.solid());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_BLANK.get(), RenderType.solid());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_BLANK_WALL.get(), RenderType.solid());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_FLOOR.get(), RenderType.solid());
         RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_ROUNDEL1.get(), RenderType.solid());
         RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_ROUNDEL2.get(), RenderType.solid());
         RenderTypeLookup.setRenderLayer(ModBlocks.MEGLOS_ROUNDEL3.get(), RenderType.solid());
@@ -152,11 +153,16 @@ public class aseoha {
         RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_COLUMN.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_COLUMN_TOP.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_ROUNDEL.get(), RenderType.solid());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.LOOTCRATE.get(), RenderType.cutout());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.LOOTCRATEX.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.foodmachine_old.get(), RenderType.solid());
 
-        
+
         RenderTypeLookup.setRenderLayer(ModBlocks.console_copper.get(), RenderType.translucent());
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_copper.get(), CopperConsoleRenderer::new);
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.console_brackolin.get(), RenderType.translucent());
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_brackolin.get(), BrackolinConsoleRender::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

@@ -2,10 +2,13 @@
   "type": "minecraft:default",
   "config": {
     "top_material": {
-      "Name": "minecraft:red_sand"
+      "Name": "minecraft:grass_block",
+      "Properties": {
+        "snowy": "false"
+      }
     },
     "under_material": {
-      "Name": "minecraft:red_sandstone"
+      "Name": "minecraft:dirt"
     },
     "underwater_material": {
       "Name": "minecraft:gravel"

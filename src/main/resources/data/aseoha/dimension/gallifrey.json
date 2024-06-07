@@ -4,13 +4,16 @@
     "type": "minecraft:noise",
     "seed": 647164208,
     "settings": {
-      "name": "minecraft_overworld",
+      "name": "minecraft:minecraft_overworld",
       "bedrock_roof_position": -10,
       "bedrock_floor_position": 0,
       "sea_level": 63,
       "disable_mob_generation": false,
       "default_block": {
-        "Name": "minecraft:red_sandstone"
+        "Name": "minecraft:grass_block",
+        "Properties": {
+          "snowy": "false"
+        }
       },
       "default_fluid": {
         "Name": "minecraft:water",
@@ -45,20 +48,55 @@
       },
       "structures": {
         "structures": {
-          "minecraft:village": {
-            "spacing": 10,
-            "separation": 5,
+          "minecraft:buried_treasure": {
+            "spacing": 60,
+            "separation": 59,
             "salt": 0
+          },
+          "minecraft:desert_pyramid": {
+            "spacing": 32,
+            "separation": 30,
+            "salt": 14357617
+          },
+          "minecraft:igloo": {
+            "spacing": 32,
+            "separation": 21,
+            "salt": 14357618
+          },
+          "minecraft:jungle_pyramid": {
+            "spacing": 32,
+            "separation": 30,
+            "salt": 14357619
           },
           "minecraft:mansion": {
-            "spacing": 10,
-            "separation": 5,
+            "spacing": 80,
+            "separation": 60,
+            "salt": 10387319
+          },
+          "minecraft:mineshaft": {
+            "spacing": 41,
+            "separation": 40,
             "salt": 0
           },
+          "minecraft:nether_fossil": {
+            "spacing": 20,
+            "separation": 18,
+            "salt": 14357921
+          },
           "minecraft:ruined_portal": {
-            "spacing": 10,
-            "separation": 5,
+            "spacing": 40,
+            "separation": 15,
+            "salt": 34222645
+          },
+          "minecraft:stronghold": {
+            "spacing": 200,
+            "separation": 190,
             "salt": 0
+          },
+          "minecraft:village": {
+            "spacing": 32,
+            "separation": 8,
+            "salt": 10387312
           }
         }
       }

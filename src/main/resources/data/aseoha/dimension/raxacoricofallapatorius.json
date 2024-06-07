@@ -2,11 +2,11 @@
   "type": "aseoha:raxacoricofallapatorius_type",
   "generator": {
     "type": "minecraft:noise",
-    "seed": 1092820367,
+    "seed": 33302912,
     "settings": "minecraft:overworld",
     "biome_source": {
       "type": "minecraft:multi_noise",
-      "seed": 1092820367,
+      "seed": 33302912,
       "altitude_noise": {
         "firstOctave": -7,
         "amplitudes": [

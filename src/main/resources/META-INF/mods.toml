@@ -74,7 +74,7 @@ side="BOTH"
 
 [[dependencies.aseoha]] #optional
 ## the modid of the dependency
-modId="dalek" #mandatory
+modId="dalekmod" #mandatory
 ## Does this dependency have to exist - if not, ordering below must be specified
 mandatory=false #mandatory
 # The version range of the dependency

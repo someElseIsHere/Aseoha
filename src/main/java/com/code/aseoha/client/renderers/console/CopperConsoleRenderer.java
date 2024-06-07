@@ -60,7 +60,7 @@ public class CopperConsoleRenderer extends TileEntityRenderer<CopperConsoleTile>
         matrixStack.mulPose(Vector3f.ZN.rotationDegrees(180.0F));
         matrixStack.translate(0.85, 0.9,0.925);
         matrixStack.scale((float) 0.5, (float) 0.5, (float) 0.5);
-        // Minecraft.getInstance().getItemRenderer().renderStatic(Console.getSonicItem(), ItemCameraTransforms.TransformType.NONE, combinedLightIn, combinedOverlayIn, matrixStackIn, bufferIn);
+         Minecraft.getInstance().getItemRenderer().renderStatic(copperConsoleTile.getSonicItem(), ItemCameraTransforms.TransformType.NONE, i, i1, matrixStack, iRenderTypeBuffer);
         matrixStack.popPose();
     }
 

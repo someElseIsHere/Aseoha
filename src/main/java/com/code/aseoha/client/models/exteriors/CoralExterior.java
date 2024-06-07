@@ -84,10 +84,12 @@ public class CoralExterior extends ExteriorModel {
         side1.texOffs(64, 65).addBox(1.0F, -23.0F, 1.0F, 11.0F, 1.0F, 1.0F, 0.0F, false);
         side1.texOffs(64, 65).addBox(1.0F, -16.0F, 1.0F, 11.0F, 1.0F, 1.0F, 0.0F, false);
         side1.texOffs(64, 65).addBox(1.0F, -9.0F, 1.0F, 11.0F, 1.0F, 1.0F, 0.0F, false);
-        side1.texOffs(3, 69).addBox(1.0F, -23.0F, 1.2F, 11.0F, 22.0F, 0.0F, 0.0F, false);
+        side1.texOffs(0, 121).addBox(1.0F, -23.0F, 1.2F, 11.0F, 7.0F, 0.0F, 0.0F, false);
+        side1.texOffs(0, 121).addBox(1.0F, -16.0F, 1.2F, 11.0F, 7.0F, 0.0F, 0.0F, false);
+        side1.texOffs(0, 121).addBox(1.0F, -9.0F, 1.2F, 11.0F, 7.0F, 0.0F, 0.0F, false);
         side1.texOffs(75, 18).addBox(3.5F, -30.0F, 0.2F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side1.texOffs(80, 73).addBox(1.5F, -30.0F, 0.2F, 2.0F, 8.0F, 2.0F, -0.8F, false);
-        side1.texOffs(52, 1).addBox(1.0F, -29.0F, 1.0F, 11.0F, 6.0F, 0.0F, 0.0F, false);
+        side1.texOffs(52, 1).addBox(1.0F, -29.0F, 1.1F, 11.0F, 6.0F, 0.0F, 0.0F, false);
         side1.texOffs(75, 0).addBox(7.5F, -30.0F, 0.2F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side1.texOffs(64, 73).addBox(9.5F, -30.0F, 0.2F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side1.texOffs(45, 26).addBox(-0.1F, -27.0F, 0.2F, 13.0F, 2.0F, 2.0F, -0.8F, false);
@@ -103,13 +105,15 @@ public class CoralExterior extends ExteriorModel {
         side2.texOffs(64, 65).addBox(-10.8F, -23.0F, 0.3F, 11.0F, 1.0F, 1.0F, 0.0F, false);
         side2.texOffs(64, 65).addBox(-10.8F, -16.0F, 0.3F, 11.0F, 1.0F, 1.0F, 0.0F, false);
         side2.texOffs(64, 65).addBox(-10.8F, -9.0F, 0.3F, 11.0F, 1.0F, 1.0F, 0.0F, false);
-        side2.texOffs(9, 71).addBox(-10.8F, -23.0F, 0.5F, 11.0F, 22.0F, 0.0F, 0.0F, false);
+        side2.texOffs(23, 121).addBox(-10.8F, -23.0F, 0.5F, 11.0F, 7.0F, 0.0F, 0.0F, false);
+        side2.texOffs(23, 121).addBox(-10.8F, -16.0F, 0.5F, 11.0F, 7.0F, 0.0F, 0.0F, false);
+        side2.texOffs(23, 121).addBox(-10.8F, -8.0F, 0.5F, 11.0F, 7.0F, 0.0F, 0.0F, false);
         side2.texOffs(0, 18).addBox(-8.4F, -30.0F, -0.5F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side2.texOffs(72, 73).addBox(-10.4F, -30.0F, -0.5F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side2.texOffs(8, 0).addBox(-4.4F, -30.0F, -0.5F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side2.texOffs(0, 0).addBox(-2.4F, -30.0F, -0.5F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side2.texOffs(45, 18).addBox(-11.9F, -27.0F, -0.5F, 13.0F, 2.0F, 2.0F, -0.8F, false);
-        side2.texOffs(52, 2).addBox(-10.8F, -29.0F, 0.3F, 11.0F, 6.0F, 0.0F, 0.0F, false);
+        side2.texOffs(52, 2).addBox(-10.8F, -29.0F, 0.4F, 11.0F, 6.0F, 0.0F, 0.0F, false);
         side2.texOffs(23, 23).addBox(-6.3F, -32.3F, 0.6F, 2.0F, 32.0F, 2.0F, -0.9F, false);
 
         side3 = new ModelRenderer(this);
@@ -124,13 +128,15 @@ public class CoralExterior extends ExteriorModel {
         side3.texOffs(64, 65).addBox(-16.6F, -23.0F, -5.5F, 11.0F, 1.0F, 1.0F, 0.0F, false);
         side3.texOffs(64, 65).addBox(-16.6F, -16.0F, -5.5F, 11.0F, 1.0F, 1.0F, 0.0F, false);
         side3.texOffs(64, 65).addBox(-16.6F, -9.0F, -5.5F, 11.0F, 1.0F, 1.0F, 0.0F, false);
-        side3.texOffs(18, 35).addBox(-16.6F, -23.0F, -5.3F, 11.0F, 22.0F, 0.0F, 0.0F, false);
+        side3.texOffs(46, 121).addBox(-16.6F, -23.0F, -5.3F, 11.0F, 7.0F, 0.0F, 0.0F, false);
+        side3.texOffs(46, 121).addBox(-16.6F, -16.0F, -5.3F, 11.0F, 7.0F, 0.0F, 0.0F, false);
+        side3.texOffs(46, 121).addBox(-16.6F, -8.0F, -5.3F, 11.0F, 7.0F, 0.0F, 0.0F, false);
         side3.texOffs(64, 83).addBox(-14.1F, -30.0F, -6.3F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side3.texOffs(72, 83).addBox(-16.1F, -30.0F, -6.3F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side3.texOffs(83, 18).addBox(-10.1F, -30.0F, -6.3F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side3.texOffs(83, 0).addBox(-8.1F, -30.0F, -6.3F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         side3.texOffs(45, 22).addBox(-17.6F, -27.0F, -6.3F, 13.0F, 2.0F, 2.0F, -0.8F, false);
-        side3.texOffs(52, 0).addBox(-16.6F, -29.0F, -5.5F, 11.0F, 6.0F, 0.0F, 0.0F, false);
+        side3.texOffs(52, 0).addBox(-16.6F, -29.0F, -5.4F, 11.0F, 6.0F, 0.0F, 0.0F, false);
         side3.texOffs(23, 23).addBox(-12.1F, -32.4F, -5.4F, 2.0F, 32.0F, 2.0F, -0.9F, false);
 
         corners = new ModelRenderer(this);
@@ -148,9 +154,9 @@ public class CoralExterior extends ExteriorModel {
         roof = new ModelRenderer(this);
         roof.setPos(-0.075F, 0.0F, -0.5F);
         base.addChild(roof);
-        roof.texOffs(0, 60).addBox(-7.0F, -32.0F, -7.0F, 15.0F, 2.0F, 15.0F, 0.0F, false);
-        roof.texOffs(0, 75).addBox(-6.0F, -33.0F, -6.0F, 13.0F, 1.0F, 13.0F, 0.0F, false);
-        roof.texOffs(0, 65).addBox(-5.0F, -34.0F, -5.0F, 11.0F, 1.0F, 11.0F, 0.0F, false);
+        roof.texOffs(68, 95).addBox(-7.0F, -32.0F, -7.0F, 15.0F, 2.0F, 15.0F, 0.0F, false);
+        roof.texOffs(0, 93).addBox(-6.0F, -33.0F, -6.0F, 13.0F, 1.0F, 13.0F, 0.0F, false);
+        roof.texOffs(0, 108).addBox(-5.0F, -34.0F, -5.0F, 11.0F, 1.0F, 11.0F, 0.0F, false);
         roof.texOffs(28, 82).addBox(6.2F, -32.8F, 6.2F, 1.0F, 1.0F, 1.0F, 0.0F, false);
         roof.texOffs(28, 82).addBox(-6.2F, -32.8F, 6.2F, 1.0F, 1.0F, 1.0F, 0.0F, false);
         roof.texOffs(28, 82).addBox(-6.2F, -32.8F, -6.2F, 1.0F, 1.0F, 1.0F, 0.0F, false);
@@ -225,11 +231,13 @@ public class CoralExterior extends ExteriorModel {
         doorsright.texOffs(35, 51).addBox(0.7727F, -3.9545F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
         doorsright.texOffs(35, 49).addBox(0.7727F, 3.0455F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
         doorsright.texOffs(33, 43).addBox(0.7727F, 10.0455F, -0.2545F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsright.texOffs(41, 66).addBox(0.7727F, -3.9545F, -0.0545F, 5.0F, 22.0F, 0.0F, 0.0F, false);
+        doorsright.texOffs(118, 122).addBox(0.7727F, -2.9545F, -0.0545F, 5.0F, 6.0F, 0.0F, 0.0F, false);
+        doorsright.texOffs(108, 122).addBox(0.7727F, 4.0455F, -0.0545F, 5.0F, 6.0F, 0.0F, 0.0F, false);
+        doorsright.texOffs(98, 122).addBox(0.7727F, 11.0455F, -0.0545F, 5.0F, 6.0F, 0.0F, 0.0F, false);
         doorsright.texOffs(83, 18).addBox(1.2727F, -10.9545F, -1.0545F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         doorsright.texOffs(83, 0).addBox(3.2727F, -10.9545F, -1.0545F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         doorsright.texOffs(51, 22).addBox(-0.2273F, -7.9545F, -1.0545F, 7.0F, 2.0F, 2.0F, -0.8F, false);
-        doorsright.texOffs(63, 1).addBox(0.7727F, -10.9545F, -0.2545F, 5.0F, 7.0F, 0.0F, 0.0F, false);
+        doorsright.texOffs(63, 1).addBox(0.7727F, -10.9545F, -0.1545F, 5.0F, 7.0F, 0.0F, 0.0F, false);
         doorsright.texOffs(37, 56).addBox(5.0839F, -11.8545F, -0.5881F, 2.0F, 30.0F, 2.0F, -0.7F, false);
         doorsright.texOffs(37, 56).addBox(5.0839F, -11.8545F, -1.1881F, 2.0F, 30.0F, 2.0F, -0.7F, false);
 
@@ -251,11 +259,12 @@ public class CoralExterior extends ExteriorModel {
         doorsleft.texOffs(36, 52).addBox(-5.0385F, -4.1692F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
         doorsleft.texOffs(35, 49).addBox(-5.0385F, 2.8308F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
         doorsleft.texOffs(33, 43).addBox(-5.0385F, 9.8308F, -0.2769F, 5.0F, 1.0F, 1.0F, 0.0F, false);
-        doorsleft.texOffs(31, 34).addBox(-5.0385F, -4.1692F, -0.0769F, 5.0F, 22.0F, 0.0F, 0.0F, false);
+        doorsleft.texOffs(78, 122).addBox(-5.0385F, 3.8308F, -0.0769F, 5.0F, 6.0F, 0.0F, 0.0F, false);
+        doorsleft.texOffs(88, 122).addBox(-5.0385F, 10.8308F, -0.0769F, 5.0F, 6.0F, 0.0F, 0.0F, false);
         doorsleft.texOffs(83, 18).addBox(-4.5385F, -11.1692F, -1.0769F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         doorsleft.texOffs(83, 0).addBox(-2.5385F, -11.1692F, -1.0769F, 2.0F, 8.0F, 2.0F, -0.8F, false);
         doorsleft.texOffs(51, 22).addBox(-6.0385F, -8.1692F, -1.0769F, 7.0F, 2.0F, 2.0F, -0.8F, false);
-        doorsleft.texOffs(64, 1).addBox(-5.0385F, -10.1692F, -0.2769F, 5.0F, 6.0F, 0.0F, 0.0F, false);
+        doorsleft.texOffs(64, 1).addBox(-5.0385F, -10.1692F, -0.1769F, 5.0F, 6.0F, 0.0F, 0.0F, false);
         doorsleft.texOffs(65, 49).addBox(-5.0385F, -3.1692F, -0.5769F, 5.0F, 6.0F, 1.0F, 0.0F, false);
         doorsleft.texOffs(23, 23).addBox(-6.5385F, -13.4692F, -0.1769F, 2.0F, 32.0F, 2.0F, -0.9F, false);
 
@@ -267,8 +276,8 @@ public class CoralExterior extends ExteriorModel {
         handle.texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 2.0F, 2.0F, -0.9F, false);
 
         boti = new ModelRenderer(this);
-        boti.setPos(-1.2F, 23.2F, -0.5F);
-        boti.texOffs(100, 2).addBox(-1.0F, -29.0F, -4.0F, 2.0F, 28.0F, 10.0F, 0.0F, false);
+        boti.setPos(0.0F, 24.0F, 0.0F);
+        boti.texOffs(100, 2).addBox(-2.2F, -29.8F, -4.5F, 2.0F, 28.0F, 10.0F, 0.0F, false);
     }
 
     @Override

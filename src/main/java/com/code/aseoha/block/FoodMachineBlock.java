@@ -1,85 +1,110 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package com.code.aseoha.block;
 
+import java.util.List;
+
+import com.code.aseoha.misc.KeyboardHelper;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.material.PushReaction;
+import net.minecraft.block.IWaterLoggable;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.*;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
+import net.tardis.mod.blocks.ItemAccessPanelBlock;
+import net.tardis.mod.blocks.MultiblockBlock;
+import net.tardis.mod.blocks.multiblock.MultiblockPatterns;
+import net.tardis.mod.cap.ITardisWorldData;
+import net.tardis.mod.commands.subcommands.ArtronCommand;
 import net.tardis.mod.constants.TardisConstants;
+import net.tardis.mod.constants.TardisConstants.Translations;
+import net.tardis.mod.containers.WaypointBankContainer;
+import net.tardis.mod.energy.TardisEnergy;
+import net.tardis.mod.helper.TardisHelper;
+import net.tardis.mod.helper.TextHelper;
 import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.properties.Prop;
+import net.tardis.mod.items.MultiblockBlockItem;
+import net.tardis.mod.misc.ContainerProvider;
+import net.tardis.mod.tileentities.ConsoleTile;
+import net.tardis.mod.tileentities.WaypointBankTile;
+import net.tardis.mod.tileentities.console.misc.ArtronUse;
 
-public class FoodMachineBlock extends HorizontalBlock {
-    public static final DirectionProperty facing;
-    public static final BooleanProperty WATERLOGGED;
-    protected static final VoxelShape east;
-    protected static final VoxelShape west;
-    protected static final VoxelShape south;
-    protected static final VoxelShape north;
-    public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public FoodMachineBlock(Properties properties) {
-        super(Prop.Blocks.BASIC_TECH.get());
+public class FoodMachineBlock extends MultiblockBlock implements IWaterLoggable {
+    public FoodMachineBlock(AbstractBlock.Properties prop) {
+        super(prop);
+        this.registerDefaultState((BlockState)this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
     }
 
-    //Recycled from various Java Blocks (Bell, Anvil, Chest, ect..
-    public VoxelShape getShape(BlockState blockState, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-        switch ((Direction)blockState.getValue(facing)) {
-            case NORTH:
-                return north;
-            case SOUTH:
-                return south;
-            case WEST:
-                return west;
-            case EAST:
-            default:
-                return east;
-        }
+    public BlockRenderType getRenderShape(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
-//    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BlockStateProperties.HORIZONTAL_FACING);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(new Property[]{BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.WATERLOGGED});
     }
 
-    @Override
+    public FluidState getFluidState(BlockState state) {
+        return (Boolean)state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-
-        return this.defaultBlockState().setValue(HORIZONTAL_FACING, context.getHorizontalDirection().getOpposite());
-
+        FluidState fluid = context.getLevel().getFluidState(context.getClickedPos());
+        return (BlockState)((BlockState)super.getStateForPlacement(context).setValue(BlockStateProperties.HORIZONTAL_FACING, context.getPlayer().getDirection().getOpposite())).setValue(BlockStateProperties.WATERLOGGED, fluid.getFluidState().is(FluidTags.WATER));
     }
 
-    public BlockState rotate(BlockState blockState, Rotation rotation) {
-        return (BlockState)blockState.setValue(facing, rotation.rotate((Direction)blockState.getValue(facing)));
-    }
+    private float ArtronAmount = 0;
 
-    public BlockState mirror(BlockState blockState, Mirror mirror) {
-        return blockState.rotate(mirror.getRotation((Direction)blockState.getValue(facing)));
-    }
-
-    //Recycled from ARS Egg
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!WorldHelper.isDimensionBlocked(worldIn)) {
+            ConsoleTile console = (ConsoleTile)worldIn.getBlockEntity(TardisHelper.TARDIS_POS);
             if (worldIn.isClientSide) {
-                if (player.isCrouching()) {
-                    player.addItem(new ItemStack(Items.COOKED_BEEF, 16));
+                if (KeyboardHelper.isHoldingShift()) {
+                    ArtronAmount=1;
+                    if(console.getArtron() >= (float) ArtronAmount) {
+                        player.addItem(new ItemStack(Items.CARROT, (int) ArtronAmount));
+                    }
                 }
-                else  {
-                    player.addItem(new ItemStack(Items.COOKED_BEEF, 1));
+                if (KeyboardHelper.isHoldingAlt()){
+                    ArtronAmount=1;
+                    if(console.getArtron() >= (float) ArtronAmount) {
+                        player.addItem(new ItemStack(Items.BONE_MEAL, (int) ArtronAmount));
+                    }
                 }
+                if(!KeyboardHelper.isHoldingShift() && !KeyboardHelper.isHoldingAlt()){
+                    ArtronAmount=1;
+                    if(console.getArtron() >= (float) ArtronAmount) {
+                        player.addItem(new ItemStack(Items.POTATO, (int) ArtronAmount));
+                    }
+                }
+                return ActionResultType.SUCCESS;
+            }
+            if(console.getArtron() >= (float) (ArtronAmount*16)) {
+                console.setArtron((console.getArtron() - (ArtronAmount*16)));
             }
         } else if (!worldIn.isClientSide()) {
             player.displayClientMessage(TardisConstants.Translations.NO_USE_OUTSIDE_TARDIS, true);
@@ -88,16 +113,136 @@ public class FoodMachineBlock extends HorizontalBlock {
         return ActionResultType.SUCCESS;
     }
 
-    public PushReaction getPushReaction(BlockState p_149656_1_) {
-        return PushReaction.DESTROY;
-    }
+    public static class FoodMachineBlockItem extends MultiblockBlockItem {
+        private final IFormattableTextComponent descriptionTooltip = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.foodmachine.desc"));
 
-    static {
-        facing = HorizontalBlock.FACING;
-        WATERLOGGED = BlockStateProperties.WATERLOGGED;
-        north = Block.box(3, 0.0, 3.5, 13.0, 23.0, 12.0);
-        west = Block.box(3.5, 0.0, 3, 12.0, 23.0, 13.0);
-        south = Block.box(3, 0.0, 3.5, 13.0, 23.0, 12.0);
-        east = Block.box(3.5, 0.0, 3, 12.0, 23.0, 13.0);
+        public FoodMachineBlockItem(Block blockIn, MultiblockPatterns.MultiblockPattern pattern, Item.Properties builder) {
+            super(blockIn, pattern, builder);
+        }
+
+        public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+            super.appendHoverText(stack, worldIn, tooltip, flagIn);
+            tooltip.add(Translations.TOOLTIP_CONTROL);
+            if (Screen.hasControlDown()) {
+                tooltip.clear();
+                tooltip.add(0, stack.getHoverName());
+                tooltip.add(this.descriptionTooltip);
+            }
+
+        }
     }
 }
+
+
+
+//package com.code.aseoha.block;
+//
+//import java.util.List;
+//import net.minecraft.block.AbstractBlock;
+//import net.minecraft.block.Block;
+//import net.minecraft.block.BlockRenderType;
+//import net.minecraft.block.BlockState;
+//import net.minecraft.block.IWaterLoggable;
+//import net.minecraft.client.gui.screen.Screen;
+//import net.minecraft.client.util.ITooltipFlag;
+//import net.minecraft.entity.player.PlayerEntity;
+//import net.minecraft.entity.player.ServerPlayerEntity;
+//import net.minecraft.fluid.FluidState;
+//import net.minecraft.fluid.Fluids;
+//import net.minecraft.item.BlockItemUseContext;
+//import net.minecraft.item.Item;
+//import net.minecraft.item.ItemStack;
+//import net.minecraft.item.Items;
+//import net.minecraft.state.Property;
+//import net.minecraft.state.StateContainer;
+//import net.minecraft.state.properties.BlockStateProperties;
+//import net.minecraft.tags.FluidTags;
+//import net.minecraft.util.ActionResultType;
+//import net.minecraft.util.Hand;
+//import net.minecraft.util.math.BlockPos;
+//import net.minecraft.util.math.BlockRayTraceResult;
+//import net.minecraft.util.text.IFormattableTextComponent;
+//import net.minecraft.util.text.ITextComponent;
+//import net.minecraft.util.text.TranslationTextComponent;
+//import net.minecraft.world.World;
+//import net.minecraftforge.fml.network.NetworkHooks;
+//import net.tardis.mod.blocks.MultiblockBlock;
+//import net.tardis.mod.blocks.multiblock.MultiblockPatterns;
+//import net.tardis.mod.constants.TardisConstants;
+//import net.tardis.mod.constants.TardisConstants.Translations;
+//import net.tardis.mod.containers.WaypointBankContainer;
+//import net.tardis.mod.helper.TextHelper;
+//import net.tardis.mod.helper.WorldHelper;
+//import net.tardis.mod.items.MultiblockBlockItem;
+//import net.tardis.mod.misc.ContainerProvider;
+//import net.tardis.mod.tileentities.WaypointBankTile;
+//
+//public class FoodMachineBlock extends MultiblockBlock implements IWaterLoggable {
+//    public FoodMachineBlock(AbstractBlock.Properties prop) {
+//        super(prop);
+//        this.registerDefaultState((BlockState)this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
+//    }
+//
+//    public BlockRenderType getRenderShape(BlockState state) {
+//        return BlockRenderType.MODEL;
+//    }
+//
+//    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+//        builder.add(new Property[]{BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.WATERLOGGED});
+//    }
+//
+//    public FluidState getFluidState(BlockState state) {
+//        return (Boolean)state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+//    }
+//
+//    public BlockState getStateForPlacement(BlockItemUseContext context) {
+//        FluidState fluid = context.getLevel().getFluidState(context.getClickedPos());
+//        return (BlockState)((BlockState)super.getStateForPlacement(context).setValue(BlockStateProperties.HORIZONTAL_FACING, context.getPlayer().getDirection().getOpposite())).setValue(BlockStateProperties.WATERLOGGED, fluid.getFluidState().is(FluidTags.WATER));
+//    }
+//
+//    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+////        if (!worldIn.isClientSide) {
+////            NetworkHooks.openGui((ServerPlayerEntity)player, new ContainerProvider("container.tardis.waypoint", (id, inv, player1) -> {
+////                return new WaypointBankContainer(id, inv, (WaypointBankTile)worldIn.getBlockEntity(pos));
+////            }), pos);
+////        }
+////
+////        return ActionResultType.SUCCESS;
+//
+//        if (!WorldHelper.isDimensionBlocked(worldIn)) {
+//            if (worldIn.isClientSide) {
+//                if (player.isCrouching()) {
+//                    player.addItem(new ItemStack(Items.COOKED_BEEF, 16));
+//                }
+//                else  {
+//                    player.addItem(new ItemStack(Items.COOKED_BEEF, 1));
+//                }
+//            }
+//        } else if (!worldIn.isClientSide()) {
+//            player.displayClientMessage(TardisConstants.Translations.NO_USE_OUTSIDE_TARDIS, true);
+//        }
+//
+//        return ActionResultType.SUCCESS;
+//    }
+//
+//}
+//
+//public static class FoodMachineBlockItem extends MultiblockBlockItem {
+//    private final IFormattableTextComponent descriptionTooltip = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.food_machine.desc"));
+//
+//    public FoodMachineBlockItem(Block blockIn, MultiblockPatterns.MultiblockPattern pattern, Item.Properties builder) {
+//        super(blockIn, pattern, builder);
+//    }
+//
+//    public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+//        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+//        tooltip.add(Translations.TOOLTIP_CONTROL);
+//        if (Screen.hasControlDown()) {
+//            tooltip.clear();
+//            tooltip.add(0, stack.getHoverName());
+//            tooltip.add(this.descriptionTooltip);
+//        }
+//
+//    }
+//}
+//}

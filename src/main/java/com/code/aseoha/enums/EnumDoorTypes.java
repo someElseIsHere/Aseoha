@@ -10,13 +10,78 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public enum EnumDoorTypes implements IDoorType {
-
+    BRACKOLIN (state -> {
+        switch(state) {
+            case CLOSED: return 0.0D;
+            case ONE: return 90.0D;
+            case BOTH : return -90.0D;
+            default:return 0.0;
+        }
+    }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH),
     CORAL (state -> {
         switch(state) {
             case CLOSED: return 90.0D;
             case ONE: return -45.0D;
             case BOTH : return 30.0D;
             default:return 30.0;
+        }
+    }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH),
+    WARDROBE(state -> {
+        switch(state) {
+            case CLOSED: return 0.0D;
+            case ONE: return -100.0;
+            case BOTH : return 100.0;
+            default:return 0.0;
+        }
+    }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH),
+    STREETSIDE(state -> {
+        switch(state) {
+            case CLOSED: return 0.0D;
+            case ONE: return 90.0D;
+            case BOTH : return -90.0D;
+            default:return 0.0;
+        }
+    }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH),
+    RANI (state -> {
+        switch(state) {
+            case CLOSED: return 0.0D;
+            case ONE: return -80.0D;
+            default:return 0.0;
+        }
+    }, EnumDoorState.CLOSED, EnumDoorState.ONE),
+    OLWARRIOR (state -> {
+        switch(state) {
+            case CLOSED: return 0.0D;
+            case ONE: return 90.0D;
+            case BOTH : return -90.0D;
+            default:return 0.0;
+        }
+    }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH),
+
+    BLUEDOCTOR (state -> {
+        switch(state) {
+            case CLOSED: return 0.0D;
+            case ONE: return 90.0D;
+            case BOTH : return -90.0D;
+            default:return 0.0;
+        }
+    }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH),
+
+    HARTNELL (state -> {
+        switch(state) {
+            case CLOSED: return 0.0D;
+            case ONE: return 75.0D;
+            case BOTH : return -75.0D;
+            default:return 0.0;
+        }
+    }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH),
+
+    CAPALDI (state -> {
+        switch(state) {
+            case CLOSED: return 0.0D;
+            case ONE: return 75.0D;
+            case BOTH : return -75.0D;
+            default:return 0.0;
         }
     }, EnumDoorState.CLOSED, EnumDoorState.ONE, EnumDoorState.BOTH);
 

@@ -12,11 +12,31 @@
     "fog_color": 16770754,
     "water_color": 15635759,
     "water_fog_color": 12819506,
-    "grass_color": 11382557,
-    "foliage_color": 11186205
+    "grass_color": 16159006,
+    "foliage_color": 15642653
   },
-  "starts": [],
-  "spawners": {},
+  "starts": [
+    "minecraft:buried_treasure",
+    "minecraft:desert_pyramid",
+    "minecraft:jungle_pyramid",
+    "minecraft:igloo",
+    "minecraft:mansion",
+    "minecraft:mineshaft",
+    "minecraft:nether_fossil",
+    "minecraft:ruined_portal",
+    "minecraft:stronghold",
+    "minecraft:village_plains"
+  ],
+  "spawners": {
+    "creature": [
+      {
+        "type": "minecraft:villager",
+        "weight": 1,
+        "minCount": 3,
+        "maxCount": 20
+      }
+    ]
+  },
   "spawn_costs": {},
   "carvers": {},
   "features": []
