@@ -53,8 +53,10 @@ package com.code.aseoha.tileentities;
 
 import com.code.aseoha.aseoha;
 import com.code.aseoha.block.ModBlocks;
+import com.code.aseoha.tileentities.consoles.BattleConsoleTile;
 import com.code.aseoha.tileentities.consoles.BrackolinConsoleTile;
 import com.code.aseoha.tileentities.consoles.CopperConsoleTile;
+import com.code.aseoha.tileentities.consoles.TakomakConsoleTile;
 import com.code.aseoha.tileentities.exteriors.*;
 import com.google.common.base.Supplier;
 import net.minecraft.block.Block;
@@ -68,10 +70,17 @@ import net.tardis.mod.blocks.TileBlock;
 public class AseohaTiles {
     public static final DeferredRegister<TileEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, aseoha.MODID);
 
-    public static final RegistryObject<TileEntityType<CopperConsoleTile>> console_copper =
-            TILES.register("console_copper", () ->registerTiles(CopperConsoleTile::new,
-                    ModBlocks.console_copper.get()));
+    public static final RegistryObject<TileEntityType<BattleConsoleTile>> console_battle =
+            TILES.register("console_battle", () -> registerTiles(BattleConsoleTile::new,
+                    ModBlocks.console_battle.get()));
 
+    public static final RegistryObject<TileEntityType<TakomakConsoleTile>> console_takomak =
+            TILES.register("console_takomak", () -> registerTiles(TakomakConsoleTile::new,
+                    ModBlocks.console_takomak.get()));
+
+    public static final RegistryObject<TileEntityType<CopperConsoleTile>> console_copper =
+            TILES.register("console_copper", () -> registerTiles(CopperConsoleTile::new,
+                    ModBlocks.console_copper.get()));
 
     public static RegistryObject<TileEntityType<CoralTile>> EXTERIOR_CORAL =
             TILES.register("exterior_coral", () -> registerTiles(CoralTile::new,

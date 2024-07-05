@@ -1,13 +1,22 @@
 package com.code.aseoha;
 import com.code.aseoha.block.ModBlocks;
+import com.code.aseoha.client.Sounds;
+import com.code.aseoha.client.renderers.console.BattleConsoleRender;
 import com.code.aseoha.client.renderers.console.BrackolinConsoleRender;
 import com.code.aseoha.client.renderers.console.CopperConsoleRenderer;
+import com.code.aseoha.client.renderers.console.TakomakConsoleRender;
+import com.code.aseoha.entities.ModEntityTypes;
 import com.code.aseoha.items.ModItems;
+import com.code.aseoha.client.renderers.k9render;
+import com.code.aseoha.client.renderers.wallerender;
+import com.code.aseoha.items.NoTadditionsItems;
+import com.code.aseoha.protocol.RegisterProtocols;
 import com.code.aseoha.registries.ConsolesRegistry;
 import com.code.aseoha.registries.ExteriorsRegistry;
+import com.code.aseoha.registries.RegisterFlightEvent;
 import com.code.aseoha.tileentities.AseohaTiles;
+import com.code.aseoha.upgrades.RegisterUpgrades;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.util.RegistryKey;
@@ -18,8 +27,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -34,8 +44,12 @@ import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("aseoha")
-public class aseoha {
 
+public class aseoha {
+//    public enum HadsState {
+//        ENABLED,
+//        DISABLED
+//    }
 
 //    public static final RegistryObject<Console> COPPER = ConsoleRegistry.CONSOLES.register("copper", () -> {
 //        return new net.tardis.mod.misc.Console(() -> {
@@ -50,19 +64,26 @@ public class aseoha {
     public static final Logger LOGGER = LogManager.getLogger();
     public final static RegistryKey<World> NEWEARTH = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("aseoha", "newearth"));
     public final static RegistryKey<World> GALLIFREY = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("aseoha", "gallifrey"));
+    public final static RegistryKey<World> MIDNIGHT = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("aseoha", "midnight"));
     public aseoha() {
+
         // Register the setup method for modloading
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        STStructures.DEFERRED_REGISTRY_STRUCTURE.register(eventBus);
+        STStructures.DEFERRED_REGISTRY_STRUCTURE.register(modBus);
         ExteriorsRegistry.EXTERIORS.register(modBus);
 //        ModelRegistry.Register(eventBus);
-        ModBlocks.register(eventBus);
-        ModItems.register(eventBus);
+        ModBlocks.register(modBus);
+        ModItems.register(modBus);
+        if(!(ModList.get().isLoaded("tadditions")))
+            NoTadditionsItems.register(modBus);
         //ConsolesRegistry.CONSOLES.register(modBus);
-        ConsolesRegistry.CONSOLES.register(eventBus);
+        RegisterProtocols.PROTOCOLSREGISTER.register(modBus);
+        ConsolesRegistry.CONSOLES.register(modBus);
         AseohaTiles.TILES.register(modBus);
+        Sounds.SOUNDS.register(modBus);
+        ModEntityTypes.register(modBus);
+        RegisterFlightEvent.FLIGHT_EVENTS.register(modBus);
+        RegisterUpgrades.UPGRADES.register(modBus);
         //ModBiomes.register(eventBus);
         // For events that happen after initialization. This is probably going to be use a lot.
 
@@ -76,13 +97,15 @@ public class aseoha {
         */
 
 
-        eventBus.addListener(this::setup);
+        modBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
-        eventBus.addListener(this::enqueueIMC);
+        modBus.addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
-        eventBus.addListener(this::processIMC);
+        modBus.addListener(this::processIMC);
         // Register the doClientStuff method for modloading
-        eventBus.addListener(this::doClientStuff);
+        modBus.addListener(this::doClientStuff);
+
+
 
 
         // Register ourselves for server and other game events we are interested in
@@ -90,13 +113,15 @@ public class aseoha {
     }
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            //Flight Event
+            RegisterFlightEvent.registerRandomEntries();
             //ModBiomeGeneration.generateBiomes();
             STStructures.setupStructures();
             STConfiguredStructures.registerConfiguredStructures();
         });
         // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+//        LOGGER.info("HELLO FROM PREINIT");
+//        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
     /*public void biomeModification(final BiomeLoadingEvent event) {
         /*
@@ -117,8 +142,10 @@ public class aseoha {
     }*/
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
-        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
+//        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().options);
         // do something that can only be done with blocks
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ROUNDELS/MISC
         RenderTypeLookup.setRenderLayer(ModBlocks.FAULTLOCATOR.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.FAULTLOCATOR_S.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.HELLBENT_GLASS01.get(), RenderType.solid());
@@ -155,19 +182,44 @@ public class aseoha {
         RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_ROUNDEL.get(), RenderType.solid());
 //        RenderTypeLookup.setRenderLayer(ModBlocks.LOOTCRATE.get(), RenderType.cutout());
 //        RenderTypeLookup.setRenderLayer(ModBlocks.LOOTCRATEX.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.foodmachine_old.get(), RenderType.solid());
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// COOL BLOCKS
+        RenderTypeLookup.setRenderLayer(ModBlocks.foodmachine_old.get(), RenderType.solid());
+        RenderTypeLookup.setRenderLayer(ModBlocks.DIMENSIONAL_BUTTON.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.FACING_CONTROL.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.HANDBREAK_CONTROL.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.INC_CONTROL.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.RANDOMIZER_CONTROL.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.REFUELER_CONTROL.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.X_CONTROL.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.Y_CONTROL.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.Z_CONTROL.get(), RenderType.cutout());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.EOH.get(), RenderType.solid());
+        RenderTypeLookup.setRenderLayer(ModBlocks.FLIGHT_BUTTON.get(), RenderType.solid());
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// CONSOLES
 
         RenderTypeLookup.setRenderLayer(ModBlocks.console_copper.get(), RenderType.translucent());
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_copper.get(), CopperConsoleRenderer::new);
 
         RenderTypeLookup.setRenderLayer(ModBlocks.console_brackolin.get(), RenderType.translucent());
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_brackolin.get(), BrackolinConsoleRender::new);
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.console_battle.get(), RenderType.translucent());
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_battle.get(), BattleConsoleRender::new);
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.console_takomak.get(), RenderType.translucent());
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_takomak.get(), TakomakConsoleRender::new);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ENTITIES
+
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.K9.get(), k9render::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.WALLE.get(), wallerender::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("aseoha", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+//        InterModComms.sendTo("aseoha", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
     }
 
     private void processIMC(final InterModProcessEvent event) {
@@ -181,7 +233,7 @@ public class aseoha {
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        LOGGER.info("HELLO from aseoha server starting");
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
@@ -191,7 +243,7 @@ public class aseoha {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
             // register a new block here
-            LOGGER.info("HELLO from Register Block");
+//            LOGGER.info("HELLO from Register Block");
         }
     }
 }

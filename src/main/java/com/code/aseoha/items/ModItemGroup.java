@@ -12,6 +12,13 @@ public class ModItemGroup {
         }
     };
 
+    public static final ItemGroup ASEOHA_MODULAR_GROUP = new ItemGroup("aseoha_modular") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ModBlocks.FLIGHT_BUTTON.get());
+        }
+    };
+
     public static final ItemGroup ASEOHA_FOOD_GROUP = new ItemGroup("aseoha_food") {
         @Override
         public ItemStack makeIcon() {

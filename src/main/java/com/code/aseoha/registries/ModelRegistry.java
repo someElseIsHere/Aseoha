@@ -30,9 +30,8 @@ public class ModelRegistry {
         //ClientRegistry
         //Exteriors
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.EXTERIOR_CORAL.get(), CoralRenderer::new);
-        EnumDoorTypes.CORAL.setInteriorDoorModel(new CoralInteriorDoor());
+        EnumDoorTypes.CORAL.setInteriorDoorModel(new BlueDoctorInteriorDoor());
 
-        //WhoviansRest
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.exterior_brackolin.get(), BrackolinRender::new);
         EnumDoorTypes.BRACKOLIN.setInteriorDoorModel(new BrackolinInteriorDoor());
 
@@ -52,7 +51,7 @@ public class ModelRegistry {
         EnumDoorTypes.HARTNELL.setInteriorDoorModel(new TTCapsuleInteriorModel());
 
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.exterior_capaldi.get(), CapaldiRender::new);
-        EnumDoorTypes.CAPALDI.setInteriorDoorModel(new ModernPoliceBoxInteriorModel());
+        EnumDoorTypes.CAPALDI.setInteriorDoorModel(new CapaldiInteriorDoor());
     }
 
 }
