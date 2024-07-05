@@ -1,13 +1,15 @@
 package com.code.aseoha.block;
 
+import com.code.aseoha.block.control.*;
 import com.code.aseoha.items.ModItemGroup;
-import com.code.aseoha.items.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
-import net.minecraft.block.EnchantingTableBlock;
 import net.minecraft.item.Item;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.RedstoneParticleData;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -15,6 +17,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import net.tardis.mod.blocks.ArsEggBlock;
+import net.tardis.mod.blocks.QuantiscopeBlock;
 import net.tardis.mod.blocks.RoundelBlock;
 import net.tardis.mod.blocks.exteriors.ExteriorBlock;
 
@@ -22,12 +25,21 @@ import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 import static com.code.aseoha.aseoha.MODID;
+import static com.code.aseoha.items.ModItems.ITEMS;
 
 public class ModBlocks {
     public static ToIntFunction<BlockState> maxLightLevel = BlockState -> 15;
     public static final DeferredRegister<Block> BLOCKS
             = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final Material IRON = (new Material.Builder(MaterialColor.METAL)).build();
+
+    private static ToIntFunction<BlockState> litBlockEmission(int light) {
+        return (p_lambda$litBlockEmission$34_1_) -> (Boolean)p_lambda$litBlockEmission$34_1_.getValue(BlockStateProperties.LIT) ? light : 0;
+    }
+
+//    public static final RegistryObject<ModSpawnEggItem> PIGEON_SPAWN_EGG = ITEMS.register("pigeon_spawn_egg",
+//            () -> new ModSpawnEggItem(ModEntityTypes.PIGEON, 0x879995, 0x576ABC,
+//                    new Item.Properties().tab(ModItemGroup.ASEOHA_GROUP)));
 
 
 
@@ -93,6 +105,43 @@ public class ModBlocks {
             });
 
 
+
+    /*********************************************** MODULAR CONSOLES **********************************************************/
+    public static RegistryObject<Block> FLIGHT_BUTTON = registerModularBlock("flight_button",
+            () -> setUpBlock(new FlightButton(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+    public static RegistryObject<Block> FACING_CONTROL = registerModularBlock("facing_control",
+            () -> setUpBlock(new Facing(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+    //P.S Yes I know it is spelled Handbrake not Handbreak.
+    public static RegistryObject<Block> HANDBREAK_CONTROL = registerModularBlock("handbreak_control",
+            () -> setUpBlock(new Handbreak(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+    public static RegistryObject<Block> INC_CONTROL = registerModularBlock("inc_control",
+            () -> setUpBlock(new IncMod(AbstractBlock.Properties.of(Material.DECORATION).lightLevel(litBlockEmission(7)).strength(1.25F, 5.25F).noCollission())));
+
+    public static RegistryObject<Block> RANDOMIZER_CONTROL = registerModularBlock("randomizer_control",
+            () -> setUpBlock(new RandomizeButton(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+    public static RegistryObject<Block> REFUELER_CONTROL = registerModularBlock("refueler_control",
+            () -> setUpBlock(new Refueller(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+//    public static RegistryObject<Block> THROTTLE_CONTROL = registerBlock("throttle_control",
+//            () -> setUpBlock(new Throttle(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+    public static RegistryObject<Block> X_CONTROL = registerModularBlock("x_control",
+            () -> setUpBlock(new XButton(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+    public static RegistryObject<Block> Y_CONTROL = registerModularBlock("y_control",
+            () -> setUpBlock(new YButton(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+    public static RegistryObject<Block> Z_CONTROL = registerModularBlock("z_control",
+            () -> setUpBlock(new ZButton(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+    public static RegistryObject<Block> DIMENSIONAL_BUTTON = registerModularBlock("dimensional_button",
+            () -> setUpBlock(new DimensionButton(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+
     /*****************************  MISC  *************************************/
     public static final RegistryObject<Block> FAULTLOCATOR = registerBlock("faultlocator",
             () -> {
@@ -107,6 +156,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> COATRACK = registerBlock("coatrack",
             () -> new Block(AbstractBlock.Properties.of(Material.STONE).strength(1.25F, 5.25F)
                     .noCollission()));
+
+//    public static RegistryObject<Block> EOH = registerBlock("eoh",
+//            () -> setUpBlock(new EyeOfHarmonyBlock(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));
+
+
+//    public static RegistryObject<Block> PORTAL_BLOCK = registerBlock("portal_block",
+//            () -> setUpBlock(new NetherPortalBlock(AbstractBlock.Properties.of(Material.PORTAL).strength(1.25F, 5.25F).noOcclusion())));
 
 //    public static final RegistryObject<Block> LOOTCRATE = registerBlock("lootcrate",
 //            () -> new Block(AbstractBlock.Properties.of(Material.WOOD)
@@ -184,9 +240,17 @@ public class ModBlocks {
     /************************CONSOLES**********************/
 
 
-    public static final RegistryObject<Block> console_copper = registerNoItemBlock("console_copper", () -> {
+    public static RegistryObject<Block> console_copper = registerNoItemBlock("console_copper", () -> {
         return setUpBlock(new ConsoleBlock());//return (ConsoleBlock) setUpBlock(new ConsoleBlock());
     });
+    public static RegistryObject<Block> console_takomak = registerNoItemBlock("console_takomak", () -> {
+        return setUpBlock(new ConsoleBlock());//return (ConsoleBlock) setUpBlock(new ConsoleBlock());
+    });
+    public static RegistryObject<Block> console_battle = registerNoItemBlock("console_battle", () -> {
+        return setUpBlock(new ConsoleBlock());//return (ConsoleBlock) setUpBlock(new ConsoleBlock());
+    });
+    public static RegistryObject<Block> console_brackolin = registerNoItemBlock("console_brackolin",
+            () -> setUpBlock(new ConsoleBlock()));
             //registerBlock("console_copper",
 //            () -> new net.tardis.mod.blocks.ConsoleBlock());
 
@@ -228,12 +292,11 @@ public class ModBlocks {
     ////////////////CONSOLES
 
 
-    public static RegistryObject<Block> console_vale = registerNoItemBlock("console_vale",
-            () -> setUpBlock(new ConsoleBlock()));
+//    public static RegistryObject<Block> console_vale = registerNoItemBlock("console_vale",
+//            () -> setUpBlock(new ConsoleBlock()));
     //public static RegistryObject<Block> console_smith = registerNoItemBlock("console_smith",
     //        () -> setUpBlock(new ConsoleBlock()));
-    public static RegistryObject<Block> console_brackolin = registerNoItemBlock("console_brackolin",
-            () -> setUpBlock(new ConsoleBlock()));
+
 
 
 
@@ -243,6 +306,10 @@ public class ModBlocks {
     //1.12 Port
     public static final RegistryObject<Block> ars_egg_old = registerBlock("ars_egg_old",
             ArsEggBlock::new);
+
+    public static final RegistryObject<Block> SONIC_WORKBENCH = registerBlock("sonic_workbench",
+            SonicWorkbench::new);
+
     public static final RegistryObject<Block> artron_bank_old = registerBlock("artron_bank_old",
             () -> setUpBlock(new ArtronBank(AbstractBlock.Properties.of(Material.HEAVY_METAL).strength(1.25F, 5.25F).noOcclusion())));//AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).noOcclusion()));
 
@@ -406,15 +473,27 @@ public class ModBlocks {
     }
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
+        ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties().tab(ModItemGroup.ASEOHA_GROUP)));
+    }
+
+    private static <T extends Block>RegistryObject<T> registerModularBlock(String name, Supplier<T> block){
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerModularBlockItem(name, toReturn);
+        return toReturn;
+    }
+
+    private static <T extends Block> void registerModularBlockItem(String name, RegistryObject<T> block) {
+        ITEMS.register(name, () -> new BlockItem(block.get(),
+                new Item.Properties().tab(ModItemGroup.ASEOHA_MODULAR_GROUP)));
     }
 
     private static <T extends Block>RegistryObject<T> registerNoItemBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
-//        registerBlockItem(name, toReturn);
         return toReturn;
     }
+
+
 
     public static void register(IEventBus eventBus){
     BLOCKS.register(eventBus);

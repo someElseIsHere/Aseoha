@@ -8,6 +8,6 @@ import net.tardis.mod.misc.IDontBreak;
 
 public class ConsoleBlock extends NotSolidTileBlock implements IDontBreak {
     public ConsoleBlock() {
-        super(AbstractBlock.Properties.of(Material.BARRIER).strength(99999F, 99999F));
+        super(Block.Properties.of(Material.BARRIER).strength(99999F, 99999F));
     }
 }

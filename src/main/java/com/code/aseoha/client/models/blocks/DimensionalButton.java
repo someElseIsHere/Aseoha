@@ -1,6 +1,9 @@
 package com.code.aseoha.client.models.blocks;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -21,7 +24,7 @@ import net.minecraft.world.IWorldReader;
 
 import javax.annotation.Nullable;
 
-public class FoodMachine extends Block {
+public class DimensionalButton extends Block {
     public static final DirectionProperty facing;
     public static final BooleanProperty WATERLOGGED;
     protected static final VoxelShape east;
@@ -29,7 +32,7 @@ public class FoodMachine extends Block {
     protected static final VoxelShape south;
     protected static final VoxelShape north;
 
-    public FoodMachine(AbstractBlock.Properties properties) {
+    public DimensionalButton(Properties properties) {
         super(properties);
         this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(facing, Direction.NORTH)).setValue(WATERLOGGED, false));
     }

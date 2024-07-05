@@ -5,10 +5,8 @@
 
 package com.code.aseoha.block;
 
-import java.util.List;
-
-import com.code.aseoha.misc.KeyboardHelper;
-import net.minecraft.block.AbstractBlock;
+import com.code.aseoha.aseoha;
+import com.code.aseoha.misc.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -16,11 +14,10 @@ import net.minecraft.block.IWaterLoggable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.Property;
@@ -35,29 +32,25 @@ import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
-import net.tardis.mod.blocks.ItemAccessPanelBlock;
 import net.tardis.mod.blocks.MultiblockBlock;
 import net.tardis.mod.blocks.multiblock.MultiblockPatterns;
-import net.tardis.mod.cap.ITardisWorldData;
-import net.tardis.mod.commands.subcommands.ArtronCommand;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.constants.TardisConstants.Translations;
-import net.tardis.mod.containers.WaypointBankContainer;
-import net.tardis.mod.energy.TardisEnergy;
+import net.tardis.mod.helper.TInventoryHelper;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.TextHelper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.items.MultiblockBlockItem;
-import net.tardis.mod.misc.ContainerProvider;
 import net.tardis.mod.tileentities.ConsoleTile;
-import net.tardis.mod.tileentities.WaypointBankTile;
-import net.tardis.mod.tileentities.console.misc.ArtronUse;
+import net.tardis.mod.tileentities.machines.QuantiscopeTile;
 
-public class FoodMachineBlock extends MultiblockBlock implements IWaterLoggable {
-    public FoodMachineBlock(AbstractBlock.Properties prop) {
+import javax.annotation.Nullable;
+import java.util.List;
+
+public class ArtronBank extends Block {
+    public ArtronBank(Properties prop) {
         super(prop);
-        this.registerDefaultState((BlockState)this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
+        this.registerDefaultState((BlockState) this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
     }
 
     public BlockRenderType getRenderShape(BlockState state) {
@@ -69,56 +62,94 @@ public class FoodMachineBlock extends MultiblockBlock implements IWaterLoggable 
     }
 
     public FluidState getFluidState(BlockState state) {
-        return (Boolean)state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+        return (Boolean) state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        FluidState fluid = context.getLevel().getFluidState(context.getClickedPos());
-        return (BlockState)((BlockState)super.getStateForPlacement(context).setValue(BlockStateProperties.HORIZONTAL_FACING, context.getPlayer().getDirection().getOpposite())).setValue(BlockStateProperties.WATERLOGGED, fluid.getFluidState().is(FluidTags.WATER));
+    @Override
+    public void onPlace(BlockState blockState, World world, BlockPos blockpos, BlockState p_220082_4_, boolean p_220082_5_) {
+        super.onPlace(blockState, world, blockpos, p_220082_4_, p_220082_5_);
+//        ConsoleTile console = (ConsoleTile)world.getBlockEntity(TardisHelper.TARDIS_POS);
+
+//        console.setMaxArtron(console.getMaxArtron() + (float) 32);
     }
+
+    //    private boolean Used = false;
+    private float ArtronAmount = 0F;
+
     public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (!WorldHelper.isDimensionBlocked(worldIn)) {
-            ConsoleTile console = (ConsoleTile)worldIn.getBlockEntity(TardisHelper.TARDIS_POS);
-
-                if (console.getArtron() >= (float) 16 && KeyboardHelper.isHoldingAlt()) {
-                    player.addItem(new ItemStack(Items.CARROT, (int) 1));
-                }
+            ConsoleTile console = (ConsoleTile) worldIn.getBlockEntity(TardisHelper.TARDIS_POS);
+            if (!worldIn.isClientSide) {
                 if (player.isCrouching()) {
-                    player.addItem(new ItemStack(Items.BONE_MEAL, (int) 1));
+                    if ((console.getArtron() - 10F) >= 0F) {
+                        PlayerHelper.increaseExp(player, 1);
+//                        aseoha.LOGGER.info(console.getArtron()-10F);
+                        ArtronAmount = -10;
+                    } else {
+                        return ActionResultType.FAIL;
+                    }
                 }
-                if (console.getArtron() >= (float) 16 && !KeyboardHelper.isHoldingAlt() && !player.isCrouching()) {
-                    player.addItem(new ItemStack(Items.POTATO, (int) 1));
+                if (!player.isCrouching() && (console.getArtron() + 8) < console.getMaxArtron()) {
+                    if (player.totalExperience > 0) {
+                        PlayerHelper.decreaseExp(player, 1);
+//                        aseoha.LOGGER.info(player.experienceLevel);
+                        ArtronAmount = 8;
+                    } else {
+                        return ActionResultType.FAIL;
+                    }
                 }
+                console.setArtron((console.getArtron() + (ArtronAmount)));
+                return ActionResultType.SUCCESS;
+            }
+//            if(console.getArtron() >= (float) (ArtronAmount*16)) {
 
-//            if(console.getArtron() >= (float) (1 * 16)) {
-                console.setArtron((console.getArtron() - (1 * 16)));
 //            }
-        } else if (!worldIn.isClientSide()) {
+        } else if (WorldHelper.isDimensionBlocked(worldIn)) {
             player.displayClientMessage(TardisConstants.Translations.NO_USE_OUTSIDE_TARDIS, true);
         }
 
         return ActionResultType.SUCCESS;
-    }
 
-    public static class FoodMachineBlockItem extends MultiblockBlockItem {
-        private final IFormattableTextComponent descriptionTooltip = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.foodmachine.desc"));
-
-        public FoodMachineBlockItem(Block blockIn, MultiblockPatterns.MultiblockPattern pattern, Item.Properties builder) {
-            super(blockIn, pattern, builder);
-        }
-
-        public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-            super.appendHoverText(stack, worldIn, tooltip, flagIn);
-            tooltip.add(Translations.TOOLTIP_CONTROL);
-            if (Screen.hasControlDown()) {
-                tooltip.clear();
-                tooltip.add(0, stack.getHoverName());
-                tooltip.add(this.descriptionTooltip);
-            }
-
-        }
     }
 }
+//
+//    public static class ArtronBankItem extends BlockItem {
+//        private final IFormattableTextComponent descriptionTooltip = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.artronbank.desc"));
+//
+//        public ArtronBankItem(Block p_i48527_1_, Properties p_i48527_2_) {
+//            super(p_i48527_1_, p_i48527_2_);
+//        }
+//
+//        public ArtronBankItem(Block blockIn, MultiblockPatterns.MultiblockPattern pattern, Properties builder) {
+//            super(blockIn, pattern, builder);
+//        }}
+//private final IFormattableTextComponent descriptionTooltip = TextHelper.createDescriptionItemTooltip(new TranslationTextComponent("tooltip.artronbank.desc"));
+//        public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+//            super.appendHoverText(stack, worldIn, tooltip, flagIn);
+//
+//            tooltip.add(Translations.TOOLTIP_CONTROL);
+//            if (Screen.hasControlDown()) {
+//                tooltip.clear();
+//                tooltip.add(0, stack.getHoverName());
+//                tooltip.add(this.descriptionTooltip);
+//            }
+//
+//        }}
+
+
+//    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+//        QuantiscopeTile tileEntity = (QuantiscopeTile)worldIn.getBlockEntity(pos);
+//        if (tileEntity != null && state.getBlock() != newState.getBlock()) {
+//            TInventoryHelper.dropInventoryItems(worldIn, pos, tileEntity);
+//            worldIn.removeBlockEntity(pos);
+//        ConsoleTile console = (ConsoleTile) worldIn.getBlockEntity(TardisHelper.TARDIS_POS);
+//        if (worldIn.isClientSide) {
+//            if(Used==true){
+//        console.setMaxArtron(console.getMaxArtron() - 64);
+//        Used=false;
+//    }
+//        }}
+//    }
 
 
 
