@@ -23,6 +23,6 @@ public class ConsolesRegistry {
     public static final RegistryObject<com.code.aseoha.misc.Console> BRACKOLIN =
             CONSOLES.register("brackolin", ()-> new com.code.aseoha.misc.Console(() -> ModBlocks.console_brackolin.get().defaultBlockState(),"brackolinconsole"));
 
-    public static final RegistryObject<com.code.aseoha.misc.Console> TAKOMAK =
-            CONSOLES.register("takomak", ()-> new com.code.aseoha.misc.Console(() -> ModBlocks.console_takomak.get().defaultBlockState(),"takomakconsole"));
+//    public static final RegistryObject<com.code.aseoha.misc.Console> TAKOMAK =
+//            CONSOLES.register("takomak", ()-> new com.code.aseoha.misc.Console(() -> ModBlocks.console_takomak.get().defaultBlockState(),"takomakconsole"));
 }

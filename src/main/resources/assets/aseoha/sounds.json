@@ -1,0 +1,17 @@
+{
+  "distorted_takeoff": {
+    "category": "blocks",
+    "subtitle": "aseoha.tardis.distorted_takeoff",
+    "sounds": [
+      "aseoha:aseoha/distorted_takeoff"
+    ]
+  },
+  "majestic_tale": {
+    "sounds": [
+      {
+        "name": "aseoha:aseoha/majestic_tale",
+        "stream": true
+      }
+    ]
+  }
+}

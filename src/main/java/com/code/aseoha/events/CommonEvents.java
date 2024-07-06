@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.concurrent.TickDelayedTask;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.TickEvent;
@@ -21,6 +22,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.mistersecret312.temporal_api.events.FlightEventEvent;
 import net.tardis.api.events.TardisEvent;
 import net.tardis.mod.cap.Capabilities;
+import net.tardis.mod.controls.DoorControl;
+import net.tardis.mod.controls.HandbrakeControl;
 import net.tardis.mod.entity.ControlEntity;
 import net.tardis.mod.entity.DoorEntity;
 import net.tardis.mod.entity.TardisEntity;
@@ -67,30 +70,34 @@ public static void onSuccessfulFlightEvent(FlightEventEvent.SuccessFlightEvent e
 
 @SubscribeEvent
 public static void onTardisTakeoff(TardisEvent.Takeoff event){
-    TardisHelper.getConsoleInWorld(event.getConsole().getLevel()).ifPresent(tardisTile -> {
-        DoorEntity doorEntity;
-        for (Iterator i = tardisTile.getLevel().getEntitiesOfClass(DoorEntity.class, (new AxisAlignedBB(tardisTile.getBlockPos())).inflate(25.0)).iterator(); i.hasNext(); doorEntity.updateExteriorDoorData()) {
-            doorEntity = (DoorEntity) i.next();
-            if (doorEntity.getOpenState() != EnumDoorState.CLOSED) {
-//                tardisTile.getLevel().getServer().tell(new TickDelayedTask(1, () -> {
-                aseoha.LOGGER.info("CANCELED");
-                    event.isCanceled();
-                    event.setCanceled(true);
-//                }));
+                DoorEntity doorEntity;
+                for (Iterator i = Objects.requireNonNull(event.getConsole().getLevel()).getEntitiesOfClass(DoorEntity.class, (new AxisAlignedBB(event.getConsole().getBlockPos())).inflate(25.0)).iterator(); i.hasNext(); doorEntity.updateExteriorDoorData()) {
+                    doorEntity = (DoorEntity) i.next();
+                    if (doorEntity.getOpenState() != EnumDoorState.CLOSED && !HADS.hadsActivate(event.getConsole())) {
 
-            }
-        }
-        {
+                        event.setCanceled(true);
+//                    event.getConsole().land();
+
+                    }
+                }
+////                tardisTile.getLevel().getServer().tell(new TickDelayedTask(1, () -> {
+////                aseoha.LOGGER.info("CANCELED");
+//
+////                }));
+//
+//            }
+//        }
+//        {
             if(event.getConsole().getArtron() < 64)
                 event.getConsole().getLevel().playSound(null, event.getConsole().getBlockPos(), Sounds.LOW_ARTRON_TAKEOFF.get(), SoundCategory.BLOCKS, 1.0f,1.0f);
-        }
-    });
+//        }
+//    });
 }
 
     @SubscribeEvent
     public static void onAttack(AttackEntityEvent event) {
         if(event.getTarget() instanceof TardisEntity) {
-
+            ((TardisEntity) event.getTarget()).getConsole().getInteriorManager().setAlarmOn(true);
         }
 //        if (event.getTarget() instanceof ControlEntity){
 //            ControlEntity entity = (ControlEntity) event.getTarget();
@@ -113,10 +120,10 @@ public static void onTardisTakeoff(TardisEvent.Takeoff event){
 
     @SubscribeEvent
     public static void onEntityJoin(EntityJoinWorldEvent event){
-        if(event.getEntity().getName() == new TranslationTextComponent("codiak540") || event.getEntity().getName() == new TranslationTextComponent("Dev")) {
-            Objects.requireNonNull(event.getWorld().getServer()).sendMessage(new TranslationTextComponent("The dev is here!"), event.getEntity().getUUID());
-//            event.getWorld().getServer()
-        }
+//        if(event.getEntity().getName() == new TranslationTextComponent("codiak540") || event.getEntity().getName() == new TranslationTextComponent("Dev")) {
+//            Objects.requireNonNull(event.getWorld().getServer()).sendMessage(new TranslationTextComponent("The dev is here!"), event.getEntity().getUUID());
+////            event.getWorld().getServer()
+//        }
 //        if(event.getWorld().getDimension().getType().getModType() == TDimensions.VORTEX) {
 //            if (event.getEntity() instanceof ServerPlayerEntity) {
 //                event.getWorld().playSound(null, event.getEntity().getPosition(), MSounds.TIME_VORTEX, SoundCategory.MUSIC, 100f , 1);
@@ -151,10 +158,10 @@ public static void onWorldTick(TickEvent.WorldTickEvent event) {
 //                }
 //            }
         }
-        if(event.world.getGameTime() % 200 == 0) {
-            if(!event.world.isClientSide || controls.isEmpty())
-                ((ConsoleTile) (Object) tardisTile).getOrCreateControls();
-        }
+//        if(event.world.getGameTime() % 200 == 0) {
+//            if(!event.world.isClientSide || controls.isEmpty())
+//                ((ConsoleTile) (Object) tardisTile).getOrCreateControls();
+//        }
 
         Random random = new Random();
         event.world.getCapability(Capabilities.TARDIS_DATA).ifPresent(cap -> {

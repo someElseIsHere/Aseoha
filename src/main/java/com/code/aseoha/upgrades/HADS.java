@@ -19,6 +19,7 @@ import net.tardis.mod.misc.ITickable;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
 import net.tardis.mod.subsystem.Subsystem;
 import net.tardis.mod.tileentities.ConsoleTile;
+import net.tardis.mod.tileentities.console.misc.IAlarmType;
 import net.tardis.mod.upgrades.Upgrade;
 import net.tardis.mod.upgrades.UpgradeEntry;
 
@@ -31,32 +32,36 @@ public class HADS extends Upgrade implements ITickable {
         this.random = new Random();
     }
 //public boolean isActive = this.isActivated();
-    public static boolean hadsActivate(ConsoleTile console) {
-        final boolean HADSACTIVE = console.getInteriorManager().isAlarmOn() && !console.isCrashing();
-        final boolean isActive;
-        final long time = console.getLevel().getGameTime();
+public static boolean hadsActivate(ConsoleTile console) {
+    final boolean HADSACTIVE = console.getInteriorManager().isAlarmOn() && !console.isCrashing();
+    console.getUpgrade(HADS.class).ifPresent((hads) -> {
+        if(hads.isActivated()){
+            if(HADSACTIVE) {
+                if (!Objects.requireNonNull(console.getLevel()).isClientSide) {
+                    console.getSubsystem(StabilizerSubsystem.class).ifPresent((stab) -> {
+                        stab.setControlActivated(false);
+                    });
+                }
+                console.takeoff();
+                if(console.flightTicks == 12000){
+                    console.initLand();
+                    console.getInteriorManager().setAlarmOn(false);
+                }
+            }
+        }
+    });
+    return HADSACTIVE;
+}
+
+
+
+    public static void deactivateHADS(ConsoleTile console) {
         console.getUpgrade(HADS.class).ifPresent((hads) -> {
             if(hads.isActivated()){
-                if(HADSACTIVE) {
-                    if (!Objects.requireNonNull(console.getLevel()).isClientSide) {
-                        console.getSubsystem(StabilizerSubsystem.class).ifPresent((stab) -> {
-                            stab.setControlActivated(false);
-                        });
-                    }
-                    console.takeoff();
-                    aseoha.LOGGER.info(console.getLevel().getGameTime() - time);
-
-                    if (console.getLevel().getGameTime() - time == 4000) {
-//            console.randomizeCoords(BlockPos.of(0), console.coordIncr);
-                        console.initLand();
-                        console.getInteriorManager().setAlarmOn(false);
-                    }
-                }
-            }});
-//        }){
-
-//        }
-        return HADSACTIVE;
+                console.initLand();
+                console.getInteriorManager().setAlarmOn(false);
+            }
+        });
     }
 
     public void tick(ConsoleTile console) {

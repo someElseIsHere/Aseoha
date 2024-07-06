@@ -1,4 +1,5 @@
 {
+  "mixin.sonic.modes.info.set_coords": "Right clicking in the world will set the attuned Tardis's destination coordinates to the right clicked position, right clicking after the HADS have been triggered will force the TARDIS to land",
   "ars.piece.category.aseoha.nautilus":"Nautilus [ASEOHA]",
   "ars.piece.category.aseoha.jade":"Jade [ASEOHA]",
   "ars.piece.category.tardis.cavern_rooms":"Cavern Rooms [ASEOHA]",
@@ -6,6 +7,7 @@
   "ars.piece.category.aseoha.mesh_rooms":"Mesh Rooms [ASEOHA]",
   "itemGroup.aseoha": "ASEOHA Blocks",
   "itemGroup.aseoha_food": "ASEOHA Food",
+  "itemGroup.aseoha_modular": "ASEOHA Modular Console",
   "block.aseoha.faultlocator": "Hellbent Fault Locator",
   "block.aseoha.faultlocator_s": "Hellbent Fault Locator (South)",
   "block.aseoha.hb_vent": "Hellbent Vent",
@@ -40,8 +42,14 @@
   "block.aseoha.copper_column_top": "Copper Time Column Top",
   "block.aseoha.copper_roundel": "Copper Roundel",
   "block.aseoha.toaster": "Toaster",
+  "block.aseoha.sonic_workbench": "Sonic Workbench (Decorative)",
   "item.aseoha.golden_potato": "Golden Potato",
+  "item.aseoha.bessie_spawn_egg": "Bessie",
+  "item.aseoha.walle_spawn_egg": "Wall-E",
+  "item.aseoha.k9_spawn_egg": "K-9",
   "item.aseoha.twinkie": "Twinkie",
+  "item.aseoha.majestic_tale_disc": "The Majestic Tale",
+  "item.aseoha.majestic_tale_disc.desc": "The Majestic Tale (Of A Madman In A Box)",
   "texvar.aseoha.consoles.copper.blue": "Blue",
   "texvar.aseoha.consoles.copper.normal": "Default",
   "texvar.aseoha.consoles.copper.rosegold": "Rosegold",
@@ -51,6 +59,16 @@
 
 
 
+  "block.aseoha.flight_button": "Modular Flight Button",
+  "block.aseoha.facing_control": "Modular Facing Control",
+  "block.aseoha.dimensional_button": "Modular Dimensional Shifters",
+  "block.aseoha.handbreak_control": "Modular Handbrake",
+  "block.aseoha.inc_control": "Modular Increment Modifier",
+  "block.aseoha.randomizer_control": "Modular Randomizer",
+  "block.aseoha.refueler_control": "Modular Refueler",
+  "block.aseoha.x_control": "Modular X Shifter",
+  "block.aseoha.y_control": "Modular Y Shifter",
+  "block.aseoha.z_control": "Modular Z Shifter",
 
 
   "texvar.aseoha.wardrobe.acacia": "Acacia Wood",
@@ -62,7 +80,7 @@
   "texvar.aseoha.wardrobe.oak": "Oak Wood",
   "texvar.aseoha.wardrobe.spruce": "Spruce Wood",
   "texvar.aseoha.wardrobe.stone": "Stone Brick",
-  "texvar.aseoha.wardrobe.spruce_stone": "Stone Brick x Spruce Wood",
+  "texvar.aseoha.wardrobe.spruce_stone": "Stone Brick & Spruce Wood",
   "texvar.aseoha.wardrobe.warped": "Warped Wood",
   "texvar.aseoha.brackolin.normal": "Clean",
   "texvar.aseoha.olwarrior.normal": "Normal",
@@ -74,7 +92,7 @@
 
 
   "block.aseoha.ars_egg_old" : "Mini - ARS Tree",
-  "block.aseoha.artron_bank_old" : "1.12 Artron Bank (Decorative)",
+  "block.aseoha.artron_bank_old" : "1.12 Artron Bank",
   "block.aseoha.foodmachine_old" : "1.12 Food Machine",
   "block.aseoha.structure_panel_old" : "1.12 Structure Panel",
   "block.aseoha.structure_spawn_old" : "1.12 Structure Spawn",
@@ -130,5 +148,8 @@
   "exterior.tardis.bluedoctor" : "Blue Doctor Exterior",
   "exterior.tardis.hartnell112" : "1.12 Hartnell Exterior",
 
-  "console.aseoha.brackolin" : "Brackolin Console"
+  "console.aseoha.brackolin" : "Brackolin Console",
+  "tooltip.aseoha.undeadlocker": "Un-Deadlocks a TARDIS",
+  "tooltip.aseoha.deadlocker": "Deadlocks a TARDIS",
+  "message.aseoha.sonic.mode.one": "Block Names"
 }
