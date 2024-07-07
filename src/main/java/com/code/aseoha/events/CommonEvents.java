@@ -20,7 +20,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mistersecret312.temporal_api.events.FlightEventEvent;
-import net.tardis.api.events.TardisEvent;
+import net.mistersecret312.temporal_api.events.TardisEvent;
 import net.tardis.mod.cap.Capabilities;
 import net.tardis.mod.controls.DoorControl;
 import net.tardis.mod.controls.HandbrakeControl;
@@ -69,23 +69,9 @@ public static void onSuccessfulFlightEvent(FlightEventEvent.SuccessFlightEvent e
 
 
 @SubscribeEvent
-public static void onTardisTakeoff(TardisEvent.Takeoff event){
-                DoorEntity doorEntity;
-                for (Iterator i = Objects.requireNonNull(event.getConsole().getLevel()).getEntitiesOfClass(DoorEntity.class, (new AxisAlignedBB(event.getConsole().getBlockPos())).inflate(25.0)).iterator(); i.hasNext(); doorEntity.updateExteriorDoorData()) {
-                    doorEntity = (DoorEntity) i.next();
-                    if (doorEntity.getOpenState() != EnumDoorState.CLOSED && !HADS.hadsActivate(event.getConsole())) {
-
+public static void onTardisTakeoff(TardisEvent.TakeoffEvent event){
+                if(TARDISHelper.areDoorsOpen(event.getConsole()) || TARDISHelper.isOneDoorOpen(event.getConsole()))
                         event.setCanceled(true);
-//                    event.getConsole().land();
-
-                    }
-                }
-////                tardisTile.getLevel().getServer().tell(new TickDelayedTask(1, () -> {
-////                aseoha.LOGGER.info("CANCELED");
-//
-////                }));
-//
-//            }
 //        }
 //        {
             if(event.getConsole().getArtron() < 64)
@@ -143,26 +129,12 @@ public static void onTardisTakeoff(TardisEvent.Takeoff event){
 //    }
 @SubscribeEvent
 public static void onWorldTick(TickEvent.WorldTickEvent event) {
-    final ArrayList<ControlEntity> controls = new ArrayList<ControlEntity>();
+//    final ArrayList<ControlEntity> controls = new ArrayList<ControlEntity>();
     TardisHelper.getConsoleInWorld(event.world).ifPresent(tardisTile -> {
-        if(tardisTile.getEntity()!=null){
-
-            //        aseoha.LOGGER.info(((ITardisConsoleHelp) tardisTile).getHads() + "getHads");
-//        aseoha.LOGGER.info(((ITardisExteriorHelper) tardisTile).getHadsExterior() + "getHadsExterior");
-//            if(((ITardisConsoleHelp) Objects.requireNonNull(tardisTile.getEntity())).getHads() && !tardisTile.isCrashing() && tardisTile.getInteriorManager().isAlarmOn()){
-//            tardisTile.randomizeCoords(BlockPos.of(0), tardisTile.coordIncr);
-//                tardisTile.takeoff();
-//                if(event.world.getGameTime() % 20 == 0 && tardisTile.getInteriorManager().isAlarmOn()){
-//                    tardisTile.initLand();
-//                    tardisTile.getInteriorManager().setAlarmOn(false);
-//                }
-//            }
+        if(TARDISHelper.hasConsoleChanged(tardisTile)){
+            tardisTile.removeControls();
+            tardisTile.getOrCreateControls();
         }
-//        if(event.world.getGameTime() % 200 == 0) {
-//            if(!event.world.isClientSide || controls.isEmpty())
-//                ((ConsoleTile) (Object) tardisTile).getOrCreateControls();
-//        }
-
         Random random = new Random();
         event.world.getCapability(Capabilities.TARDIS_DATA).ifPresent(cap -> {
             PanelInventory attunementPanel = cap.getEngineInventoryForSide(Direction.EAST);
@@ -214,9 +186,6 @@ public static void onWorldTick(TickEvent.WorldTickEvent event) {
             if (!tardisTile.getDistressSignals().isEmpty() && Objects.requireNonNull(tardisTile.getExteriorType().getExteriorTile(tardisTile).getLevel()).getGameTime() % 100 == 0 && !tardisTile.isInFlight()) {
                     Objects.requireNonNull(exteriorBlock.getLevel()).playSound(null, tardisTile.getExteriorType().getExteriorTile(tardisTile).getBlockPos(), TSounds.COMMUNICATOR_RING.get(), SoundCategory.BLOCKS, 1f, 1f);
             }
-//            aseoha.LOGGER.info(exteriorBlock.getLightLevel());
-//            aseoha.LOGGER.info(exteriorBlock.getLightEmittingLevel());
-    exteriorBlock.lightLevel = (float) 15;
     }
 //            DoorEntity doorEntity;
 //        for(Iterator i = tardisTile.getLevel().getEntitiesOfClass(DoorEntity.class, (new AxisAlignedBB(tardisTile.getBlockPos())).inflate(25.0)).iterator(); i.hasNext(); doorEntity.updateExteriorDoorData())

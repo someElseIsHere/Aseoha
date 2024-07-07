@@ -23,7 +23,7 @@ public class EngineBoost extends Upgrade implements ITickable {
 
 //    @SubscribeEvent
     public static void BoostThemEngines(ConsoleTile console) {
-        console.setFlightTicks(console.getReachDestinationTick() / 2);
+        console.setDestinationReachedTick(console.getReachDestinationTick() / 2);
     }
 
 

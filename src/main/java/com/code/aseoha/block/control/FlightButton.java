@@ -5,6 +5,7 @@
 
 package com.code.aseoha.block.control;
 
+import com.code.aseoha.misc.TARDISHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -82,11 +83,7 @@ public class FlightButton extends WoodButtonBlock {
             ConsoleTile console = (ConsoleTile)worldIn.getBlockEntity(TardisHelper.TARDIS_POS);
             if (!worldIn.isClientSide) {
                 console.getControl(HandbrakeControl.class).ifPresent((handbreak) -> {handbreak.setFree(true);});
-                DoorEntity doorEntity;
-                for(Iterator i = console.getLevel().getEntitiesOfClass(DoorEntity.class, (new AxisAlignedBB(console.getBlockPos())).inflate(25.0)).iterator(); i.hasNext(); doorEntity.updateExteriorDoorData()) {
-                    doorEntity = (DoorEntity) i.next();
-                    doorEntity.setOpenState(EnumDoorState.CLOSED);
-                }
+                TARDISHelper.setDoorState(console, 0);
                 console.getControl(RefuelerControl.class).ifPresent((ref) -> {ref.setRefueling(false);});
                 console.getSubsystem(StabilizerSubsystem.class).ifPresent((sys) -> {sys.setControlActivated(true);});
                 console.takeoff();
