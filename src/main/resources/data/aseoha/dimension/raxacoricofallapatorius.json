@@ -3,7 +3,7 @@
   "generator": {
     "type": "minecraft:noise",
     "seed": 33302912,
-    "settings": "minecraft:overworld",
+    "settings": "minecraft:minecraft_overworld",
     "biome_source": {
       "type": "minecraft:multi_noise",
       "seed": 33302912,

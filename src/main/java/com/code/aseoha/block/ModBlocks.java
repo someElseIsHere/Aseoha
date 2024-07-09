@@ -20,6 +20,7 @@ import net.tardis.mod.blocks.ArsEggBlock;
 import net.tardis.mod.blocks.QuantiscopeBlock;
 import net.tardis.mod.blocks.RoundelBlock;
 import net.tardis.mod.blocks.exteriors.ExteriorBlock;
+import net.tardis.mod.blocks.exteriors.TardisExteriorBottomBlock;
 
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
@@ -40,8 +41,6 @@ public class ModBlocks {
 //    public static final RegistryObject<ModSpawnEggItem> PIGEON_SPAWN_EGG = ITEMS.register("pigeon_spawn_egg",
 //            () -> new ModSpawnEggItem(ModEntityTypes.PIGEON, 0x879995, 0x576ABC,
 //                    new Item.Properties().tab(ModItemGroup.ASEOHA_GROUP)));
-
-
 
     /*****************************  ROUNDELS  **********************************/
 
@@ -255,7 +254,7 @@ public class ModBlocks {
 //            () -> new net.tardis.mod.blocks.ConsoleBlock());
 
     /************************EXTERIORS********************/
-    public static RegistryObject<Block> EXTERIOR_CORAL = registerNoItemBlock("exterior_coral",
+    public static RegistryObject<Block> EXTERIOR_CORAL = registerBlock("exterior_coral",
             () -> setUpBlock(new ExteriorBlock()));
 
     public static RegistryObject<Block> exterior_capaldi = registerNoItemBlock("exterior_capaldi",

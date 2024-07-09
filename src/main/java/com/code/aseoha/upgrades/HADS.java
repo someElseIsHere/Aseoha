@@ -23,6 +23,7 @@ import net.tardis.mod.tileentities.console.misc.IAlarmType;
 import net.tardis.mod.upgrades.Upgrade;
 import net.tardis.mod.upgrades.UpgradeEntry;
 
+
 public class HADS extends Upgrade implements ITickable {
     public Random random;
 
@@ -37,6 +38,7 @@ public static boolean hadsActivate(ConsoleTile console) {
     console.getUpgrade(HADS.class).ifPresent((hads) -> {
         if(hads.isActivated()){
             if(HADSACTIVE) {
+//                onEventPopup()
                 if (!Objects.requireNonNull(console.getLevel()).isClientSide) {
                     console.getSubsystem(StabilizerSubsystem.class).ifPresent((stab) -> {
                         stab.setControlActivated(false);

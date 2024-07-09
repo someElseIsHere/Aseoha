@@ -10,9 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.concurrent.TickDelayedTask;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.Explosion;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -21,13 +19,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mistersecret312.temporal_api.events.FlightEventEvent;
 import net.mistersecret312.temporal_api.events.TardisEvent;
+import net.tardis.mod.blocks.exteriors.TardisExteriorBottomBlock;
 import net.tardis.mod.cap.Capabilities;
-import net.tardis.mod.controls.DoorControl;
-import net.tardis.mod.controls.HandbrakeControl;
-import net.tardis.mod.entity.ControlEntity;
-import net.tardis.mod.entity.DoorEntity;
 import net.tardis.mod.entity.TardisEntity;
-import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.items.SonicItem;
 import net.tardis.mod.items.TItems;
@@ -35,9 +29,6 @@ import net.tardis.mod.sounds.TSounds;
 import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
 import net.tardis.mod.tileentities.inventory.PanelInventory;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Random;
 
@@ -48,7 +39,11 @@ public class CommonEvents {
 
 @SubscribeEvent
 public static void onSuccessfulFlightEvent(FlightEventEvent.SuccessFlightEvent event){
-    EngineBoost.BoostThemEngines(event.getConsole());
+//    aseoha.LOGGER.info("CHEWY! HIT THE HYPERDRIVE!");
+//    aseoha.LOGGER.info(event.getConsole().getReachDestinationTick());
+//    EngineBoost.BoostThemEngines(event.getConsole());
+//    aseoha.LOGGER.info(event.getConsole().getReachDestinationTick());
+//    aseoha.LOGGER.info("SHWOOOOM");
 }
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingUpdateEvent event){
@@ -70,14 +65,12 @@ public static void onSuccessfulFlightEvent(FlightEventEvent.SuccessFlightEvent e
 
 @SubscribeEvent
 public static void onTardisTakeoff(TardisEvent.TakeoffEvent event){
-                if(TARDISHelper.areDoorsOpen(event.getConsole()) || TARDISHelper.isOneDoorOpen(event.getConsole()))
-                        event.setCanceled(true);
-//        }
-//        {
-            if(event.getConsole().getArtron() < 64)
-                event.getConsole().getLevel().playSound(null, event.getConsole().getBlockPos(), Sounds.LOW_ARTRON_TAKEOFF.get(), SoundCategory.BLOCKS, 1.0f,1.0f);
-//        }
-//    });
+    if(TARDISHelper.areDoorsOpen(event.getConsole()) || TARDISHelper.isOneDoorOpen(event.getConsole()) && !HADS.hadsActivate(event.getConsole()))
+        event.setCanceled(true);
+
+    if(event.getConsole().getArtron() < 64)
+        event.getConsole().getLevel().playSound(null, event.getConsole().getBlockPos(), Sounds.LOW_ARTRON_TAKEOFF.get(), SoundCategory.BLOCKS, 1.0f,1.0f);
+
 }
 
     @SubscribeEvent
@@ -127,6 +120,11 @@ public static void onTardisTakeoff(TardisEvent.TakeoffEvent event){
 //    public static void TardisEvent(net.mistersecret312.temporal_api.events.TardisEvent event){
 //        event
 //    }
+
+    @SubscribeEvent
+    public static void FlightEventSuccess(FlightEventEvent.SuccessFlightEvent event){
+
+    }
 @SubscribeEvent
 public static void onWorldTick(TickEvent.WorldTickEvent event) {
 //    final ArrayList<ControlEntity> controls = new ArrayList<ControlEntity>();
@@ -187,17 +185,7 @@ public static void onWorldTick(TickEvent.WorldTickEvent event) {
                     Objects.requireNonNull(exteriorBlock.getLevel()).playSound(null, tardisTile.getExteriorType().getExteriorTile(tardisTile).getBlockPos(), TSounds.COMMUNICATOR_RING.get(), SoundCategory.BLOCKS, 1f, 1f);
             }
     }
-//            DoorEntity doorEntity;
-//        for(Iterator i = tardisTile.getLevel().getEntitiesOfClass(DoorEntity.class, (new AxisAlignedBB(tardisTile.getBlockPos())).inflate(25.0)).iterator(); i.hasNext(); doorEntity.updateExteriorDoorData())
-//        {
-//            doorEntity = (DoorEntity) i.next();
-//            if (tardisTile.isInFlight() && doorEntity.getOpenState() != EnumDoorState.CLOSED){
-//                    tardisTile.getLevel().getServer().tell(new TickDelayedTask(1, () -> {
-//                        tardisTile.initLand();
-//                    }));
-//
-//            }
-//        }
+
         if (tardisTile.getSonicItem().getItem() != null) {
             if (tardisTile.getSonicItem().getItem() == TItems.SONIC.get()) {
                 SonicItem sonic = (SonicItem) tardisTile.getSonicItem().getItem();

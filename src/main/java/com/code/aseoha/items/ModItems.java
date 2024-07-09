@@ -70,6 +70,9 @@ public class ModItems{
     public static final RegistryObject<Item> TEZARAK_COIN = ITEMS.register("tezarak_coin",
             ()-> new Item(new Item.Properties().tab(ModItemGroup.ASEOHA_GROUP).stacksTo(16).rarity(Rarity.RARE).fireResistant()));
 
+    public static final RegistryObject<Item> CONTROL_MOLD = ITEMS.register("control_mold",
+            ()-> new Item(new Item.Properties().tab(ModItemGroup.ASEOHA_GROUP).stacksTo(1).rarity(Rarity.UNCOMMON)));
+
     public static final RegistryObject<Item> MAJESTIC_TALE_DISC = ITEMS.register("majestic_tale_disc",
             () -> new MusicDiscItem(1, () -> Sounds.MAJESTIC_TALE.get(), new Item.Properties().stacksTo(1).tab(ModItemGroup.ASEOHA_GROUP)));
 

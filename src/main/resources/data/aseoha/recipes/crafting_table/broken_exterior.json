@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "hga",
+    "lNj",
+    "z#k"
+  ],
+  "key": {
+    "#": {
+      "item": "tardis:tardis_engine"
+    },
+    "g": {
+      "item": "tardis:ars_egg"
+    },
+    "N": {
+      "item": "tardis:artron_collector"
+    },
+    "h": {
+      "item": "tardis:circuits"
+    },
+    "j": {
+      "item": "tardis:timeship_backdoor"
+    },
+    "k": {
+      "item": "minecraft:ender_pearl"
+    },
+    "l": {
+      "item": "tardis:int_door"
+    },
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "z": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "tardis:broken_exterior",
+    "count": 1
+  }
+}
