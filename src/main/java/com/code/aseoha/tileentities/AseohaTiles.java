@@ -53,26 +53,51 @@ package com.code.aseoha.tileentities;
 
 import com.code.aseoha.aseoha;
 import com.code.aseoha.block.ModBlocks;
-import com.code.aseoha.tileentities.consoles.BattleConsoleTile;
-import com.code.aseoha.tileentities.consoles.BrackolinConsoleTile;
-import com.code.aseoha.tileentities.consoles.CopperConsoleTile;
-import com.code.aseoha.tileentities.consoles.TakomakConsoleTile;
+//import com.code.aseoha.tileentities.blocks.ChiseledBookShelfBlockEntity;
+import com.code.aseoha.tileentities.blocks.TardisCoralTile;
+import com.code.aseoha.tileentities.consoles.*;
 import com.code.aseoha.tileentities.exteriors.*;
 import com.google.common.base.Supplier;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.tardis.mod.Tardis;
 import net.tardis.mod.blocks.TileBlock;
+import net.tardis.mod.tileentities.TardisEngineTile;
+
+import static net.minecraftforge.registries.ForgeRegistries.Keys.TILE_ENTITY_TYPES;
 
 public class AseohaTiles {
     public static final DeferredRegister<TileEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, aseoha.MODID);
 
+    public static final RegistryObject<TileEntityType<TardisCoralTile>> TARDIS_CORAL = TILES.register("tardis_coral",
+            () -> TileEntityType.Builder.of(TardisCoralTile::new, ModBlocks.CORAL.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<TardisEngineTile>> UPSIDEDOWN_ENGINE = TILES.register("upsidedown_engine",
+            () -> TileEntityType.Builder.of(TardisEngineTile::new, ModBlocks.UPSIDEDOWN_ENGINE.get()).build(null));
+
+//    public static final RegistryObject<TileEntityType<ChiseledBookShelfBlockEntity>> CHISELED_BOOKSHELF = TILES.register("chiseled_bookshelf",
+//            () -> TileEntityType.Builder.of(ChiseledBookShelfBlockEntity::new, ModBlocks.CHISELED_BOOKSHELF.get()).build(null));
+
     public static final RegistryObject<TileEntityType<BattleConsoleTile>> console_battle =
             TILES.register("console_battle", () -> registerTiles(BattleConsoleTile::new,
                     ModBlocks.console_battle.get()));
+
+    public static final RegistryObject<TileEntityType<BlueMarbleTile>> console_bluemarble =
+            TILES.register("console_bluemarble", () -> registerTiles(BlueMarbleTile::new,
+                    ModBlocks.console_bluemarble.get()));
+
+    public static final RegistryObject<TileEntityType<HartnellConsoleTile>> console_hartnell =
+            TILES.register("console_hartnell", () -> registerTiles(HartnellConsoleTile::new,
+                    ModBlocks.console_hartnell.get()));
+
+    public static final RegistryObject<TileEntityType<McGannTile>> EXTERIOR_MCGANN =
+            TILES.register("exterior_mcgann", () -> registerTiles(McGannTile::new,
+                    ModBlocks.exterior_mcgann.get()));
 
     public static final RegistryObject<TileEntityType<TakomakConsoleTile>> console_takomak =
             TILES.register("console_takomak", () -> registerTiles(TakomakConsoleTile::new,

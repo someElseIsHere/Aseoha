@@ -21,6 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -34,10 +35,10 @@ public class DimensionalButton extends Block {
 
     public DimensionalButton(Properties properties) {
         super(properties);
-        this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(facing, Direction.NORTH)).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(facing, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
-    public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
+    public VoxelShape getShape(BlockState p_220053_1_, @NotNull IBlockReader p_220053_2_, @NotNull BlockPos p_220053_3_, @NotNull ISelectionContext p_220053_4_) {
         switch ((Direction)p_220053_1_.getValue(facing)) {
             case NORTH:
                 return north;
@@ -61,7 +62,7 @@ public class DimensionalButton extends Block {
         return this.canAttachTo(p_196260_2_, p_196260_3_.offset(lvt_4_1_.getOpposite().getNormal()), lvt_4_1_);
     }
 
-    public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, BlockState p_196271_3_, IWorld p_196271_4_, BlockPos p_196271_5_, BlockPos p_196271_6_) {
+    public BlockState updateShape(BlockState p_196271_1_, Direction p_196271_2_, @NotNull BlockState p_196271_3_, @NotNull IWorld p_196271_4_, @NotNull BlockPos p_196271_5_, @NotNull BlockPos p_196271_6_) {
         if (p_196271_2_.getOpposite() == p_196271_1_.getValue(facing) && !p_196271_1_.canSurvive(p_196271_4_, p_196271_5_)) {
             return Blocks.AIR.defaultBlockState();
         } else {
@@ -90,12 +91,11 @@ public class DimensionalButton extends Block {
         Direction[] var6 = p_196258_1_.getNearestLookingDirections();
         int var7 = var6.length;
 
-        for(int var8 = 0; var8 < var7; ++var8) {
-            Direction lvt_9_1_ = var6[var8];
+        for (Direction lvt_9_1_ : var6) {
             if (lvt_9_1_.getAxis().isHorizontal()) {
-                lvt_2_2_ = (BlockState)lvt_2_2_.setValue(facing, lvt_9_1_.getOpposite());
+                lvt_2_2_ = (BlockState) lvt_2_2_.setValue(facing, lvt_9_1_.getOpposite());
                 if (lvt_2_2_.canSurvive(lvt_3_1_, lvt_4_1_)) {
-                    return (BlockState)lvt_2_2_.setValue(WATERLOGGED, lvt_5_1_.getProperties() == Fluids.WATER);//lvt_5_1_.cycle() == Fluids.WATER);
+                    return (BlockState) lvt_2_2_.setValue(WATERLOGGED, lvt_5_1_.getProperties() == Fluids.WATER);//lvt_5_1_.cycle() == Fluids.WATER);
                 }
             }
         }
@@ -107,6 +107,7 @@ public class DimensionalButton extends Block {
         return (BlockState)p_185499_1_.setValue(facing, p_185499_2_.rotate((Direction)p_185499_1_.getValue(facing)));
     }
 
+    @NotNull
     public BlockState mirror(BlockState p_185471_1_, Mirror p_185471_2_) {
         return p_185471_1_.rotate(p_185471_2_.getRotation((Direction)p_185471_1_.getValue(facing)));
     }
@@ -115,6 +116,7 @@ public class DimensionalButton extends Block {
         p_206840_1_.add(new Property[]{facing, WATERLOGGED});
     }
 
+    @NotNull
     public FluidState getFluidState(BlockState p_204507_1_) {
         return (Boolean)p_204507_1_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
     }

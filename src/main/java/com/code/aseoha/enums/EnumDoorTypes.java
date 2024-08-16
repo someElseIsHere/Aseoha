@@ -9,6 +9,9 @@ import net.tardis.mod.misc.IDoorType;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+/**
+ * Just WhoviansRest TARDIS stuff + my coral exterior rotations
+ */
 public enum EnumDoorTypes implements IDoorType {
     BRACKOLIN (state -> {
         switch(state) {

@@ -1,15 +1,16 @@
 package com.code.aseoha;
 import com.code.aseoha.block.ModBlocks;
 import com.code.aseoha.client.Sounds;
-import com.code.aseoha.client.renderers.console.BattleConsoleRender;
-import com.code.aseoha.client.renderers.console.BrackolinConsoleRender;
-import com.code.aseoha.client.renderers.console.CopperConsoleRenderer;
-import com.code.aseoha.client.renderers.console.TakomakConsoleRender;
+import com.code.aseoha.client.renderers.blocks.TardisCoralRenderer;
+import com.code.aseoha.client.renderers.blocks.UpsideDownEngineRenderer;
+import com.code.aseoha.client.renderers.console.*;
+import com.code.aseoha.commands.Commands;
 import com.code.aseoha.entities.ModEntityTypes;
 import com.code.aseoha.items.ModItems;
 import com.code.aseoha.client.renderers.k9render;
 import com.code.aseoha.client.renderers.wallerender;
 import com.code.aseoha.items.NoTadditionsItems;
+import com.code.aseoha.networking.Networking;
 import com.code.aseoha.protocol.RegisterProtocols;
 import com.code.aseoha.registries.ConsolesRegistry;
 import com.code.aseoha.registries.ExteriorsRegistry;
@@ -19,18 +20,16 @@ import com.code.aseoha.upgrades.RegisterUpgrades;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -42,9 +41,12 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.stream.Collectors;
 
-// The value here should match an entry in the META-INF/mods.toml file
+/**
+ * @author Me
+ * <br />
+ * Why? Because I did
+ */
 @Mod("aseoha")
-
 public class aseoha {
 //    public enum HadsState {
 //        ENABLED,
@@ -62,9 +64,7 @@ public class aseoha {
     public static final String MODID = "aseoha";
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
-    public final static RegistryKey<World> NEWEARTH = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("aseoha", "newearth"));
-    public final static RegistryKey<World> GALLIFREY = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("aseoha", "gallifrey"));
-    public final static RegistryKey<World> MIDNIGHT = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("aseoha", "midnight"));
+
     public aseoha() {
 
         // Register the setup method for modloading
@@ -84,6 +84,7 @@ public class aseoha {
         ModEntityTypes.register(modBus);
         RegisterFlightEvent.FLIGHT_EVENTS.register(modBus);
         RegisterUpgrades.UPGRADES.register(modBus);
+
         //ModBiomes.register(eventBus);
         // For events that happen after initialization. This is probably going to be use a lot.
 
@@ -105,8 +106,12 @@ public class aseoha {
         // Register the doClientStuff method for modloading
         modBus.addListener(this::doClientStuff);
 
+        //NETWORKING
+        Networking.init();
 
-
+        //Register the Configs
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, config.COMMON_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, config.SERVER_SPEC);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -115,6 +120,7 @@ public class aseoha {
         event.enqueueWork(() -> {
             //Flight Event
             RegisterFlightEvent.registerRandomEntries();
+            Commands.registerCustomArgumentTypes();
             //ModBiomeGeneration.generateBiomes();
             STStructures.setupStructures();
             STConfiguredStructures.registerConfiguredStructures();
@@ -177,11 +183,14 @@ public class aseoha {
         RenderTypeLookup.setRenderLayer(ModBlocks.COATRACK.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_TERRACOTTA_ROUNDEL.get(), RenderType.solid());
         //RenderTypeLookup.setRenderLayer(ModBlocks.ORANGE_TERRACOTTA_ROUNDEL_HALF.get(), RenderType.solid());
-        RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_COLUMN.get(), RenderType.translucent());
-        RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_COLUMN_TOP.get(), RenderType.translucent());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_COLUMN.get(), RenderType.translucent());
+//        RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_COLUMN_TOP.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.COPPER_ROUNDEL.get(), RenderType.solid());
 //        RenderTypeLookup.setRenderLayer(ModBlocks.LOOTCRATE.get(), RenderType.cutout());
 //        RenderTypeLookup.setRenderLayer(ModBlocks.LOOTCRATEX.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.BLUE_CRYSTAL.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(ModBlocks.OCHRE_FROGLIGHT.get(), RenderType.solid());
+        RenderTypeLookup.setRenderLayer(ModBlocks.VERDANT_FROGLIGHT.get(), RenderType.solid());
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// COOL BLOCKS
         RenderTypeLookup.setRenderLayer(ModBlocks.foodmachine_old.get(), RenderType.solid());
@@ -197,6 +206,13 @@ public class aseoha {
 //        RenderTypeLookup.setRenderLayer(ModBlocks.EOH.get(), RenderType.solid());
         RenderTypeLookup.setRenderLayer(ModBlocks.FLIGHT_BUTTON.get(), RenderType.solid());
 
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.AZALEA.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.FLOWERING_AZALEA.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.FLOWERING_AZALEA_LEAVES.get(), RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.AZALEA_LEAVES.get(), RenderType.cutout());
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// CONSOLES
 
         RenderTypeLookup.setRenderLayer(ModBlocks.console_copper.get(), RenderType.translucent());
@@ -208,13 +224,27 @@ public class aseoha {
         RenderTypeLookup.setRenderLayer(ModBlocks.console_battle.get(), RenderType.translucent());
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_battle.get(), BattleConsoleRender::new);
 
-        RenderTypeLookup.setRenderLayer(ModBlocks.console_takomak.get(), RenderType.translucent());
-        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_takomak.get(), TakomakConsoleRender::new);
+//        RenderTypeLookup.setRenderLayer(ModBlocks.console_takomak.get(), RenderType.translucent());
+//        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_takomak.get(), TakomakConsoleRender::new);
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.console_bluemarble.get(), RenderType.translucent());
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_bluemarble.get(), BlueMarbleRender::new);
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.console_hartnell.get(), RenderType.translucent());
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_hartnell.get(), HartnellConsoleRender::new);
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.CORAL.get(), RenderType.translucent());
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.TARDIS_CORAL.get(), TardisCoralRenderer::new);
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.UPSIDEDOWN_ENGINE.get(), RenderType.translucent());
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.UPSIDEDOWN_ENGINE.get(), UpsideDownEngineRenderer::new);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ENTITIES
 
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.K9.get(), k9render::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.WALLE.get(), wallerender::new);
+
+//        RenderingRegistry.registerEntityRenderingHandler(ModItems.PRYDONIAN_HELM.get(), wallerender::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -230,11 +260,11 @@ public class aseoha {
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
+//    @SubscribeEvent
+//    public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
-        LOGGER.info("HELLO from aseoha server starting");
-    }
+//        LOGGER.info("HELLO from aseoha server starting");
+//    }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)

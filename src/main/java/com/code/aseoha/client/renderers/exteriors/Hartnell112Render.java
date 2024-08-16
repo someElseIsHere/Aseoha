@@ -4,8 +4,6 @@ import com.code.aseoha.client.models.exteriors.Hartnell112;
 import com.code.aseoha.tileentities.exteriors.Hartnell112Tile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-//import com.thevale.aseoha.client.models.exteriors.Hartnell112;
-//import com.thevale.aseoha.tileentities.exteriors.Hartnell112Tile;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;

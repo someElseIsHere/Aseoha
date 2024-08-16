@@ -13,7 +13,7 @@ import net.tardis.mod.tileentities.ConsoleTile;
 import net.tardis.mod.tileentities.console.misc.ControlOverride;
 
 
-public class TakomakConsoleTile extends ConsoleTile implements ITickableTileEntity {
+public class TakomakConsoleTile extends ConsoleTile {
 
     public static final AxisAlignedBB RENDER_BOX = new AxisAlignedBB(-2, -1, -2, 2, 2.5, 2);
 

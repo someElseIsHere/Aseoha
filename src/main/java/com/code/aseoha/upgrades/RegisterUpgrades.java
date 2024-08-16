@@ -22,6 +22,10 @@ public class RegisterUpgrades extends UpgradeRegistry {
         return setupUpgrade(EngineBoost::new, (Item) ModItems.ENGINE_BOOSTER.get(), FlightSubsystem.class);
     });
 
+//    public static final RegistryObject<UpgradeEntry> AUTO_STABILISER = UPGRADES.register("auto_stabiliser", () -> {
+//        return setupUpgrade(EngineBoost::new, (Item) ModItems.AUTO_STABILISER.get(), FlightSubsystem.class);
+//    });
+
     public RegisterUpgrades() {
     }
 

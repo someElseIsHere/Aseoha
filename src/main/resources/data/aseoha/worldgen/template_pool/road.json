@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 40,
+      "weight": 35,
       "element": {
         "location": "aseoha:road1",
         "processors": "minecraft:mossify_10_percent",

@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package com.code.aseoha.registries;
 
 import com.code.aseoha.aseoha;
@@ -22,6 +17,12 @@ public class ConsolesRegistry {
 
     public static final RegistryObject<com.code.aseoha.misc.Console> BRACKOLIN =
             CONSOLES.register("brackolin", ()-> new com.code.aseoha.misc.Console(() -> ModBlocks.console_brackolin.get().defaultBlockState(),"brackolinconsole"));
+
+    public static final RegistryObject<com.code.aseoha.misc.Console> BLUEMARBLE =
+            CONSOLES.register("bluemarble", ()-> new com.code.aseoha.misc.Console(() -> ModBlocks.console_bluemarble.get().defaultBlockState(),"bluemarble"));
+
+    public static final RegistryObject<com.code.aseoha.misc.Console> HARTNELL =
+            CONSOLES.register("hartnell", ()-> new com.code.aseoha.misc.Console(() -> ModBlocks.console_hartnell.get().defaultBlockState(),"hartnell"));
 
 //    public static final RegistryObject<com.code.aseoha.misc.Console> TAKOMAK =
 //            CONSOLES.register("takomak", ()-> new com.code.aseoha.misc.Console(() -> ModBlocks.console_takomak.get().defaultBlockState(),"takomakconsole"));

@@ -10,15 +10,20 @@ import net.minecraft.util.ResourceLocation;
 import net.tardis.mod.misc.TexVariant;
 
 public class TextureVariants {
-    public static final TexVariant[] CORAL = {new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/coral.png"), "exteriors.coral.default")};//new TexVariant[]{new TexVariant("coral", "tardis.common.normal")};
-
+    public static final TexVariant[] CORAL = {
+            new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/coral.png"), "exteriors.coral.default"),
+            new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/coralbadwolf.png"), "exteriors.coral.badwolf")};
     public static final TexVariant[] CAPALDI = {
             new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/capaldi.png"), "exterior.capaldi.default"),
             new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/capaldi_tribute.png"), "exterior.capaldi.tribute")};
 
+    public static final TexVariant[] MCGANN = {
+            new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/mcgann.png"), "exterior.mcgann.default")};
+
 
     public static final TexVariant[] ALFIEHUDOLIN = {new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/alfiehudolin.png"), "exteriors.alfiehudolin.default")};//new TexVariant[]{new TexVariant("coral", "tardis.common.normal")};
 //    public TextureVariants() {}
+
 public static final TexVariant[] COPPER = {//new TexVariant[]{
             new TexVariant(new ResourceLocation("aseoha", "textures/consoles/copper.png"), "consoles.copper.normal"),
             new TexVariant(new ResourceLocation("aseoha", "textures/consoles/copper-steel.png"), "consoles.copper.steel"),
@@ -52,10 +57,10 @@ public static final TexVariant[] COPPER = {//new TexVariant[]{
             new TexVariant(new ResourceLocation(aseoha.MODID, "textures/exteriors/bluedoctor/bluedoctorexterior.png"),"bluedoctor.normal")
     };
 
-
-    //Consoles
     public static final TexVariant[] VALE = {
             new TexVariant(new ResourceLocation(aseoha.MODID,"textures/consoles/valeconsole.png"), "vale.normal"),
             new TexVariant(new ResourceLocation(aseoha.MODID,"textures/consoles/valeconsole2.png"), "vale.purple"),
     };
+
+
 }

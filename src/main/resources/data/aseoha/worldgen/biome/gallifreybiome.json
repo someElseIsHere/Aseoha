@@ -1,0 +1,68 @@
+{
+  "surface_builder": "aseoha:gallifreybiome",
+  "depth": 0.1,
+  "scale": 0.2,
+  "temperature": 0.5,
+  "downfall": 0.5,
+  "precipitation": "snow",
+  "temperature_modifier": "frozen",
+  "category": "none",
+  "player_spawn_friendly": true,
+  "effects": {
+    "sky_color": 16771584,
+    "fog_color": 16771855,
+    "water_color": 16122,
+    "water_fog_color": 24826,
+    "grass_color": 10027013,
+    "foliage_color": 11250603
+  },
+  "starts": [
+    "minecraft:village_plains",
+    "minecraft:mansion",
+    "minecraft:mineshaft",
+    "minecraft:ruined_portal",
+    "minecraft:stronghold"
+  ],
+  "spawners": {
+    "monster": [],
+    "creature": [],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_diorite",
+      "minecraft:ore_coal",
+      "minecraft:ore_iron",
+      "minecraft:ore_gold",
+      "minecraft:ore_redstone",
+      "minecraft:ore_diamond",
+      "minecraft:ore_lapis"
+    ],
+    [
+      "minecraft:pile_snow"
+    ],
+    [
+      "minecraft:patch_grass_forest"
+    ],
+    [
+      "minecraft:forest_flower_trees",
+      "minecraft:freeze_top_layer"
+    ]
+  ]
+}

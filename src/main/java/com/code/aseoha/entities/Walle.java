@@ -73,6 +73,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
+/**
+ * @author Me <br />
+ * Will extend K9 in the future for usefull stuff such as power and TARDIS stuff. <br />
+ * Also this is the Entity class
+ */
 public class Walle extends WolfEntity implements ISpaceImmuneEntity {
     private static final DataParameter<Optional<BlockState>> DATA_CARRY_STATE;
 
@@ -153,7 +158,7 @@ public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
     ItemStack itemstack = player.getItemInHand(hand);
     Item item = itemstack.getItem();
     if (this.level.isClientSide) {
-        boolean flag = this.isOwnedBy(player) || this.isTame() || item == Items.COMPOSTER && !this.isTame() && !this.isAngry();
+        boolean flag = this.isOwnedBy(player) || this.isTame() || item == Items.POPPY && !this.isTame() && !this.isAngry();
         return flag ? ActionResultType.CONSUME : ActionResultType.PASS;
     } else {
         if (this.isTame()) {

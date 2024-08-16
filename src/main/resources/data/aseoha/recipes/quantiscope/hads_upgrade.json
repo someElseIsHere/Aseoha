@@ -1,0 +1,14 @@
+{
+  "type": "tardis:quantiscope",
+  "repair":false,
+  "ingredients":[
+    {"item":"minecraft:ender_eye"},
+    {"item":"minecraft:daylight_detector"},
+    {"item":"minecraft:bone"},
+    {"item":"minecraft:rotten_flesh"},
+    {"item":"tardis:blank_upgrade"}
+  ],
+  "result":{
+    "item":"aseoha:upgrades/hads"
+  }
+}

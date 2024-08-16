@@ -8,7 +8,6 @@ import net.tardis.mod.client.guis.monitors.BaseMonitorScreen;
 import net.tardis.mod.sounds.TSounds;
 
 public class CoralMonitorScreen extends BaseMonitorScreen {
-//TODO Make sure that our ResourceLocation for CoralMornitorScreen is right
     public static final ResourceLocation TEXTURE = new ResourceLocation("aseoha", "textures/gui/monitors/coralconsole.png");
 
     public CoralMonitorScreen() {
@@ -60,6 +59,6 @@ public class CoralMonitorScreen extends BaseMonitorScreen {
 
     @Override
     public int getGuiID() {
-        return 8;
+        return 250;
     }
 }

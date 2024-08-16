@@ -3,6 +3,7 @@ package com.code.aseoha.client.models.exteriors;// Made with Blockbench 4.10.3
 // Paste this class into your mod and generate all required imports
 
 
+import com.code.aseoha.client.renderers.exteriors.CapaldiRender;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.tardis.mod.client.models.exteriors.ExteriorModel;

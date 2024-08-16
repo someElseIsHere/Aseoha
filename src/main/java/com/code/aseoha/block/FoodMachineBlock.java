@@ -83,7 +83,7 @@ public class FoodMachineBlock extends MultiblockBlock implements IWaterLoggable 
                 if (console.getArtron() >= (float) 16 && KeyboardHelper.isHoldingAlt()) {
                     player.addItem(new ItemStack(Items.CARROT, (int) 1));
                 }
-                if (player.isCrouching()) {
+                if (console.getArtron() >= (float) 16 && player.isCrouching()) {
                     player.addItem(new ItemStack(Items.BONE_MEAL, (int) 1));
                 }
                 if (console.getArtron() >= (float) 16 && !KeyboardHelper.isHoldingAlt() && !player.isCrouching()) {

@@ -1365,7 +1365,6 @@ public class BrackolinConsole extends EntityModel<Entity> implements TileModel<B
         PanelBaseSlant10.addChild(Throttle);
         Throttle.texOffs(61, 131).addBox(-1.0F, -0.75F, -0.5F, 2.0F, 1.0F, 1.0F, -0.25F, false);
         Throttle.texOffs(34, 146).addBox(-0.5F, -0.25F, -0.5F, 1.0F, 1.0F, 1.0F, -0.25F, false);
-
         Lights3 = new ModelRenderer(this);
         Lights3.setPos(0.0F, 15.75F, 8.65F);
         PanelBaseSlant10.addChild(Lights3);
@@ -1626,9 +1625,9 @@ public class BrackolinConsole extends EntityModel<Entity> implements TileModel<B
 
 
         tile.getControl(ThrottleControl.class).ifPresent(throttleControl -> {
-            this.Throttle.z = (float)Math.toRadians(525 + (throttleControl.getAmount()) * 100);
-            this.Throttle.y = (float)Math.abs((float)-15.3) ;
-            this.Throttle.xRot = (float)Math.toRadians(1);
+//            this.Throttle.z = (float)Math.toRadians((throttleControl.getAmount()));
+//            this.Throttle.y = (float)Math.abs((float)-15.3);
+//            this.Throttle.xRot = (float)Math.toRadians(1);
         });
 
         tile.getDoor().ifPresent((door) -> {
@@ -1666,6 +1665,7 @@ public class BrackolinConsole extends EntityModel<Entity> implements TileModel<B
         matrixStack.translate(0.0685F,0.275F,-0.07F);
         Console.render(matrixStack, iVertexBuilder,i,i1);
         Controls.render(matrixStack,iVertexBuilder,i,i1);
+
         matrixStack.popPose();
     }
 }

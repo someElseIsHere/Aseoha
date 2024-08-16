@@ -3,7 +3,7 @@
   "fallback": "aseoha:newnew",
   "elements": [
     {
-      "weight": 50,
+      "weight": 35,
       "element": {
         "location": "aseoha:road",
         "processors": "minecraft:mossify_10_percent",
@@ -20,8 +20,17 @@
         "element_type": "minecraft:legacy_single_pool_element"
       }
       },
+    {
+      "weight": 29,
+      "element": {
+        "location": "aseoha:trade1",
+        "processors": "minecraft:mossify_10_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
       {
-      "weight": 30,
+      "weight": 10,
       "element": {
         "location": "aseoha:needle",
         "processors": "minecraft:mossify_10_percent",
@@ -30,7 +39,7 @@
       }
     },
     {
-      "weight": 20,
+      "weight": 30,
       "element": {
         "location": "aseoha:stand",
         "processors": "minecraft:mossify_10_percent",
@@ -39,13 +48,40 @@
       }
     },
     {
-      "weight": 30,
+      "weight": 20,
+      "element": {
+        "location": "aseoha:caps",
+        "processors": "minecraft:mossify_10_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 20,
+      "element": {
+        "location": "aseoha:mechanic",
+        "processors": "minecraft:mossify_10_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "aseoha:hotel",
+        "processors": "minecraft:mossify_10_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 10,
       "element": {
         "location": "aseoha:observatory1",
         "processors": "minecraft:mossify_10_percent",
         "projection": "rigid",
         "element_type": "minecraft:legacy_single_pool_element"
       }
-    },
+    }
   ]
 }

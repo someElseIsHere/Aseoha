@@ -253,10 +253,10 @@ public class RoadStructure extends Structure<NoFeatureConfig> {
 
             // I use to debug and quickly find out if the structure is spawning or not and where it is.
             // This is returning the coordinates of the center starting piece.
-            aseoha.LOGGER.log(Level.DEBUG, "Road at " +
-                    this.pieces.get(0).getBoundingBox().x0 + " " +
-                    this.pieces.get(0).getBoundingBox().y0 + " " +
-                    this.pieces.get(0).getBoundingBox().z0);
+//            aseoha.LOGGER.log(Level.DEBUG, "Road at " +
+//                    this.pieces.get(0).getBoundingBox().x0 + " " +
+//                    this.pieces.get(0).getBoundingBox().y0 + " " +
+//                    this.pieces.get(0).getBoundingBox().z0);
         }
 
     }

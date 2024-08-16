@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "tamastudiosaseoha"
-version = "1.0-SNAPSHOT"
+version = "${ModVer}"
 
 repositories {
     mavenCentral()

@@ -683,6 +683,7 @@ public class k9model <T extends k9> extends EntityModel<T> {
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		matrixStack.pushPose();
 		matrixStack.mulPose(Vector3f.ZN.rotation(180));
+//		this.tail.yRot = T.power;
 		body.render(matrixStack, buffer, packedLight, packedOverlay);
 		tail.render(matrixStack, buffer, packedLight, packedOverlay);
 		head.render(matrixStack, buffer, packedLight, packedOverlay);

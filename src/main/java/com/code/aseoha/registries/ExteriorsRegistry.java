@@ -41,6 +41,9 @@ public class ExteriorsRegistry {
     public static final RegistryObject<AbstractExterior> CAPALDI = EXTERIORS.register("capaldi",
             () -> new TwoBlockBasicExterior(() -> ModBlocks.exterior_capaldi.get().defaultBlockState(), true, EnumDoorTypes.CAPALDI, DoorSounds.BASE, new ResourceLocation(aseoha.MODID, "textures/gui/exteriors/capaldi.png"), TextureVariants.CAPALDI));
 
+    public static final RegistryObject<AbstractExterior> MCGANN = EXTERIORS.register("mcgann",
+            () -> new TwoBlockBasicExterior(() -> ModBlocks.exterior_mcgann.get().defaultBlockState(), true, EnumDoorTypes.CAPALDI, DoorSounds.BASE, new ResourceLocation(aseoha.MODID, "textures/gui/exteriors/mcgann.png"), TextureVariants.MCGANN));
+
 //    public static final RegistryObject<AbstractExterior> STREETSIDE = EXTERIORS.register("streetside",
 //            () -> new TwoBlockBasicExterior(() -> ModBlocks.exterior_streetside.get().defaultBlockState(), true, EnumDoorTypes.STREETSIDE, DoorSounds.BASE, new ResourceLocation(aseoha.MODID, "textures/gui/exteriors/streetside.png")));
 }

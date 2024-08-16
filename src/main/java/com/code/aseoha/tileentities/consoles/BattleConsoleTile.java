@@ -14,7 +14,7 @@ import net.tardis.mod.tileentities.console.misc.ControlOverride;
 import net.tardis.mod.client.models.LightModelRenderer;
 
 
-public class BattleConsoleTile extends ConsoleTile implements ITickableTileEntity {
+public class BattleConsoleTile extends ConsoleTile {
 
     public static final AxisAlignedBB RENDER_BOX = new AxisAlignedBB(-2, -1, -2, 2, 2.5, 2);
 
@@ -26,6 +26,7 @@ public class BattleConsoleTile extends ConsoleTile implements ITickableTileEntit
 public AxisAlignedBB getRenderBoundingBox() {return (new AxisAlignedBB(this.getBlockPos())).expandTowards(2.7, 5.0, 2.7).expandTowards(-2.7,-1,-2.7);
 //        return RENDER_BOX.getCenter(this.getPos());
 }
+
     public BattleConsoleTile() {
         this(AseohaTiles.console_battle.get());
         this.registerControlEntry(ControlRegistry.MONITOR.get());
@@ -38,9 +39,9 @@ public AxisAlignedBB getRenderBoundingBox() {return (new AxisAlignedBB(this.getB
       //Done
        this.controlOverrides.put(FacingControl.class, new ControlOverride(new Vector3d(-0.45, 0.6, 0.125),EntitySize.scalable(0.15F, 0.15F)));
        //Done
-       this.controlOverrides.put(StabilizerControl.class, new ControlOverride(new Vector3d(-0.4, 0.6, 0.35),EntitySize.scalable(0.15F, 0.15F)));
+       this.controlOverrides.put(StabilizerControl.class, new ControlOverride(new Vector3d(-0.503, .5, -0.234),EntitySize.scalable(0.1875F, 0.2575F)));
        //Done
-       this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(0.35, 0.6, -0.225),EntitySize.scalable(0.2F, 0.15F)));
+       this.controlOverrides.put(TelepathicControl.class, new ControlOverride(new Vector3d(-0.593, .5, 0.381),EntitySize.scalable(0.5F, 0.5F)));
         //Done
        this.controlOverrides.put(CommunicatorControl.class, new ControlOverride(new Vector3d(-0.5, 0.475, -0.4),EntitySize.scalable(0.1875F, 0.1875F)));
         //Done
@@ -48,9 +49,9 @@ public AxisAlignedBB getRenderBoundingBox() {return (new AxisAlignedBB(this.getB
         //Done
        this.controlOverrides.put(RandomiserControl.class, new ControlOverride(new Vector3d(-0.65, 0.5, 0.125),EntitySize.scalable(0.15F, 0.15F)));
         //Done
-       this.controlOverrides.put(HandbrakeControl.class, new ControlOverride(new Vector3d(-0.01, 0.5, 0.575),EntitySize.scalable(0.30F, 0.30F)));
+       this.controlOverrides.put(HandbrakeControl.class, new ControlOverride(new Vector3d(0.463, 0.5, 0.114),EntitySize.scalable(0.125F, 0.16F)));
         //Done
-       this.controlOverrides.put(DoorControl.class, new ControlOverride(new Vector3d(-0.6, 0.475, -0.125),EntitySize.scalable(0.1875F, 0.1875F)));
+       this.controlOverrides.put(DoorControl.class, new ControlOverride(new Vector3d(0.199, .5, -0.574),EntitySize.scalable(0.125F, 0.18F)));
        //Done
        this.controlOverrides.put(IncModControl.class, new ControlOverride(new Vector3d(0, 0.73, -0.375),EntitySize.scalable(0.30F, 0.075F)));
         //Done
@@ -72,6 +73,7 @@ public AxisAlignedBB getRenderBoundingBox() {return (new AxisAlignedBB(this.getB
 
        this.controlOverrides.put(MonitorControl.class, new ControlOverride(new Vector3d(0.4,0.3,0.2),EntitySize.scalable(0.3125F, 0.3125F)));
     }
+
 
 
 }

@@ -8,7 +8,6 @@ import net.tardis.mod.client.guis.monitors.BaseMonitorScreen;
 import net.tardis.mod.sounds.TSounds;
 
 public class SmithMonitorScreen extends BaseMonitorScreen {
-//TODO Make sure ResourceLocation for SmithMonitorScreen is right
     public static final ResourceLocation TEXTURE = new ResourceLocation("aseoha", "textures/gui/monitors/smithconsole.png");
 
     public SmithMonitorScreen() {
@@ -60,6 +59,6 @@ public class SmithMonitorScreen extends BaseMonitorScreen {
 
     @Override
     public int getGuiID() {
-        return 8;
+        return 251;
     }
 }

@@ -7,28 +7,17 @@ package com.code.aseoha.block.control;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.*;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.Property;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -37,9 +26,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.tardis.mod.constants.TardisConstants.Translations;
 import net.tardis.mod.controls.IncModControl;
 import net.tardis.mod.helper.TardisHelper;
-import net.tardis.mod.helper.TextHelper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.tileentities.ConsoleTile;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Map;
@@ -56,10 +45,12 @@ public class IncMod extends TorchBlock {
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(LIT, true));
     }
 
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    @NotNull
+    public ActionResultType use(@NotNull BlockState state, @NotNull World worldIn, @NotNull BlockPos pos, @NotNull PlayerEntity player, @NotNull Hand handIn, @NotNull BlockRayTraceResult hit) {
         if (!WorldHelper.isDimensionBlocked(worldIn)) {
             ConsoleTile console = (ConsoleTile)worldIn.getBlockEntity(TardisHelper.TARDIS_POS);
             if (!worldIn.isClientSide) {
+                assert console != null;
                 console.getControl(IncModControl.class).ifPresent((Control) -> {
                     Control.onRightClicked(console, player);
                 });
@@ -73,31 +64,29 @@ public class IncMod extends TorchBlock {
         return ActionResultType.SUCCESS;
 
     }
-    public void onPlace(BlockState state, World world, BlockPos pos, BlockState blockState, boolean x) {
+    public void onPlace(@NotNull BlockState state, @NotNull World world, @NotNull BlockPos pos, @NotNull BlockState blockState, boolean x) {
         Direction[] var6 = Direction.values();
         int var7 = var6.length;
 
-        for(int var8 = 0; var8 < var7; ++var8) {
-            Direction direction = var6[var8];
+        for (Direction direction : var6) {
             world.updateNeighborsAt(pos.relative(direction), this);
         }
 
     }
 
-    public void onRemove(BlockState p_196243_1_, World p_196243_2_, BlockPos p_196243_3_, BlockState p_196243_4_, boolean p_196243_5_) {
+    public void onRemove(@NotNull BlockState p_196243_1_, @NotNull World p_196243_2_, @NotNull BlockPos p_196243_3_, @NotNull BlockState p_196243_4_, boolean p_196243_5_) {
         if (!p_196243_5_) {
             Direction[] var6 = Direction.values();
             int var7 = var6.length;
 
-            for(int var8 = 0; var8 < var7; ++var8) {
-                Direction lvt_9_1_ = var6[var8];
+            for (Direction lvt_9_1_ : var6) {
                 p_196243_2_.updateNeighborsAt(p_196243_3_.relative(lvt_9_1_), this);
             }
 
         }
     }
 
-    public int getSignal(BlockState p_180656_1_, IBlockReader p_180656_2_, BlockPos p_180656_3_, Direction p_180656_4_) {
+    public int getSignal(BlockState p_180656_1_, @NotNull IBlockReader p_180656_2_, @NotNull BlockPos p_180656_3_, @NotNull Direction p_180656_4_) {
         return (Boolean)p_180656_1_.getValue(LIT) && Direction.UP != p_180656_4_ ? 15 : 0;
     }
 
@@ -105,9 +94,9 @@ public class IncMod extends TorchBlock {
         return p_176597_1_.hasSignal(p_176597_2_.below(), Direction.DOWN);
     }
 
-    public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
+    public void tick(@NotNull BlockState p_225534_1_, @NotNull ServerWorld p_225534_2_, @NotNull BlockPos p_225534_3_, @NotNull Random p_225534_4_) {
         boolean lvt_5_1_ = this.hasNeighborSignal(p_225534_2_, p_225534_3_, p_225534_1_);
-        List<IncMod.Toggle> lvt_6_1_ = (List)RECENT_TOGGLES.get(p_225534_2_);
+        List lvt_6_1_ = (List)RECENT_TOGGLES.get(p_225534_2_);
 
         while(lvt_6_1_ != null && !lvt_6_1_.isEmpty() && p_225534_2_.getGameTime() - ((IncMod.Toggle)lvt_6_1_.get(0)).when > 60L) {
             lvt_6_1_.remove(0);
@@ -127,23 +116,23 @@ public class IncMod extends TorchBlock {
 
     }
 
-    public void neighborChanged(BlockState p_220069_1_, World p_220069_2_, BlockPos p_220069_3_, Block p_220069_4_, BlockPos p_220069_5_, boolean p_220069_6_) {
+    public void neighborChanged(BlockState p_220069_1_, @NotNull World p_220069_2_, @NotNull BlockPos p_220069_3_, @NotNull Block p_220069_4_, @NotNull BlockPos p_220069_5_, boolean p_220069_6_) {
         if ((Boolean)p_220069_1_.getValue(LIT) == this.hasNeighborSignal(p_220069_2_, p_220069_3_, p_220069_1_) && !p_220069_2_.getBlockTicks().willTickThisTick(p_220069_3_, this)) {
             p_220069_2_.getBlockTicks().scheduleTick(p_220069_3_, this, 2);
         }
 
     }
 
-    public int getDirectSignal(BlockState p_176211_1_, IBlockReader p_176211_2_, BlockPos p_176211_3_, Direction p_176211_4_) {
+    public int getDirectSignal(@NotNull BlockState p_176211_1_, @NotNull IBlockReader p_176211_2_, @NotNull BlockPos p_176211_3_, @NotNull Direction p_176211_4_) {
         return p_176211_4_ == Direction.DOWN ? p_176211_1_.getSignal(p_176211_2_, p_176211_3_, p_176211_4_) : 0;
     }
 
-    public boolean isSignalSource(BlockState p_149744_1_) {
+    public boolean isSignalSource(@NotNull BlockState p_149744_1_) {
         return true;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState p_180655_1_, World p_180655_2_, BlockPos p_180655_3_, Random p_180655_4_) {
+    public void animateTick(BlockState p_180655_1_, @NotNull World p_180655_2_, @NotNull BlockPos p_180655_3_, @NotNull Random p_180655_4_) {
         if ((Boolean)p_180655_1_.getValue(LIT)) {
             double lvt_5_1_ = (double)p_180655_3_.getX() + 0.5 + (p_180655_4_.nextDouble() - 0.5) * 0.2;
             double lvt_7_1_ = (double)p_180655_3_.getY() + 0.7 + (p_180655_4_.nextDouble() - 0.5) * 0.2;
@@ -157,7 +146,7 @@ public class IncMod extends TorchBlock {
     }
 
     private static boolean isToggledTooFrequently(World p_176598_0_, BlockPos p_176598_1_, boolean p_176598_2_) {
-        List<IncMod.Toggle> lvt_3_1_ = (List)RECENT_TOGGLES.computeIfAbsent(p_176598_0_, (p_220288_0_) -> {
+        List<Toggle> lvt_3_1_ = RECENT_TOGGLES.computeIfAbsent(p_176598_0_, (p_220288_0_) -> {
             return Lists.newArrayList();
         });
         if (p_176598_2_) {
@@ -166,9 +155,8 @@ public class IncMod extends TorchBlock {
 
         int lvt_4_1_ = 0;
 
-        for(int lvt_5_1_ = 0; lvt_5_1_ < lvt_3_1_.size(); ++lvt_5_1_) {
-            IncMod.Toggle lvt_6_1_ = (IncMod.Toggle)lvt_3_1_.get(lvt_5_1_);
-            if (lvt_6_1_.pos.equals(p_176598_1_)) {
+        for (Toggle o : lvt_3_1_) {
+            if (o.pos.equals(p_176598_1_)) {
                 ++lvt_4_1_;
                 if (lvt_4_1_ >= 8) {
                     return true;
@@ -181,7 +169,7 @@ public class IncMod extends TorchBlock {
 
     static {
         LIT = BlockStateProperties.LIT;
-        RECENT_TOGGLES = new WeakHashMap();
+        RECENT_TOGGLES = new WeakHashMap<>();
     }
 
     public static class Toggle {

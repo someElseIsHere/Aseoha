@@ -5,7 +5,10 @@
   "refmap": "aseoha.refmap.json",
   "mixins": [
     "SonicTardisDestinationInteractionMixin",
-    "HandbrakeMixin"
+    "HandbrakeMixin",
+    "ConsoleTextureVariants",
+    "NameTagMixin",
+    "ConsoleChangeMessageMixin"
   ],
   "client": [
   ],

@@ -5,6 +5,7 @@
 
 package com.code.aseoha.tileentities.consoles;
 
+import com.code.aseoha.aseoha;
 import com.code.aseoha.block.ModBlocks;
 import com.code.aseoha.texturevariants.TextureVariants;
 import com.code.aseoha.tileentities.AseohaTiles;
@@ -24,7 +25,7 @@ import net.tardis.mod.tileentities.console.misc.ControlOverride;
 
 import java.util.ArrayList;
 
-public class CopperConsoleTile extends ConsoleTile implements ITickableTileEntity {
+public class CopperConsoleTile extends ConsoleTile {
 
     public static final AxisAlignedBB RENDER_BOX = new AxisAlignedBB(-2, -1, -2, 2, 2.5, 2);
 //    private ArrayList<ControlEntity> controls = new ArrayList();

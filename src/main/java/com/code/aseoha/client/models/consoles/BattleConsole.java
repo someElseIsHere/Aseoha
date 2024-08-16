@@ -14,13 +14,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.Direction;
 import net.tardis.mod.client.models.LightModelRenderer;
 import net.tardis.mod.client.models.TileModel;
+import net.tardis.mod.client.models.consoles.AbstractConsoleEntityModel;
 import net.tardis.mod.controls.*;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.subsystem.StabilizerSubsystem;
 
 import javax.jws.WebParam;
 
-public class BattleConsole extends EntityModel<Entity> implements TileModel<BattleConsoleTile> {
+public class BattleConsole extends AbstractConsoleEntityModel<BattleConsoleTile> {
     private final ModelRenderer Console;
     private final ModelRenderer Panels;
     private final ModelRenderer BasePanel1;
@@ -852,11 +853,12 @@ public class BattleConsole extends EntityModel<Entity> implements TileModel<Batt
 //            this.Throttle.xRot = (float)Math.toRadians(1);
         });
         tile.getControl(HandbrakeControl.class).ifPresent((handBreak) -> {
-            if (handBreak.isFree()) {
-                this.Panel2Screen_r2.setBright(1F);
-            } if(!handBreak.isFree()){
-                this.Panel2Screen_r2.setBright(0F);
-            }
+//            if (handBreak.isFree()) {
+//                this.Panel2Screen_r2.setBright(1F);
+//            } if(!handBreak.isFree()){
+//                this.Panel2Screen_r2.setBright(0F);
+//            }
+            this.Panel2Screen_r2.setBright((handBreak.isFree() ? 1F : 0F));
 //            this.Panel2Screen_r2.setBright(2);
         });
 

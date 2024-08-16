@@ -21,7 +21,7 @@ apply plugin: 'org.spongepowered.mixin'
 //apply plugin: 'intellij'
 apply plugin: 'maven-publish'
 //tm_version = '1.5.4'
-version = ModVer
+version = "${ModVer}"
 group = 'tamastudiosaseoha' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'aseoha'
 
@@ -153,8 +153,10 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
     implementation "org.spongepowered:mixin:${mixin_version}"
-    implementation fg.deobf("curse.maven:temporalapi-1056469:5513035")
+//    implementation fg.deobf("curse.maven:temporalapi-1056469:5513035")
     implementation fg.deobf('com.gitlab.Spectre0987:TardisMod:1.5.4')
+    implementation fg.deobf("curse.maven:jei-238222:5534622")
+//    implementation 'org.slf4j:slf4j-log4j12:2.0.12'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 //    implementation fg.deobf("com.gitlab.Spectre0987:TardisMod-1-14:${tm_version}")
 //    implementation fg.deobf("curse.maven:new-tardis-mod-290247:3667066")
