@@ -15,9 +15,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.tardis.mod.client.models.interiordoors.ModernPoliceBoxInteriorModel;
 import net.tardis.mod.client.models.interiordoors.TTCapsuleInteriorModel;
-//import net.tardis.mod.client.models.interiordoors.ModernPoliceBoxInteriorModel;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = aseoha.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 
@@ -31,7 +29,7 @@ public class ModelRegistry {
 
         //ClientRegistry
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.TARDIS_CORAL.get(), TardisCoralRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(AseohaTiles.UPSIDEDOWN_ENGINE.get(), UpsideDownEngineRenderer::new);
+//        ClientRegistry.bindTileEntityRenderer(AseohaTiles.UPSIDEDOWN_ENGINE.get(), UpsideDownEngineRenderer::new);
         //Exteriors
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.EXTERIOR_CORAL.get(), CoralRenderer::new);
         EnumDoorTypes.CORAL.setInteriorDoorModel(new CoralInteriorDoor());
@@ -58,7 +56,7 @@ public class ModelRegistry {
         EnumDoorTypes.CAPALDI.setInteriorDoorModel(new CapaldiInteriorDoor());
 
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.EXTERIOR_MCGANN.get(), McGannRender::new);
-        EnumDoorTypes.CAPALDI.setInteriorDoorModel(new ModernPoliceBoxInteriorModel());
+        EnumDoorTypes.CAPALDI.setInteriorDoorModel(new CapaldiInteriorDoor());
 
 
     }

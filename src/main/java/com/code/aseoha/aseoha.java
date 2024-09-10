@@ -15,11 +15,15 @@ import com.code.aseoha.protocol.RegisterProtocols;
 import com.code.aseoha.registries.ConsolesRegistry;
 import com.code.aseoha.registries.ExteriorsRegistry;
 import com.code.aseoha.registries.RegisterFlightEvent;
+import com.code.aseoha.registries.SoundSchemeRegister;
 import com.code.aseoha.tileentities.AseohaTiles;
 import com.code.aseoha.upgrades.RegisterUpgrades;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -42,25 +46,12 @@ import org.apache.logging.log4j.Logger;
 import java.util.stream.Collectors;
 
 /**
- * @author Me
+ * @author Codiak
  * <br />
  * Why? Because I did
  */
 @Mod("aseoha")
 public class aseoha {
-//    public enum HadsState {
-//        ENABLED,
-//        DISABLED
-//    }
-
-//    public static final RegistryObject<Console> COPPER = ConsoleRegistry.CONSOLES.register("copper", () -> {
-//        return new net.tardis.mod.misc.Console(() -> {
-//            return ((Block)ModBlocks.console_copper.get()).defaultBlockState();
-//        }, "console");
-//    });
-
-
-
     public static final String MODID = "aseoha";
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
@@ -74,7 +65,7 @@ public class aseoha {
 //        ModelRegistry.Register(eventBus);
         ModBlocks.register(modBus);
         ModItems.register(modBus);
-        if(!(ModList.get().isLoaded("tadditions")))
+        if (!(ModList.get().isLoaded("tadditions")))
             NoTadditionsItems.register(modBus);
         //ConsolesRegistry.CONSOLES.register(modBus);
         RegisterProtocols.PROTOCOLSREGISTER.register(modBus);
@@ -84,6 +75,7 @@ public class aseoha {
         ModEntityTypes.register(modBus);
         RegisterFlightEvent.FLIGHT_EVENTS.register(modBus);
         RegisterUpgrades.UPGRADES.register(modBus);
+        SoundSchemeRegister.SOUND_SCHEMES.register(modBus);
 
         //ModBiomes.register(eventBus);
         // For events that happen after initialization. This is probably going to be use a lot.
@@ -116,6 +108,7 @@ public class aseoha {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
+
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             //Flight Event
@@ -129,6 +122,7 @@ public class aseoha {
 //        LOGGER.info("HELLO FROM PREINIT");
 //        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
+
     /*public void biomeModification(final BiomeLoadingEvent event) {
         /*
          * Add our structure to all biomes including other modded biomes.
@@ -233,11 +227,14 @@ public class aseoha {
         RenderTypeLookup.setRenderLayer(ModBlocks.console_hartnell.get(), RenderType.translucent());
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_hartnell.get(), HartnellConsoleRender::new);
 
+        RenderTypeLookup.setRenderLayer(ModBlocks.console_custard.get(), RenderType.translucent());
+        ClientRegistry.bindTileEntityRenderer(AseohaTiles.console_custard.get(), CustardConsoleRenderer::new);
+
         RenderTypeLookup.setRenderLayer(ModBlocks.CORAL.get(), RenderType.translucent());
         ClientRegistry.bindTileEntityRenderer(AseohaTiles.TARDIS_CORAL.get(), TardisCoralRenderer::new);
 
-        RenderTypeLookup.setRenderLayer(ModBlocks.UPSIDEDOWN_ENGINE.get(), RenderType.translucent());
-        ClientRegistry.bindTileEntityRenderer(AseohaTiles.UPSIDEDOWN_ENGINE.get(), UpsideDownEngineRenderer::new);
+//        RenderTypeLookup.setRenderLayer(ModBlocks.UPSIDEDOWN_ENGINE.get(), RenderType.translucent());
+//        ClientRegistry.bindTileEntityRenderer(AseohaTiles.UPSIDEDOWN_ENGINE.get(), UpsideDownEngineRenderer::new);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ENTITIES
 
@@ -255,20 +252,20 @@ public class aseoha {
     private void processIMC(final InterModProcessEvent event) {
         // some example code to receive and process InterModComms from other mods
         LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m->m.getMessageSupplier().get()).
+                map(m -> m.getMessageSupplier().get()).
                 collect(Collectors.toList()));
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
 //    @SubscribeEvent
 //    public void onServerStarting(FMLServerStartingEvent event) {
-        // do something when the server starts
+    // do something when the server starts
 //        LOGGER.info("HELLO from aseoha server starting");
 //    }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
@@ -276,8 +273,29 @@ public class aseoha {
 //            LOGGER.info("HELLO from Register Block");
         }
     }
+
+    @OnlyIn(Dist.DEDICATED_SERVER)
+    public static void SendDebugToServer(String DebugMessage) {
+        if (config.SERVER.DebugMode.get())
+            System.out.println("[ASEOHA Debug] " + DebugMessage);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void SendDebugToClient(String DebugMessage) {
+        if (config.COMMON.DebugMode.get())
+            System.out.println("[ASEOHA Debug] " + DebugMessage);
+    }
+
+
+    public static void SendDebugToAll(String DebugMessage) {
+        if (config.COMMON.DebugMode.get())
+            System.out.println("[ASEOHA Debug] " + DebugMessage);
+        if (config.SERVER.DebugMode.get())
+            System.out.println("[ASEOHA Debug] " + DebugMessage);
+    }
 }
 
+/////////////////////// Reaaaaaaaally old, crappy, and non-working structure gen I was trying to use for New (x15) York.
     /*
     private static Method GETCODEC_METHOD;
     public void addDimensionalSpacing(final WorldEvent.Load event) {

@@ -59,7 +59,7 @@ public class CoordScreen extends MonitorScreen {
                 if(this.coord.getValue().replaceAll("[^1234567890]", "").isEmpty()){
                     this.coord.setValue("0");
                 }
-                Networking.INSTANCE.sendToServer(new SetCoords(this.console, this.Axis, Integer.parseInt(this.coord.getValue())));
+                Networking.sendToServer(new SetCoords(this.console, this.Axis, Integer.parseInt(this.coord.getValue())));
             }
         });
         this.cancel = this.createButton(this.parent.getMinX(), this.parent.getMinY(), Translations.GUI_CANCEL, (but) -> {

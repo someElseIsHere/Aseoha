@@ -25,6 +25,7 @@ import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.helper.TextHelper;
 import net.tardis.mod.helper.WorldHelper;
 import net.tardis.mod.tileentities.ConsoleTile;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -34,8 +35,9 @@ public class YButton extends StoneButtonBlock {
 //        this.registerDefaultState((BlockState)this.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
     }
 
+    @NotNull
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType use(@NotNull BlockState state, @NotNull World worldIn, @NotNull BlockPos pos, @NotNull PlayerEntity player, @NotNull Hand handIn, @NotNull BlockRayTraceResult hit) {
         if (!WorldHelper.isDimensionBlocked(worldIn)) {
             ConsoleTile console = (ConsoleTile)worldIn.getBlockEntity(TardisHelper.TARDIS_POS);
             if (!worldIn.isClientSide) {

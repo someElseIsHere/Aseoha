@@ -277,9 +277,10 @@ public class ModBlocks {
     public static RegistryObject<Block> console_takomak = registerNoItemBlock("console_takomak", () -> setUpBlock(new ConsoleBlock()));
     public static RegistryObject<Block> console_battle = registerNoItemBlock("console_battle", () -> setUpBlock(new ConsoleBlock()));
     public static RegistryObject<Block> console_brackolin = registerNoItemBlock("console_brackolin", () -> setUpBlock(new ConsoleBlock()));
+    public static RegistryObject<Block> console_custard = registerNoItemBlock("console_custard", () -> setUpBlock(new ConsoleBlock()));
     public static RegistryObject<Block> console_bluemarble = registerNoItemBlock("console_bluemarble", () -> setUpBlock(new ConsoleBlock()));
     public static RegistryObject<Block> console_hartnell = registerNoItemBlock("console_hartnell", () -> setUpBlock(new ConsoleBlock()));
-    public static RegistryObject<Block> UPSIDEDOWN_ENGINE = registerBlock("upsidedown_engine", () -> setUpBlock(new TardisEngineBlock()));
+//    public static RegistryObject<Block> UPSIDEDOWN_ENGINE = registerBlock("upsidedown_engine", () -> setUpBlock(new TardisEngineBlock()));
 
     /************************EXTERIORS********************/
     public static RegistryObject<Block> EXTERIOR_CORAL = registerNoItemBlock("exterior_coral",

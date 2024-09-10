@@ -5,30 +5,19 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.registries.IForgeRegistry;
 import net.tardis.mod.client.guis.monitors.*;
 import net.tardis.mod.client.guis.widgets.TextButton;
 import net.tardis.mod.constants.TardisConstants;
 import net.tardis.mod.helper.TardisHelper;
 import net.tardis.mod.network.Network;
-import net.tardis.mod.network.packets.ProtocolMessage;
 import net.tardis.mod.network.packets.WaypointOpenMessage;
-import net.tardis.mod.protocols.Protocol;
-import net.tardis.mod.registries.ProtocolRegistry;
 import net.tardis.mod.subsystem.FlightSubsystem;
 import net.tardis.mod.tileentities.ConsoleTile;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * This is recycled monitor GUI code that I repurposed for K-9
@@ -63,7 +52,7 @@ public abstract class K9MonitorScreen extends Screen implements IMonitorGui {
 //                    this.addButton(this.addButton(this.getMinX(), this.getMinY(), ((RegistryKey<?>)entry.getKey()).location()));
 //                }
 //            });
-            if(this.tile.getSubsystem(FlightSubsystem.class).isPresent()) {this.addSubmenu(new TranslationTextComponent("aseoha.tardis.submenu"), (Button.IPressable) ((but) -> com.code.aseoha.misc.ScreenClientStuff.openTARDISScreen(this.K9, this)));}
+            if(this.tile.getSubsystem(FlightSubsystem.class).isPresent()) {this.addSubmenu(new TranslationTextComponent("aseoha.tardis.submenu"), (Button.IPressable) ((but) -> com.code.aseoha.misc.ScreenClientStuff.OpenTARDISScreen(this.K9, this)));}
             this.addSubmenu(new TranslationTextComponent(TardisConstants.Strings.GUI_PROTOCOL_TITLE + "interior_properties"), (button) -> Minecraft.getInstance().setScreen(new InteriorEditScreen(this, "interior")));
             this.addSubmenu(new TranslationTextComponent("gui.tardis.protocol.waypoints"), (but) -> {Minecraft.getInstance().setScreen(new WaypointMonitorScreen(this, "waypoints"));Network.sendToServer(new WaypointOpenMessage(null));});
         }

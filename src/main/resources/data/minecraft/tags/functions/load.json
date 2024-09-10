@@ -1,7 +1,5 @@
 {
     "replace": false,
     "values": [
-        "aseoha:shield/checkforarrow",
-        "aseoha:worldtick/manual"
     ]
 }

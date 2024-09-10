@@ -3,22 +3,16 @@ package com.code.aseoha.client.models.consoles;// Made with Blockbench 4.10.0-be
 // Paste this class into your mod and generate all required imports
 
 
+import com.code.aseoha.misc.IHelpWithMonitor;
 import com.code.aseoha.tileentities.consoles.CopperConsoleTile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.vector.Vector3f;
-import net.tardis.mod.client.models.TileModel;
 import net.tardis.mod.client.models.consoles.AbstractConsoleEntityModel;
 import net.tardis.mod.controls.*;
 import net.tardis.mod.enums.EnumDoorState;
 import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.subsystem.StabilizerSubsystem;
-import net.tardis.mod.client.models.LightModelRenderer;
 
 public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsoleTile> {
 
@@ -237,7 +231,6 @@ public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsole
         texHeight = 256;
 
         base = new ModelRenderer(this);
-
         base.setPos(1.35F, 23.0F, 1.5F);
         base.texOffs(232, 250).addBox(-4.5F, -26.0F, -5.8F, 7.0F, 2.0F, 1.0F, 0.0F, false);
         base.texOffs(236, 253).addBox(-4.5F, -38.0F, -5.2F, 7.0F, 2.0F, 1.0F, 0.0F, false);
@@ -1000,8 +993,8 @@ public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsole
         bone61.texOffs(115, 6).addBox(-10.5098F, -23.6F, -39.9025F, 1.0F, 1.0F, 1.0F, -0.1F, false);
         bone61.texOffs(72, 114).addBox(-8.3098F, -22.8F, -40.3025F, 1.0F, 1.0F, 1.0F, 0.0F, false);
         bone61.texOffs(54, 41).addBox(-8.5098F, -23.1F, -39.4025F, 0.0F, 4.0F, 1.0F, 0.1F, false);
-        bone61.texOffs(30, 23).addBox(-8.5098F, -25.2F, -39.4025F, 0.0F, 2.0F, 1.0F, 0.1F, false);
-        bone61.texOffs(26, 78).addBox(-8.5098F, -25.8F, -39.4025F, 0.0F, 2.0F, 2.0F, 0.1F, false);
+        bone61.texOffs(254, 241).addBox(-8.5098F, -25.2F, -39.4025F, 0.0F, 2.0F, 1.0F, 0.1F, false);
+        bone61.texOffs(252, 239).addBox(-8.5098F, -25.8F, -39.4025F, 0.0F, 2.0F, 2.0F, 0.1F, false);
         bone61.texOffs(30, 14).addBox(-12.8098F, -20.1F, -37.4025F, 6.0F, 1.0F, 13.0F, 0.0F, false);
         bone61.texOffs(30, 14).addBox(-12.8098F, -6.1F, -37.4025F, 6.0F, 1.0F, 13.0F, 0.0F, false);
         bone61.texOffs(130, 78).addBox(-10.8098F, -25.6F, -39.4025F, 2.0F, 3.0F, 2.0F, 0.0F, false);
@@ -1038,20 +1031,20 @@ public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsole
         bone64.texOffs(33, 113).addBox(-6.8848F, -18.7513F, -35.9853F, 1.0F, 1.0F, 1.0F, 0.0F, false);
         bone64.texOffs(33, 113).addBox(-7.0848F, -18.7513F, -35.9853F, 1.0F, 1.0F, 1.0F, -0.1F, false);
         bone64.texOffs(33, 113).addBox(-6.6848F, -18.7513F, -35.9853F, 1.0F, 1.0F, 1.0F, -0.1F, false);
-        bone64.texOffs(8, -1).addBox(-6.4098F, -18.5513F, -34.9853F, 0.0F, 0.0F, 1.0F, 0.1F, false);
+        bone64.texOffs(254, 242).addBox(-6.4098F, -18.5513F, -34.9853F, 0.0F, 0.0F, 1.0F, 0.1F, false);
         bone64.texOffs(63, 4).addBox(-14.7098F, -18.3513F, -41.7853F, 12.0F, 1.0F, 3.0F, 0.0F, false);
 
         bone64_r1 = new ModelRenderer(this);
         bone64_r1.setPos(-6.4098F, -18.7513F, -32.1853F);
         bone64.addChild(bone64_r1);
         setRotationAngle(bone64_r1, 0.0F, -0.5236F, 0.0F);
-        bone64_r1.texOffs(8, -1).addBox(-0.6F, 0.0F, -0.2F, 0.0F, 0.0F, 1.0F, 0.1F, false);
+        bone64_r1.texOffs(254, 242).addBox(-0.6F, 0.0F, -0.2F, 0.0F, 0.0F, 1.0F, 0.1F, false);
 
         bone64_r2 = new ModelRenderer(this);
         bone64_r2.setPos(-6.4098F, -18.5513F, -32.9853F);
         bone64.addChild(bone64_r2);
         setRotationAngle(bone64_r2, 0.0F, -0.3054F, 0.0F);
-        bone64_r2.texOffs(7, -2).addBox(-0.3F, 0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 0.1F, false);
+        bone64_r2.texOffs(253, 241).addBox(-0.3F, 0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 0.1F, false);
 
         sonicport = new ModelRenderer(this);
         sonicport.setPos(-10.9398F, -18.2313F, -36.5853F);
@@ -1547,7 +1540,7 @@ public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsole
         bone92_r1.setPos(-0.5999F, -21.3182F, 8.4414F);
         bone91.addChild(bone92_r1);
         setRotationAngle(bone92_r1, 2.0071F, 0.0F, 0.0F);
-        bone92_r1.texOffs(15, 0).addBox(-1.0392F, -1.5531F, 1.0054F, 1.0F, 1.0F, 0.0F, -0.15F, false);
+        bone92_r1.texOffs(21, 1).addBox(-1.0392F, -1.5531F, 1.0054F, 1.0F, 1.0F, 0.0F, -0.15F, false);
         bone92_r1.texOffs(12, 0).addBox(-1.0392F, -1.5531F, -1.4946F, 1.0F, 1.0F, 1.0F, 0.0F, false);
         bone92_r1.texOffs(118, 64).addBox(-0.9892F, -1.5531F, -3.6946F, 1.0F, 1.0F, 5.0F, -0.25F, false);
 
@@ -1920,24 +1913,24 @@ public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsole
         bone140.texOffs(61, 78).addBox(-27.4645F, -49.0F, -5.3096F, 10.0F, 2.0F, 1.0F, 0.0F, false);
         bone140.texOffs(76, 12).addBox(-29.6161F, -48.5F, -1.7828F, 14.0F, 1.0F, 1.0F, 0.0F, false);
         bone140.texOffs(78, 32).addBox(-29.6161F, -48.5F, -25.0315F, 12.0F, 1.0F, 1.0F, 0.0F, false);
-        bone140.texOffs(71, 22).addBox(-29.6161F, -40.6F, -25.0315F, 14.0F, 1.0F, 1.0F, -0.1F, false);
-        bone140.texOffs(103, 90).addBox(-26.6161F, -47.5F, -24.5315F, 8.0F, 7.0F, 0.0F, 0.0F, false);
         bone140.texOffs(125, 55).addBox(-18.6161F, -48.5F, -25.0315F, 1.0F, 1.0F, 4.0F, -0.25F, false);
         bone140.texOffs(123, 42).addBox(-27.6161F, -48.5F, -4.7828F, 1.0F, 1.0F, 4.0F, -0.25F, false);
 
         monitor = new ModelRenderer(this);
-        monitor.setPos(8.85F, -32.0F, -8.2F);
+        monitor.setPos(-1.35F, -32.0F, -1.5F);
         base.addChild(monitor);
         setRotationAngle(monitor, 0.0F, 3.1416F, 0.0F);
 
 
         bone140_r1 = new ModelRenderer(this);
-        bone140_r1.setPos(-0.6161F, -1.05F, -0.6315F);
+        bone140_r1.setPos(-10.8161F, -1.05F, 6.0684F);
         monitor.addChild(bone140_r1);
         setRotationAngle(bone140_r1, 0.0F, 2.0944F, 0.0F);
         bone140_r1.texOffs(164, 87).addBox(6.0F, -5.75F, 0.0F, 1.0F, 12.0F, 1.0F, -0.1F, false);
+        bone140_r1.texOffs(103, 90).addBox(-4.0F, -13.45F, 0.5F, 8.0F, 7.0F, 0.0F, 0.0F, false);
+        bone140_r1.texOffs(71, 22).addBox(-7.0F, -6.55F, 0.0F, 14.0F, 1.0F, 1.0F, -0.1F, false);
         bone140_r1.texOffs(160, 6).addBox(-7.0F, 5.55F, 0.0F, 14.0F, 1.0F, 1.0F, -0.1F, false);
-        bone140_r1.texOffs(164, 87).addBox(-7.0F, -5.75F, 0.0F, 1.0F, 12.0F, 1.0F, -0.1F, false);
+        bone140_r1.texOffs(166, 92).addBox(-7.0F, -5.75F, 0.0F, 1.0F, 12.0F, 1.0F, -0.101F, false);
         bone140_r1.texOffs(192, 183).addBox(4.8F, 1.55F, -1.2F, 1.0F, 1.0F, 2.0F, -0.05F, false);
         bone140_r1.texOffs(190, 182).addBox(4.8F, 1.55F, -1.5F, 1.0F, 1.0F, 2.0F, -0.15F, false);
         bone140_r1.texOffs(190, 182).addBox(4.8F, -2.45F, -1.2F, 1.0F, 1.0F, 2.0F, -0.05F, false);
@@ -1994,7 +1987,7 @@ public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsole
         rotorbottom.texOffs(0, 173).addBox(-2.5F, -38.8F, -1.5F, 3.0F, 4.0F, 3.0F, -0.6F, false);
         rotorbottom.texOffs(0, 173).addBox(-2.5F, -40.8F, -1.5F, 3.0F, 4.0F, 3.0F, -0.6F, false);
         rotorbottom.texOffs(0, 173).addBox(-2.5F, -42.6F, -1.5F, 3.0F, 3.0F, 3.0F, -0.5F, false);
-    }
+}
 
     @Override
     public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
@@ -2050,6 +2043,12 @@ public class CopperConsoleModel extends AbstractConsoleEntityModel<CopperConsole
 //        this.TimeRotor.yRot = (float)Math.toRadians((double)(tile.flightTicks * -3 % 360));
         this.rotorbottom.y =  4F + (0 - (float)Math.cos((double)copperConsoleTile.flightTicks * 0.1D) * 2F); //rotationPointY
         this.rotortop.y = 1F + (float)Math.cos((double)copperConsoleTile.flightTicks * 0.1D) * 2F; //rotationPointY
+        if(copperConsoleTile.getControl(MonitorControl.class).isPresent()) {
+            MonitorControl control = copperConsoleTile.getControl(MonitorControl.class).get();
+
+            float rot = (((IHelpWithMonitor) control).Aseoha$GetRot() == 60) ? 180 : ((IHelpWithMonitor) control).Aseoha$GetRot() + 60;
+            this.monitor.yRot = (float) Math.toRadians(rot);
+        }
 //        matrixStack.pushPose();
 //		matrixStack.scale(0.95F, 0.95F, 0.95F);
 //		matrixStack.translate(0.0685F,0.275F,-0.07F);

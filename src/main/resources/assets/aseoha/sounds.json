@@ -17,6 +17,12 @@
       "aseoha:aseoha/affirmative_master"
     ]
   },
+  "empty": {
+    "subtitle": "",
+    "sounds": [
+      "aseoha:aseoha/empty"
+    ]
+  },
   "majestic_tale": {
     "sounds": [
       {
@@ -31,120 +37,120 @@
 
   "block_azalea_break": {
     "sounds": [
-      "block/azalea/break1",
-      "block/azalea/break2",
-      "block/azalea/break3",
-      "block/azalea/break4",
-      "block/azalea/break5",
-      "block/azalea/break6"
+      "aseoha:block/azalea/break1",
+      "aseoha:block/azalea/break2",
+      "aseoha:block/azalea/break3",
+      "aseoha:block/azalea/break4",
+      "aseoha:block/azalea/break5",
+      "aseoha:block/azalea/break6"
     ],
     "subtitle": "subtitles.block.generic.break"
   },
   "block_azalea_fall": {
     "sounds": [
-      "block/azalea/step1",
-      "block/azalea/step2",
-      "block/azalea/step3",
-      "block/azalea/step4",
-      "block/azalea/step5",
-      "block/azalea/step6"
+      "aseoha:block/azalea/step1",
+      "aseoha:block/azalea/step2",
+      "aseoha:block/azalea/step3",
+      "aseoha:block/azalea/step4",
+      "aseoha:block/azalea/step5",
+      "aseoha:block/azalea/step6"
     ]
   },
   "block_azalea_hit": {
     "sounds": [
-      "block/azalea/step1",
-      "block/azalea/step2",
-      "block/azalea/step3",
-      "block/azalea/step4",
-      "block/azalea/step5",
-      "block/azalea/step6"
+      "aseoha:block/azalea/step1",
+      "aseoha:block/azalea/step2",
+      "aseoha:block/azalea/step3",
+      "aseoha:block/azalea/step4",
+      "aseoha:block/azalea/step5",
+      "aseoha:block/azalea/step6"
     ],
     "subtitle": "subtitles.block.generic_hit"
   },
   "block_azalea_place": {
     "sounds": [
-      "block/azalea/break1",
-      "block/azalea/break2",
-      "block/azalea/break3",
-      "block/azalea/break4",
-      "block/azalea/break5",
-      "block/azalea/break6"
+      "aseoha:block/azalea/break1",
+      "aseoha:block/azalea/break2",
+      "aseoha:block/azalea/break3",
+      "aseoha:block/azalea/break4",
+      "aseoha:block/azalea/break5",
+      "aseoha:block/azalea/break6"
     ],
     "subtitle": "subtitles.block.generic.place"
   },
   "block_azalea_step": {
     "sounds": [
-      "block/azalea/step1",
-      "block/azalea/step2",
-      "block/azalea/step3",
-      "block/azalea/step4",
-      "block/azalea/step5",
-      "block/azalea/step6"
+      "aseoha:block/azalea/step1",
+      "aseoha:block/azalea/step2",
+      "aseoha:block/azalea/step3",
+      "aseoha:block/azalea/step4",
+      "aseoha:block/azalea/step5",
+      "aseoha:block/azalea/step6"
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
   "block_azalea_leaves_break": {
     "sounds": [
       {
-        "name": "block/azalea_leaves/break1",
+        "name": "aseoha:block/azalea_leaves/break1",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break1",
+        "name": "aseoha:block/azalea_leaves/break1",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break2",
+        "name": "aseoha:block/azalea_leaves/break2",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break2",
+        "name": "aseoha:block/azalea_leaves/break2",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break3",
+        "name": "aseoha:block/azalea_leaves/break3",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break3",
+        "name": "aseoha:block/azalea_leaves/break3",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break4",
+        "name": "aseoha:block/azalea_leaves/break4",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break4",
+        "name": "aseoha:block/azalea_leaves/break4",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break5",
+        "name": "aseoha:block/azalea_leaves/break5",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break5",
+        "name": "aseoha:block/azalea_leaves/break5",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break6",
+        "name": "aseoha:block/azalea_leaves/break6",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break6",
+        "name": "aseoha:block/azalea_leaves/break6",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break7",
+        "name": "aseoha:block/azalea_leaves/break7",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break7",
+        "name": "aseoha:block/azalea_leaves/break7",
         "pitch": 0.92,
         "volume": 0.85
       }
@@ -153,33 +159,33 @@
   },
   "block_azalea_leaves_fall": {
     "sounds": [
-      "block/azalea_leaves/step1",
-      "block/azalea_leaves/step2",
-      "block/azalea_leaves/step3",
-      "block/azalea_leaves/step4",
-      "block/azalea_leaves/step5"
+      "aseoha:block/azalea_leaves/step1",
+      "aseoha:block/azalea_leaves/step2",
+      "aseoha:block/azalea_leaves/step3",
+      "aseoha:block/azalea_leaves/step4",
+      "aseoha:block/azalea_leaves/step5"
     ]
   },
   "block_azalea_leaves_hit": {
     "sounds": [
       {
-        "name": "block/azalea_leaves/step1",
+        "name": "aseoha:block/azalea_leaves/step1",
         "volume": 0.8
       },
       {
-        "name": "block/azalea_leaves/step2",
+        "name": "aseoha:block/azalea_leaves/step2",
         "volume": 0.8
       },
       {
-        "name": "block/azalea_leaves/step3",
+        "name": "aseoha:block/azalea_leaves/step3",
         "volume": 0.8
       },
       {
-        "name": "block/azalea_leaves/step4",
+        "name": "aseoha:block/azalea_leaves/step4",
         "volume": 0.8
       },
       {
-        "name": "block/azalea_leaves/step5",
+        "name": "aseoha:block/azalea_leaves/step5",
         "volume": 0.8
       }
     ],
@@ -188,65 +194,65 @@
   "block_azalea_leaves_place": {
     "sounds": [
       {
-        "name": "block/azalea_leaves/break1",
+        "name": "aseoha:block/azalea_leaves/break1",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break1",
+        "name": "aseoha:block/azalea_leaves/break1",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break2",
+        "name": "aseoha:block/azalea_leaves/break2",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break2",
+        "name": "aseoha:block/azalea_leaves/break2",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break3",
+        "name": "aseoha:block/azalea_leaves/break3",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break3",
+        "name": "aseoha:block/azalea_leaves/break3",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break4",
+        "name": "aseoha:block/azalea_leaves/break4",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break4",
+        "name": "aseoha:block/azalea_leaves/break4",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break5",
+        "name": "aseoha:block/azalea_leaves/break5",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break5",
+        "name": "aseoha:block/azalea_leaves/break5",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break6",
+        "name": "aseoha:block/azalea_leaves/break6",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break6",
+        "name": "aseoha:block/azalea_leaves/break6",
         "pitch": 0.92,
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break7",
+        "name": "aseoha:block/azalea_leaves/break7",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break7",
+        "name": "aseoha:block/azalea_leaves/break7",
         "pitch": 0.92,
         "volume": 0.85
       }
@@ -256,23 +262,23 @@
   "block_azalea_leaves_step": {
     "sounds": [
       {
-        "name": "block/azalea_leaves/step1",
+        "name": "aseoha:block/azalea_leaves/step1",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/step2",
+        "name": "aseoha:block/azalea_leaves/step2",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/step3",
+        "name": "aseoha:block/azalea_leaves/step3",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/step4",
+        "name": "aseoha:block/azalea_leaves/step4",
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/step5",
+        "name": "aseoha:block/azalea_leaves/step5",
         "volume": 0.85
       }
     ],

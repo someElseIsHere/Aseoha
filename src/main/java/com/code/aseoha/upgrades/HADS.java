@@ -2,6 +2,8 @@ package com.code.aseoha.upgrades;
 
 import java.util.Objects;
 import java.util.Random;
+
+import com.code.aseoha.misc.IHelpWithConsole;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.concurrent.TickDelayedTask;
@@ -29,48 +31,40 @@ public static void hadsActivate(ConsoleTile console) {
                 if (!Objects.requireNonNull(console.getLevel()).isClientSide) {
                     console.getSubsystem(StabilizerSubsystem.class).ifPresent(stabs -> stabs.setActivated(false));
                 }
+                if(((IHelpWithConsole) console).Aseoha$GetHads()) {
+                    console.takeoff();
+                    Objects.requireNonNull(console.getLevel().getServer()).tell(new TickDelayedTask(1, () -> {
+                        console.setDestinationReachedTick(1);
+                        console.setFlightTicks(1);
 
-                console.takeoff();
-                console.getLevel().getServer().tell(new TickDelayedTask(1, () -> {
-                    console.setDestinationReachedTick(1);
-                    console.setFlightTicks(1);
-                }));
-                console.updateClient();
-                if(console.flightTicks == 1200){
-                    console.initLand();
+                    }));
+                    console.updateClient();
+                    if (console.flightTicks == 1200) {
+                        console.initLand();
+                    }
                 }
 }
 
     public void tick(ConsoleTile console) {
 //        hadsActivate(console);
 
-        if(!console.isInFlight() && this.isUsable() && this.isActivated()) {
+        if (!console.isInFlight() && this.isUsable() && this.isActivated()) {
 
 
-            if(this.tile == null || this.tile.isRemoved()) {
+            if (this.tile == null || this.tile.isRemoved()) {
                 tile = console.getExteriorType().getExteriorTile(console);
                 return;
             }
 
-            if(tile.getLevel() != null) {
-                for(LivingEntity liv : tile.getLevel().getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(tile.getBlockPos()).inflate(2))) {
-                    if( liv instanceof IMob && !liv.getType().is(TardisEntityTypeTags.IGNORED_ALARM_ENTITIES)){
+            if (tile.getLevel() != null) {
+                for (LivingEntity liv : tile.getLevel().getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(tile.getBlockPos()).inflate(2))) {
+                    if (liv instanceof IMob && !liv.getType().is(TardisEntityTypeTags.IGNORED_ALARM_ENTITIES)) {
                         hadsActivate(console);
                     }
                 }
             }
-
-
-//            if (tile.getLevel() != null) {
-//                if(!tile.getLevel().getEntitiesOfClass(DalekEntity.class, new AxisAlignedBB(tile.getBlockPos()).inflate(5)).isEmpty() ||
-//                        !tile.getLevel().getEntitiesOfClass(CreeperEntity.class, new AxisAlignedBB(tile.getBlockPos()).inflate(5)).isEmpty() ||
-//                        !tile.getLevel().getEntitiesOfClass(PiglinBruteEntity.class, new AxisAlignedBB(tile.getBlockPos()).inflate(5)).isEmpty() ||
-//                        !tile.getLevel().getEntitiesOfClass(HoglinEntity.class, new AxisAlignedBB(tile.getBlockPos()).inflate(5)).isEmpty() ||
-//                        !tile.getLevel().getEntitiesOfClass(FireballEntity.class, new AxisAlignedBB(tile.getBlockPos()).inflate(5)).isEmpty()) {
-//                    hadsActivate(console);
-//                }
         }
-        }
+    }
 
     public void onLand() {
     }

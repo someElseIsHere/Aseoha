@@ -12,6 +12,9 @@ import net.minecraft.world.World;
 import java.util.Set;
 import java.util.function.Predicate;
 
+/**
+ * Backported 1.20 Container code
+ */
 public interface Container120 extends IClearable {
     int LARGE_MAX_STACK_SIZE = 64;
     int DEFAULT_DISTANCE_LIMIT = 8;

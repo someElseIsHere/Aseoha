@@ -54,6 +54,7 @@ package com.code.aseoha.tileentities;
 import com.code.aseoha.aseoha;
 import com.code.aseoha.block.ModBlocks;
 //import com.code.aseoha.tileentities.blocks.ChiseledBookShelfBlockEntity;
+//import com.code.aseoha.tileentities.blocks.ChiseledBookShelfBlockEntity;
 import com.code.aseoha.tileentities.blocks.TardisCoralTile;
 import com.code.aseoha.tileentities.consoles.*;
 import com.code.aseoha.tileentities.exteriors.*;
@@ -77,8 +78,8 @@ public class AseohaTiles {
     public static final RegistryObject<TileEntityType<TardisCoralTile>> TARDIS_CORAL = TILES.register("tardis_coral",
             () -> TileEntityType.Builder.of(TardisCoralTile::new, ModBlocks.CORAL.get()).build(null));
 
-    public static final RegistryObject<TileEntityType<TardisEngineTile>> UPSIDEDOWN_ENGINE = TILES.register("upsidedown_engine",
-            () -> TileEntityType.Builder.of(TardisEngineTile::new, ModBlocks.UPSIDEDOWN_ENGINE.get()).build(null));
+//    public static final RegistryObject<TileEntityType<TardisEngineTile>> UPSIDEDOWN_ENGINE = TILES.register("upsidedown_engine",
+//            () -> TileEntityType.Builder.of(TardisEngineTile::new, ModBlocks.UPSIDEDOWN_ENGINE.get()).build(null));
 
 //    public static final RegistryObject<TileEntityType<ChiseledBookShelfBlockEntity>> CHISELED_BOOKSHELF = TILES.register("chiseled_bookshelf",
 //            () -> TileEntityType.Builder.of(ChiseledBookShelfBlockEntity::new, ModBlocks.CHISELED_BOOKSHELF.get()).build(null));
@@ -151,6 +152,10 @@ public class AseohaTiles {
     public static final RegistryObject<TileEntityType<BrackolinConsoleTile>> console_brackolin =
             TILES.register("console_brackolin", () ->registerTiles(BrackolinConsoleTile::new,
                     ModBlocks.console_brackolin.get()));
+
+    public static final RegistryObject<TileEntityType<CustardConsoleTile>> console_custard =
+            TILES.register("console_custard", () ->registerTiles(CustardConsoleTile::new,
+                    ModBlocks.console_custard.get()));
 
     private static <T extends TileEntity> TileEntityType<T> registerTiles(Supplier<T> tile, Block... validBlock) {
         TileEntityType<T> type = TileEntityType.Builder.of(tile, validBlock).build(null);

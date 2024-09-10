@@ -1,8 +1,10 @@
 package com.code.aseoha;
 
 import com.google.common.collect.Lists;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -22,14 +24,22 @@ public class config {
     }
 
     public static class Server {
-//        public ForgeConfigSpec.ConfigValue<Boolean> SummonTARDISinTARDIS;
-public ForgeConfigSpec.ConfigValue<Integer> K9PowerDrainRate;
+        //        public ForgeConfigSpec.ConfigValue<Boolean> SummonTARDISinTARDIS;
+        public ForgeConfigSpec.ConfigValue<Integer> K9PowerDrainRate;
+        public ForgeConfigSpec.ConfigValue<Boolean> DebugMode;
+
         public Server(ForgeConfigSpec.Builder builder) {
 
 //            SummonTARDISinTARDIS = builder.comment("Changes whether you can summon a TARDIS inside another TARDIS with the stattenhiem remote, true/false")
 //                    .translation("config.tardisintardis").define("SummonTARDISinTARDIS", true);
 
-            K9PowerDrainRate = builder.comment("Changes Power Drain rate of K-9, measured in seconds, 0 - 2147483647\nThis will set how many seconds it takes to drain 1% of K9's battery, default is 25")
+            DebugMode = builder
+                    .comment("Enables/Disable Debug Mode, all this does is output a ton of potentially useful data to the console and log file")
+                    .translation("config.debug_mode")
+                    .define("DebugMode", false);
+
+            K9PowerDrainRate = builder
+                    .comment("Changes Power Drain rate of K-9, measured in seconds, 0 - 2147483647\nThis will set how many seconds it takes to drain 1% of K9's battery, default is 25")
                     .translation("config.k9.power_rate")
                     .defineInRange("K9PowerDrainRate", 25, 0, Integer.MAX_VALUE);
         }
@@ -38,16 +48,24 @@ public ForgeConfigSpec.ConfigValue<Integer> K9PowerDrainRate;
     public static class Common {
         public ForgeConfigSpec.ConfigValue<Integer> PowerFaultRarity;
         public ForgeConfigSpec.ConfigValue<Integer> TakingOverRarity;
+        public ForgeConfigSpec.ConfigValue<Boolean> DebugMode;
 
-        public Common(ForgeConfigSpec.Builder builder) {
-            PowerFaultRarity = builder.comment("Changes the rarity of the Power Fault, 0 - 100")
+
+        public Common(@NotNull ForgeConfigSpec.Builder builder) {
+            PowerFaultRarity = builder
+                    .comment("Changes the rarity of the Power Fault, 0 - 100")
                     .translation("config.rarity.powerfault")
                     .defineInRange("PowerFaultRarity", 25, 0, 100);
 
-            TakingOverRarity = builder.comment("Changes the rarity of the TARDIS Taking Over event, 0 - 100")
+            TakingOverRarity = builder
+                    .comment("Changes the rarity of the TARDIS Taking Over event, 0 - 100")
                     .translation("config.rarity.takingover")
                     .defineInRange("TakingOverRarity", 15, 0, 100);
 
+            DebugMode = builder
+                    .comment("Enables/Disable Debug Mode, all this does is output a ton of potentially useful data to the console and log file")
+                    .translation("config.debug_mode")
+                    .define("DebugMode", false);
         }
     }
 }

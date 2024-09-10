@@ -166,7 +166,7 @@
 //                pPlayer.drop(itemStack, false);
 //            }
 //
-//            pLevel.gameEvent(pPlayer, GameEvent.BLOCK_CHANGE, pPos);
+////            pLevel.gameEvent(pPlayer, GameEvent.BLOCK_CHANGE, pPos);
 //        }
 //    }
 //

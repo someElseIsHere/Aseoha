@@ -858,50 +858,50 @@ public class BattleConsole extends AbstractConsoleEntityModel<BattleConsoleTile>
 //            } if(!handBreak.isFree()){
 //                this.Panel2Screen_r2.setBright(0F);
 //            }
-            this.Panel2Screen_r2.setBright((handBreak.isFree() ? 1F : 0F));
+            this.Panel1Screen_r3.setBright((handBreak.isFree() ? 1F : 0F));
 //            this.Panel2Screen_r2.setBright(2);
         });
 
         tile.getControl(ThrottleControl.class).ifPresent((throttleControl) -> {
 //            aseoha.LOGGER.info(throttleControl.getAmount());
             if (throttleControl.getAmount() == .0F) {
-                this.Panel1Screen_r3.setBright(.0F);
+                this.Panel2Screen_r2.setBright(.0F);
             }
             if (throttleControl.getAmount() == .1F) {
-                this.Panel1Screen_r3.setBright(.1F);
+                this.Panel2Screen_r2.setBright(.1F);
             }
             if (throttleControl.getAmount() == .2F) {
-                this.Panel1Screen_r3.setBright(0.2F);
+                this.Panel2Screen_r2.setBright(0.2F);
             }
 
             if (throttleControl.getAmount() == .3F) {
-                this.Panel1Screen_r3.setBright(0.3F);
+                this.Panel2Screen_r2.setBright(0.3F);
             }
 
             if (throttleControl.getAmount() == .4F) {
-                this.Panel1Screen_r3.setBright(0.4F);
+                this.Panel2Screen_r2.setBright(0.4F);
             }
             if (throttleControl.getAmount() == .5F) {
-                this.Panel1Screen_r3.setBright(0.5F);
+                this.Panel2Screen_r2.setBright(0.5F);
             }
             if (throttleControl.getAmount() == .6F) {
-                this.Panel1Screen_r3.setBright(0.6F);
+                this.Panel2Screen_r2.setBright(0.6F);
             }
             if (throttleControl.getAmount() == .7F) {
-                this.Panel1Screen_r3.setBright(0.7F);
+                this.Panel2Screen_r2.setBright(0.7F);
             }
             if (throttleControl.getAmount() == .8F) {
-                this.Panel1Screen_r3.setBright(0.8F);
+                this.Panel2Screen_r2.setBright(0.8F);
             }
             if (throttleControl.getAmount() == .9F) {
-                this.Panel1Screen_r3.setBright(0.9F);
+                this.Panel2Screen_r2.setBright(0.9F);
             }
             if (throttleControl.getAmount() == 1) {
-                this.Panel1Screen_r3.setBright(1F);
+                this.Panel2Screen_r2.setBright(1F);
             }
-            if (throttleControl.getAmount() == 11) {
-                this.Panel1Screen_r3.setBright(1.1F);
-            }
+//            if (throttleControl.getAmount() == 11) {
+//                this.Panel1Screen_r3.setBright(1.1F);
+//            }
 
         });
 //            this.Pane

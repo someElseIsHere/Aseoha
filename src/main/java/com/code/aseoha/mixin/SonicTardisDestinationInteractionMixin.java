@@ -64,7 +64,7 @@ public class SonicTardisDestinationInteractionMixin extends AbstractSonicMode {
 //    }
 
     /**
-     * @author Me
+     * @author Codiak
      * @reason HADS & Stuff
      */
     @Inject(remap = false, method = "processBlock", at = @At("HEAD"))
@@ -96,7 +96,7 @@ public class SonicTardisDestinationInteractionMixin extends AbstractSonicMode {
  */
 @Overwrite(remap = false)
     public ArrayList<TranslationTextComponent> getAdditionalInfo() {
-        ArrayList<TranslationTextComponent> list = new ArrayList();
+        ArrayList<TranslationTextComponent> list = new ArrayList<>();
         list.add(new TranslationTextComponent("mixin.sonic.modes.info.set_coords"));
         return list;
     }

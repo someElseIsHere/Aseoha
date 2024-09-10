@@ -46,7 +46,7 @@
       "structures": {
         "structures": {
           "aseoha:road": {
-            "spacing": 12,
+            "spacing": 10,
             "separation": 9,
             "salt": 0
           }

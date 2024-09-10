@@ -23,7 +23,8 @@ public class GiveManual extends TCommand {
 
     private static int GiveManual(CommandSource source, ServerWorld sWorld) {
         if(source.getEntity() instanceof PlayerEntity)
-            source.getEntity().removeTag("GotASEOHABook");
+//            source.getEntity().removeTag("GotASEOHABook");
+            source.getServer().getCommands().performCommand(source.getServer().createCommandSourceStack().withEntity(source.getEntity()).withSuppressedOutput(), "function aseoha:givemanual");
         source.sendSuccess(new TranslationTextComponent("command.aseoha.book.given"), true);
         return Command.SINGLE_SUCCESS;
     }

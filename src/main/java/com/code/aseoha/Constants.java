@@ -20,6 +20,7 @@ public class Constants {
     public final static ITextComponent AffirmativeK9 = new StringTextComponent("[K9] Affirmative, Master!");
     public final static ITextComponent DoesNotComputeK9 = new StringTextComponent("[K9] Error, Statement Does Not Compute, Aborting!");
     public final static ITextComponent InsufficientDataK9 = new StringTextComponent("[K9] Insufficient Data!");
+    public static final TranslationTextComponent TOOLTIP_REENABLED = new TranslationTextComponent("tooltip.item.info.reenabled");
 //    public static final ITag.INamedTag<Item> BOOKSHELF_BOOKS = bind("bookshelf_books");
 //    public final static String waysOfSayingK9 =
 }

@@ -14,6 +14,9 @@ public class Sounds {
     public static final RegistryObject<SoundEvent> AZALEA_BREAK = SOUNDS.register("block_azalea_break", () -> {
         return setupSound("block_azalea_break");
     });
+    public static final RegistryObject<SoundEvent> EMPTY = SOUNDS.register("empty", () -> {
+        return setupSound("empty");
+    });
     public static final RegistryObject<SoundEvent> AZALEA_FALL = SOUNDS.register("block_azalea_fall", () -> {
         return setupSound("block_azalea_fall");
     });

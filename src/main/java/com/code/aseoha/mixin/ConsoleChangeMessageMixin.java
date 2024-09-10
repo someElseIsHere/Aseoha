@@ -36,39 +36,8 @@ public class ConsoleChangeMessageMixin {
 
     /**
      * @author Me
-     * @reason Get hitboxes to change
+     * @reason Get hitbox's to change
      */
-//    @Overwrite(remap = false)
-//    public static void handle(ConsoleChangeMessage mes, Supplier<NetworkEvent.Context> ctx) {
-//        ((NetworkEvent.Context) ctx.get()).enqueueWork(() -> {
-//            ServerWorld world = Objects.requireNonNull(((NetworkEvent.Context) ctx.get()).getSender()).getLevel();
-//            if (WorldHelper.areDimensionTypesSame(world, TDimensions.DimensionTypes.TARDIS_TYPE)) {
-//                TileEntity te = world.getBlockEntity(TardisHelper.TARDIS_POS);
-//                if (te instanceof ConsoleTile) {
-//                    ConsoleTile oldConsole = (ConsoleTile) te;
-//                    Console console = (Console) ((IForgeRegistry<?>) ConsoleRegistry.CONSOLE_REGISTRY.get()).getValue(mes.console);
-//                    if (console != null && oldConsole.getUnlockManager().getUnlockedConsoles().contains(console)) {
-//                        if (((ConsoleTile) te).canDoAdminFunction(((NetworkEvent.Context) ctx.get()).getSender())) {
-//                            CompoundNBT oldData = oldConsole.serializeNBT();
-//                            world.setBlock(oldConsole.getBlockPos(), console.getState(), 2);
-//                            TileEntity newConsole = world.getBlockEntity(te.getBlockPos());
-//                            if (newConsole instanceof ConsoleTile) {
-//                                ((ConsoleTile) newConsole).deserializeNBT(oldData);
-//                                world.getServer().tell(new TickDelayedTask(1, () -> {
-//                                    ((ConsoleTile) newConsole).updateClient();
-//                                }));
-//                            }
-//                        } else {
-//                            Objects.requireNonNull(((NetworkEvent.Context) ctx.get()).getSender()).displayClientMessage(TardisConstants.Translations.NOT_ADMIN, true);
-//                        }
-//                    }
-//                }
-//            }
-//
-//        });
-//        ((NetworkEvent.Context) ctx.get()).setPacketHandled(true);
-//    }
-
     @Inject(
             method = {"lambda$handle$1"},
             at = {@At(

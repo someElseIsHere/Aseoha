@@ -12,6 +12,9 @@ public class ConsolesRegistry {
     public static final RegistryObject<com.code.aseoha.misc.Console> COPPER =
             CONSOLES.register("copper", () -> new com.code.aseoha.misc.Console(() -> ModBlocks.console_copper.get().defaultBlockState(), "copperconsole"));
 
+    public static final RegistryObject<com.code.aseoha.misc.Console> CUSTARD =
+            CONSOLES.register("custard", () -> new com.code.aseoha.misc.Console(() -> ModBlocks.console_custard.get().defaultBlockState(), "custardconsole"));
+
     public static final RegistryObject<com.code.aseoha.misc.Console> BATTLE =
             CONSOLES.register("battle", () -> new com.code.aseoha.misc.Console(() -> ModBlocks.console_battle.get().defaultBlockState(), "battleconsole"));
 

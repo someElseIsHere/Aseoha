@@ -38,9 +38,9 @@ public class ModItems{
         return (PrydonianRobes)createItem(new PrydonianRobes(EquipmentSlotType.HEAD));
     });
 
-    public static final RegistryObject<Item> HADS = ITEMS.register("upgrades/hads", () -> {
-        return (TardisPartItem)createItem(new TardisPartItem((new Item.Properties()).tab(ModItemGroup.ASEOHA_GROUP), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.DEMAT_CIRCUIT));
-    });
+//    public static final RegistryObject<Item> HADS = ITEMS.register("upgrades/hads", () -> {
+//        return (TardisPartItem)createItem(new TardisPartItem((new Item.Properties()).tab(ModItemGroup.ASEOHA_GROUP), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.DEMAT_CIRCUIT));
+//    });
 
 //    public static final RegistryObject<Item> AUTO_STABILISER = ITEMS.register("upgrades/auto_stabilizers", () -> {
 //        return (TardisPartItem)createItem(new TardisPartItem((new Item.Properties()).tab(ModItemGroup.ASEOHA_GROUP), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.DEMAT_CIRCUIT));
@@ -48,6 +48,9 @@ public class ModItems{
 
     public static final RegistryObject<Item> ENGINE_BOOSTER = ITEMS.register("upgrades/engine_booster", () -> {
         return (TardisPartItem)createItem(new TardisPartItem((new Item.Properties()).tab(ModItemGroup.ASEOHA_GROUP), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.DEMAT_CIRCUIT));
+    });
+    public static final RegistryObject<Item> ATRIUM_UPGRADE = ITEMS.register("upgrades/atrium", () -> {
+        return (TardisPartItem)createItem(new TardisPartItem((new Item.Properties()).tab(ModItemGroup.ASEOHA_GROUP), TardisConstants.Part.PartType.UPGRADE, false, false, TardisConstants.Translations.CHAMELEON_CIRCUIT));
     });
 //
 //    public static final RegistryObject<Item> MANUAL = ITEMS.register("manual",

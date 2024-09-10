@@ -13,7 +13,7 @@ import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
 import net.tardis.mod.misc.WorldText;
 
 public class CoralRenderer extends ExteriorRenderer<CoralTile> {
-    public static ResourceLocation TEXTURE = new ResourceLocation("aseoha", "textures/interiordoors/coral.png");
+    public static ResourceLocation TEXTURE = new ResourceLocation("aseoha", "textures/exteriors/coral.png");
 //    public static CoralExterior MODEL = new CoralExterior();
 //    public static WorldText TEXT = new WorldText(0.87F, 0.125F, 0.015F, 0);
 

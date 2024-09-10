@@ -3,7 +3,7 @@
   "fallback": "aseoha:road",
   "elements": [
     {
-      "weight": 50,
+      "weight": 22,
       "element": {
         "location": "aseoha:road",
         "processors": "minecraft:mossify_10_percent",
@@ -12,9 +12,27 @@
       }
     },
     {
-      "weight": 35,
+      "weight": 11,
       "element": {
         "location": "aseoha:road1",
+        "processors": "minecraft:mossify_10_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 9,
+      "element": {
+        "location": "aseoha:road_curve",
+        "processors": "minecraft:mossify_10_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "location": "aseoha:road_intersection",
         "processors": "minecraft:mossify_10_percent",
         "projection": "rigid",
         "element_type": "minecraft:legacy_single_pool_element"

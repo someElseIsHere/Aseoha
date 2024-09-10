@@ -9,6 +9,9 @@ import net.tardis.mod.registries.ProtocolRegistry;
 public class RegisterProtocols extends ProtocolRegistry {
 
     public static final DeferredRegister<Protocol> PROTOCOLSREGISTER = DeferredRegister.create(Protocol.class, aseoha.MODID);
-//    public static final RegistryObject<Protocol> HADS = PROTOCOLSREGISTER.register("hads", hads::new);
-
+    public static final RegistryObject<Protocol> HADS = PROTOCOLSREGISTER.register("hads", HadsProtocol::new);
+    public static final RegistryObject<Protocol> EJECT = PROTOCOLSREGISTER.register("eject", EjectProtocol::new);
+    public static final RegistryObject<Protocol> SHRINK = PROTOCOLSREGISTER.register("shrink", ShrinkProtocol::new);
+//    public static final RegistryObject<Protocol> RWF = PROTOCOLSREGISTER.register("rwf", RWFProtocol::new);
+    //TODO: FINISH RWF
 }

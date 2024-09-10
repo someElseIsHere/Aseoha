@@ -3,41 +3,20 @@ package com.code.aseoha.client.models.exteriors;// Made with Blockbench 4.10.1
 // Paste this class into your mod and generate all required imports
 
 
-import com.code.aseoha.client.models.consoles.CopperConsoleModel;
 import com.code.aseoha.client.renderers.exteriors.BrackolinRender;
-import com.code.aseoha.client.renderers.exteriors.CapaldiRender;
-import com.code.aseoha.client.renderers.exteriors.CoralRenderer;
-import com.code.aseoha.enums.EnumDoorTypes;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.RenderState;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
-import net.tardis.mod.client.ClientHelper;
-import net.tardis.mod.client.TRenderTypes;
 import net.tardis.mod.client.models.exteriors.ExteriorModel;
 import net.tardis.mod.client.renderers.boti.BOTIRenderer;
 import net.tardis.mod.client.renderers.boti.PortalInfo;
 import net.tardis.mod.client.renderers.exteriors.ExteriorRenderer;
-//import net.tardis.mod.client.renderers.exteriors.ModernPoliceBoxExteriorRenderer;
-import net.tardis.mod.client.renderers.exteriors.ModernPoliceBoxExteriorRenderer;
-import net.tardis.mod.client.renderers.exteriors.SafeExteriorRenderer;
-import net.tardis.mod.client.renderers.exteriors.TT2020CapsuleExteriorRenderer;
 import net.tardis.mod.enums.EnumDoorState;
-import net.tardis.mod.enums.EnumMatterState;
-import net.tardis.mod.helper.Helper;
 import net.tardis.mod.helper.WorldHelper;
-import net.tardis.mod.misc.IDoorType;
 import net.tardis.mod.tileentities.exteriors.ExteriorTile;
-
-import java.util.logging.Logger;
 
 import static java.awt.SystemColor.info;
 

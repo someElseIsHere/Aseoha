@@ -12,6 +12,7 @@ import net.minecraft.util.Hand;
 import net.tardis.mod.client.models.LightModelRenderer;
 import net.tardis.mod.client.models.consoles.AbstractConsoleEntityModel;
 import net.tardis.mod.controls.*;
+import net.tardis.mod.subsystem.StabilizerSubsystem;
 
 public class HartnellModel extends AbstractConsoleEntityModel<HartnellConsoleTile> {
 
@@ -1397,44 +1398,44 @@ public class HartnellModel extends AbstractConsoleEntityModel<HartnellConsoleTil
         hartnellTile.getControl(ThrottleControl.class).ifPresent((throt) -> {
 //            this.Throttle.z = this.Throttle.z -(throt.getAmount()*.14F);
 //            this.Throttle.z = (float) Math.toRadians((double) (320 + throt.getAmount() * 240)); //100.0F - 75.0F
-            this.Throttle.y = (float) Math.toRadians((double) -(throt.getAmount() * 100)); //100.0F - 75.0F
+            this.Throttle.z = (float) Math.toRadians(-220 + (throt.getAmount() * 220)); //100.0F - 75.0F
+            this.Throttle.y = (float) Math.toRadians(-220 + (throt.getAmount() * 220)); //100.0F - 75.0F
         });
         hartnellTile.getControl(HandbrakeControl.class).ifPresent((brake) -> {
-//            this.Throttle.z = this.Throttle.z -(throt.getAmount()*.14F);
-//            this.Throttle.z = (float) Math.toRadians((double) (320 + (brake.isFree() ? 1 : 0) * 240)); //100.0F - 75.0F
-            this.Handbrake.y = (float) Math.toRadians((double) -((brake.isFree() ? 1 : 0) * 100));
+            this.Handbrake.z = (float) Math.toRadians(-220 + ((brake.isFree() ? 1 : 0) * 220)); //100.0F - 75.0F
+            this.Handbrake.y = (float) Math.toRadians(-220 + ((brake.isFree() ? 1 : 0) * 220)); //100.0F - 75.0F
         });
         hartnellTile.getControl(DoorControl.class).ifPresent((door) -> {
 //            this.Throttle.z = this.Throttle.z -(throt.getAmount()*.14F);
 //            this.Throttle.z = (float) Math.toRadians((double) (320 + throt.getAmount() * 240)); //100.0F - 75.0F
-            this.Throttle.y = (float) Math.toRadians((double) -(97 + (door.getAnimationProgress()!=0 ? 1 : 0) * 100)); //100.0F - 75.0F
+            this.Throttle.y = (float) Math.toRadians((double) -(97 + (door.getAnimationProgress() != 0 ? 1 : 0) * 100)); //100.0F - 75.0F
         });
         hartnellTile.getControl(LandingTypeControl.class).ifPresent((LandType) -> {
-            this.MiniLever19.xRot = LandType.getLandType().equals(LandingTypeControl.EnumLandType.UP) ? 45F : -37F;
+            this.MiniLever19.xRot = LandType.getLandType().equals(LandingTypeControl.EnumLandType.UP) ? (float) Math.toRadians(-37F) : (float) Math.toRadians(26F);
         });
 //        hartnellTile.getControl(LandingTypeControl.class).ifPresent((LandType) -> {
 //            this.MiniLever19.xRot = LandType.getLandType().equals(LandingTypeControl.EnumLandType.UP) ? 45F : -37F;
 //        });
         hartnellTile.getControl(RandomiserControl.class).ifPresent((rand) -> {
-            this.randomizer.setBright((rand.getAnimationProgress() != 0) ? 2F : 1F);
+            this.randomizer.setBright(rand.getAnimationTicks() != 0 ? 1F : 0F);
         });
-        hartnellTile.getControl(DimensionControl.class).ifPresent((dim) ->{
-            this.dimensioncontrol.setBright((dim.getAnimationProgress()!=0) ? 2F : 1F);
+        hartnellTile.getControl(DimensionControl.class).ifPresent((dim) -> {
+            this.dimensioncontrol.setBright(dim.getAnimationTicks() != 0 ? 1F : 0F);
         });
         hartnellTile.getControl(FastReturnControl.class).ifPresent((fastReturnControl) -> {
-            this.fastret.setBright((fastReturnControl.getAnimationProgress()!=0) ? 2F : 1F);
+            this.fastret.setBright(fastReturnControl.getAnimationTicks() != 0 ? 1F : 0F);
         });
-        hartnellTile.getControl(StabilizerControl.class).ifPresent((stabs) -> {
-            this.stabs.setBright((stabs.getAnimationProgress()!=0) ? 2F : 1F);
+        hartnellTile.getSubsystem(StabilizerSubsystem.class).ifPresent((stabsus) -> {
+            this.stabs.setBright(stabsus.isControlActivated() ? 1F : 0F);
         });
         hartnellTile.getControl(XControl.class).ifPresent((X) -> {
-            this.MiniLever12.xRot = (float) Math.toRadians((X.getAnimationProgress() != 0) ? 2F : 1F);
+            this.MiniLever12.xRot = (float) Math.toRadians(X.getAnimationTicks() != 0 ? 1F : 0F);
         });
         hartnellTile.getControl(YControl.class).ifPresent((Y) -> {
-            this.MiniLever13.xRot = (float) Math.toRadians((Y.getAnimationProgress() != 0) ? 2F : 1F);
+            this.MiniLever13.xRot = (float) Math.toRadians(Y.getAnimationProgress() != 0 ? 1F : 0F);
         });
         hartnellTile.getControl(ZControl.class).ifPresent((Z) -> {
-            this.MiniLever14.xRot = (float) Math.toRadians((Z.getAnimationProgress() != 0) ? 2F : 1F);
+            this.MiniLever14.xRot = (float) Math.toRadians(Z.getAnimationProgress() != 0 ? 1F : 0F);
         });
 
     }

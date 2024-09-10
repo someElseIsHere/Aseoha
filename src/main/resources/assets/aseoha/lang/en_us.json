@@ -1,5 +1,11 @@
 {
+  "item.aseoha.upgrades.atrium": "[ASEOHA] Atrium Upgrade",
+  "protocol.aseoha.shrink": "Shrink Exterior",
   "Newearth": "New Earth",
+  "texvar.aseoha.exterior.invisible": "Invisible",
+  "sound_scheme.aseoha.stealth": "Stealth",
+  "protocol.aseoha.hads": "Toggle HADs",
+  "protocol.aseoha.eject": "Eject Timeship Occupants",
   "ars.piece.category.aseoha.astronomer": "Astronomer",
   "ars.piece.category.aseoha.cavern": "Cavern",
   "ars.piece.category.aseoha.cavern_rooms": "Cavern Rooms",
@@ -349,5 +355,6 @@
   "aseoha.gui.coord.suggestion.default": "Set the Coordinate",
   "aseoha.k9.container.screen": "K9 Interface",
   "command.aseoha.book.given": "Gave Manual",
-  "command.aseoha.controls.fixed": "Re-Positioned Console Controls"
+  "command.aseoha.controls.fixed": "Re-Positioned Console Controls",
+  "tooltip.item.info.reenabled": "This was Re-Enabled by ASEOHA!"
 }

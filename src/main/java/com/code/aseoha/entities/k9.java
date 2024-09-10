@@ -3,10 +3,8 @@ package com.code.aseoha.entities;
 
 import com.code.aseoha.Constants;
 import com.code.aseoha.config;
-import com.code.aseoha.misc.Container.K9Screen;
-import com.code.aseoha.misc.K9InventoryContainer;
+import com.code.aseoha.misc.InventoryContainers;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierManager;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -14,7 +12,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.passive.horse.LlamaEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -29,10 +26,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.DistExecutor;
 import net.tardis.api.space.entities.ISpaceImmuneEntity;
 import net.tardis.mod.artron.IArtronItemStackBattery;
 import net.tardis.mod.damagesources.TDamageSources;
@@ -47,13 +44,13 @@ import java.util.Objects;
 
 import static com.code.aseoha.misc.NBTHelper.getInvNBT;
 import static com.code.aseoha.misc.NBTHelper.setInvNBT;
-import static com.code.aseoha.misc.ScreenClientStuff.openK9Screen;
+import static com.code.aseoha.misc.ScreenClientStuff.OpenK9Screen;
 
 /**
  * @author Me <br />
  * K9! The Entity Class
  */
-public class k9 extends WolfEntity implements ISpaceImmuneEntity, IRangedAttackMob {
+public class k9 extends RecycledWolf implements IAngerable, ISpaceImmuneEntity, IRangedAttackMob {
     private World world;
     private final Inventory inventory = new Inventory(36);
     public boolean isDead = true;
@@ -61,7 +58,7 @@ public class k9 extends WolfEntity implements ISpaceImmuneEntity, IRangedAttackM
     private int timer = 0;
 
 
-    public k9(EntityType<? extends WolfEntity> type, World worldIn) {
+    public k9(EntityType<? extends RecycledWolf> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -88,7 +85,7 @@ public class k9 extends WolfEntity implements ISpaceImmuneEntity, IRangedAttackM
         this.goalSelector.removeGoal(new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 //        this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(WolfEntity.class));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(RecycledWolf.class));
 //        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 //        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, CreeperEntity.class, true));
@@ -120,7 +117,7 @@ public class k9 extends WolfEntity implements ISpaceImmuneEntity, IRangedAttackM
     private INamedContainerProvider createContainerProvider() {
         return new INamedContainerProvider() {
             public Container createMenu(int i, @NotNull PlayerInventory playerInventory, @NotNull PlayerEntity player) {
-                return new K9InventoryContainer(i, playerInventory, k9.this.inventory);
+                return new InventoryContainers(i, playerInventory, k9.this.inventory);
             }
 
             @NotNull
@@ -187,9 +184,11 @@ public class k9 extends WolfEntity implements ISpaceImmuneEntity, IRangedAttackM
             }
             if(this.timer == 0 && this.power == 10)
                 Objects.requireNonNull(this.getOwner()).sendMessage(ITextComponent.nullToEmpty("Power Banks At 10%, Master."), Objects.requireNonNull(this.getOwnerUUID()));
-            if(this.timer == 0 && this.power == 0)
+            if(this.timer == 0 && this.power == 1) {
                 Objects.requireNonNull(this.getOwner()).sendMessage(ITextComponent.nullToEmpty("Power Banks Depleted, Master."), Objects.requireNonNull(this.getOwnerUUID()));
-            this.isDead = this.power <= 0;
+                this.power = 0;
+            }
+                this.isDead = this.power <= 0;
             if(this.isDead){
                 this.jumping = false;
                 this.setNoGravity(false);
@@ -261,7 +260,7 @@ public class k9 extends WolfEntity implements ISpaceImmuneEntity, IRangedAttackM
                         k9.Say("Power is at " + this.power, player, player.level); //TODO: Add power to the K9 Screen, distress signals, etc
 //                        this.setOrderedToSit(!this.isOrderedToSit());
                         if(!this.isDead && !player.isCrouching())
-                            openK9Screen(this);
+                            OpenK9Screen(this);
                         this.jumping = false;
                         this.navigation.stop();
                         this.setTarget((LivingEntity) null);
@@ -381,7 +380,7 @@ public class k9 extends WolfEntity implements ISpaceImmuneEntity, IRangedAttackM
     @NotNull
     @Override
     public AttributeModifierManager getAttributes() {
-        return new AttributeModifierManager(createAttributes().build());
+        return new AttributeModifierManager(setCustomAttributes().build());
     }
     @Override
         public boolean hurt(DamageSource source, float amount) {
@@ -397,5 +396,34 @@ public class k9 extends WolfEntity implements ISpaceImmuneEntity, IRangedAttackM
 //        return super.hurt(source, amount);
 
     }
+@Override
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level.isClientSide && !this.isPathFinding() && this.onGround) {
+            this.level.broadcastEntityEvent(this, (byte)8);
+        }
 
+        if (!this.level.isClientSide) {
+            this.updatePersistentAnger((ServerWorld)this.level, true);
+        }
+
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void handleEntityEvent(byte p_70103_1_) {
+        if (p_70103_1_ == 8) {
+        } else {
+            super.handleEntityEvent(p_70103_1_);
+        }
+
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public float getTailAngle() {
+        if (this.isAngry()) {
+            return 1.5393804F;
+        } else {
+            return this.isTame() ? (0.55F - (this.getMaxHealth() - this.getHealth()) * 0.02F) * (float)Math.PI : ((float)Math.PI / 5F);
+        }
+    }
 }

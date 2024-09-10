@@ -7,14 +7,25 @@ package com.code.aseoha.texturevariants;
 
 import com.code.aseoha.aseoha;
 import net.minecraft.util.ResourceLocation;
+import net.tardis.mod.Tardis;
 import net.tardis.mod.misc.TexVariant;
 
 public class TextureVariants {
+    public static final TexVariant[] TT = {
+            new TexVariant(new ResourceLocation(aseoha.MODID, "textures/exteriors/invisible.png"), "exterior.invisible"),
+            new TexVariant(new ResourceLocation(Tardis.MODID, "textures/exteriors/tt_capsule.png"), "exteriors.tt.default")};
+
+    public static final TexVariant[] CUSTARD = {
+            new TexVariant(new ResourceLocation(aseoha.MODID, "textures/consoles/custard.png"), "console.custard.default"),
+            new TexVariant(new ResourceLocation(aseoha.MODID, "textures/consoles/custard_blue.png"), "console.custard.blue"),
+            new TexVariant(new ResourceLocation(aseoha.MODID, "textures/consoles/custard_blue.png"), "console.custard.off")};
+
     public static final TexVariant[] CORAL = {
             new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/coral.png"), "exteriors.coral.default"),
             new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/coralbadwolf.png"), "exteriors.coral.badwolf")};
     public static final TexVariant[] CAPALDI = {
             new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/capaldi.png"), "exterior.capaldi.default"),
+            new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/invisible.png"), "exterior.invisible"),
             new TexVariant(new ResourceLocation(aseoha.MODID,"textures/exteriors/capaldi_tribute.png"), "exterior.capaldi.tribute")};
 
     public static final TexVariant[] MCGANN = {

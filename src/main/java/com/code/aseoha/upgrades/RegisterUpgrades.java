@@ -14,12 +14,16 @@ public class RegisterUpgrades extends UpgradeRegistry {
     public static final DeferredRegister<UpgradeEntry> UPGRADES = DeferredRegister.create(UpgradeEntry.class, "aseoha");
 
 
-    public static final RegistryObject<UpgradeEntry> HADS = UPGRADES.register("hads", () -> {
-        return setupUpgrade(HADS::new, (Item) ModItems.HADS.get(), FlightSubsystem.class);
-    });
+//    public static final RegistryObject<UpgradeEntry> HADS = UPGRADES.register("hads", () -> {
+//        return setupUpgrade(HADS::new, (Item) ModItems.HADS.get(), FlightSubsystem.class).;
+//    });
 
     public static final RegistryObject<UpgradeEntry> ENGINEBOOSTER = UPGRADES.register("engine_booster", () -> {
         return setupUpgrade(EngineBoost::new, (Item) ModItems.ENGINE_BOOSTER.get(), FlightSubsystem.class);
+    });
+
+    public static final RegistryObject<UpgradeEntry> ATRIUM_UPGRADE = UPGRADES.register("atrium_upgrade", () -> {
+        return setupUpgrade(Atrium::new, (Item) ModItems.ATRIUM_UPGRADE.get(), FlightSubsystem.class);
     });
 
 //    public static final RegistryObject<UpgradeEntry> AUTO_STABILISER = UPGRADES.register("auto_stabiliser", () -> {
